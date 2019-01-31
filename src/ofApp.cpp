@@ -5,11 +5,11 @@
 #include "Movement/Seek.h"
 
 
-#define BASICMOTION
+//#define BASICMOTION
 //#define SEEK_STEERING_01
 //#define SEEK_STEERING_02
 //#define WANDER_STEERING_01
-//#define WANDER_STEERING_02
+#define WANDER_STEERING_02
 #define FLOCKING
 
 
@@ -55,7 +55,7 @@ void ofApp::setup()
 	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(500, 500), orientation);
 	m_pTarget = new AIForGames::GameObject(-100, -100);
 	//Dynamic Wander
-	m_pMovementAlgo = new AIForGames::Movement::Wander(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 500, 120, 50, 200, 50);
+	m_pMovementAlgo = new AIForGames::Movement::Wander(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 500, 120, 10, 200, 1);
 #endif // WANDER_STEERING_02
 
 
