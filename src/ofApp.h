@@ -30,4 +30,5 @@ private:
 	AIForGames::GameObject* m_pBoidObject;
 	AIForGames::GameObject* m_pTarget;
 	AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo;
+	int m_numberOfBoids;
 };

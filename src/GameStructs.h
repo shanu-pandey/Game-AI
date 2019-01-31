@@ -11,6 +11,26 @@
 //	}
 //}
 
+namespace AIForGames
+{
+	namespace Movement
+	{
+		class IMovementAlgorithm;
+	}
+}
+
+struct BehaviorAndWeight
+{
+	AIForGames::Movement::IMovementAlgorithm* p_behavior;
+	float weight;
+
+	BehaviorAndWeight()
+	{
+		p_behavior = nullptr;
+		weight = 0;
+	}
+};
+
 struct MovementInputs
 {
 	AIForGames::Physics::Kinematic* source;
@@ -21,12 +41,13 @@ struct MovementInputs
 	float maxAngularAcceleration;
 	float timeToTarget;
 	float slowRadius;
-	float targetRadius;
+	float targetRadius;		//threshold for separation
 	float slowAngleThreshold;
 	float targetAngleThreshold;
 	float wanderOffset;
 	float wanderRadius;
 	float wanderRate;
+
 
 	MovementInputs()
 	{
@@ -41,7 +62,7 @@ struct MovementInputs
 		targetRadius = 0;
 		wanderOffset = 0;
 		wanderRadius = 0;
-		wanderRate = 0;
+		wanderRate = 0;	
 	}
 };
 

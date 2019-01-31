@@ -184,6 +184,9 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Movement\Align.cpp" />
     <ClCompile Include="src\Movement\Arrive.cpp" />
+    <ClCompile Include="src\Movement\BlendedSteering.cpp" />
+    <ClCompile Include="src\Movement\DynamicSeperation.cpp" />
+    <ClCompile Include="src\Movement\DynamicVelocityMatch.cpp" />
     <ClCompile Include="src\Movement\Face.cpp" />
     <ClCompile Include="src\Movement\Movement.cpp" />
     <ClCompile Include="src\Movement\Seek.cpp" />
@@ -210,6 +213,9 @@
     <ClInclude Include="src\GameStructs.h" />
     <ClInclude Include="src\Movement\Align.h" />
     <ClInclude Include="src\Movement\Arrive.h" />
+    <ClInclude Include="src\Movement\BlendedSteering.h" />
+    <ClInclude Include="src\Movement\DynamicSeperation.h" />
+    <ClInclude Include="src\Movement\DynamicVelocityMatch.h" />
     <ClInclude Include="src\Movement\Face.h" />
     <ClInclude Include="src\Movement\IMovementAlgorithm.h" />
     <ClInclude Include="src\Movement\Movement.h" />

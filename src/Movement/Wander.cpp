@@ -50,25 +50,26 @@ namespace AIForGames
 			output.rotation = 0;
 
 			//Keep in bounds
-			if (m_pInputs->source->GetPosition().x <= 0)
 			{
-				m_pInputs->source->SetPosition(ofVec2f(ofGetWidth(), m_pInputs->source->GetPosition().y));				
+				if (m_pInputs->source->GetPosition().x <= 0)
+				{
+					m_pInputs->source->SetPosition(ofVec2f(ofGetWidth(), m_pInputs->source->GetPosition().y));
+				}
+				else if (m_pInputs->source->GetPosition().x >= ofGetWidth())
+				{
+					m_pInputs->source->SetPosition(ofVec2f(0, m_pInputs->source->GetPosition().y));
+				}
+				else if (m_pInputs->source->GetPosition().y <= 0)
+				{
+					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, ofGetHeight()));
+				}
+				else if (m_pInputs->source->GetPosition().y >= ofGetHeight())
+				{
+					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, 0));
+				}
 			}
-			else if (m_pInputs->source->GetPosition().x >= ofGetWidth())
-			{
-				m_pInputs->source->SetPosition(ofVec2f(0, m_pInputs->source->GetPosition().y));
-			}
-			else if (m_pInputs->source->GetPosition().y <= 0)
-			{
-				m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, ofGetHeight()));
-			}
-			else if (m_pInputs->source->GetPosition().y >= ofGetHeight())
-			{
-				m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, 0));
-			}
-
+			
 			ofVec2f orientationVector = ofVec2f(std::cos(m_pInputs->source->GetOrientation()), std::sin(m_pInputs->source->GetOrientation()));
-
 			output.velocity = orientationVector * m_pInputs->maxSpeed;
 			output.rotation = m_pInputs->maxRotation * (ofRandom(1) - ofRandom(1));
 
@@ -83,23 +84,24 @@ namespace AIForGames
 			output.linear = ofVec2f(0, 0);
 
 			//Keep in bounds
-			if (m_pInputs->source->GetPosition().x <= 0)
 			{
-				m_pInputs->source->SetPosition(ofVec2f(ofGetWidth(), m_pInputs->source->GetPosition().y));
+				if (m_pInputs->source->GetPosition().x <= 0)
+				{
+					m_pInputs->source->SetPosition(ofVec2f(ofGetWidth(), m_pInputs->source->GetPosition().y));
+				}
+				else if (m_pInputs->source->GetPosition().x >= ofGetWidth())
+				{
+					m_pInputs->source->SetPosition(ofVec2f(0, m_pInputs->source->GetPosition().y));
+				}
+				else if (m_pInputs->source->GetPosition().y <= 0)
+				{
+					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, ofGetHeight()));
+				}
+				else if (m_pInputs->source->GetPosition().y >= ofGetHeight())
+				{
+					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, 0));
+				}
 			}
-			else if (m_pInputs->source->GetPosition().x >= ofGetWidth())
-			{
-				m_pInputs->source->SetPosition(ofVec2f(0, m_pInputs->source->GetPosition().y));
-			}
-			else if (m_pInputs->source->GetPosition().y <= 0)
-			{
-				m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, ofGetHeight()));
-			}
-			else if (m_pInputs->source->GetPosition().y >= ofGetHeight())
-			{
-				m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, 0));
-			}
-
 			float wanderOrientation = (ofRandom(1) - ofRandom(1)) * m_pInputs->wanderRate;
 			float targetOrientation = wanderOrientation + m_pInputs->source->GetOrientation();
 			ofVec2f targetPos = m_pInputs->source->GetPosition() + m_pInputs->wanderOffset * ofVec2f(std::cos(m_pInputs->source->GetOrientation()), std::sin(m_pInputs->source->GetOrientation()));
@@ -108,8 +110,7 @@ namespace AIForGames
 			Physics::Kinematic* i_newTarget = new Physics::Kinematic(targetPos, targetOrientation);
 			m_pInputs->destination = i_newTarget;			
 			Face* p_faceSteering = new Face(m_pInputs->source, m_pInputs->destination, 1200, 200, 8, 15, 1);
-			output = p_faceSteering->GetDynamicSteering();
-			
+			output = p_faceSteering->GetDynamicSteering();			
 			output.linear = m_pInputs->maxAcceleration * ofVec2f(std::cos(m_pInputs->source->GetOrientation()), std::sin(m_pInputs->source->GetOrientation()));
 			return output;
 		}

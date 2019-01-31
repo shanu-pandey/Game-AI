@@ -7,6 +7,7 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+	m_numberOfBoids = 10;
 	float orientation = 0;
 	float radius = 20;
 	ofVec2f position = ofVec3f(radius, radius);

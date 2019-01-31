@@ -73,6 +73,15 @@
     <ClCompile Include="src\Movement\Face.cpp">
       <Filter>src\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="src\Movement\DynamicSeperation.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Movement\DynamicVelocityMatch.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Movement\BlendedSteering.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -192,6 +201,15 @@
       <Filter>src\Movement</Filter>
     </ClInclude>
     <ClInclude Include="src\Movement\Face.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Movement\DynamicSeperation.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Movement\DynamicVelocityMatch.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Movement\BlendedSteering.h">
       <Filter>src\Movement</Filter>
     </ClInclude>
   </ItemGroup>
