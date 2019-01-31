@@ -40,14 +40,17 @@ namespace AIForGames
 
 			for (std::vector<AIForGames::Physics::Kinematic*>::iterator it = m_pTargets.begin(); it != m_pTargets.end(); ++it)
 			{
-				ofVec2f direction = (*it)->GetPosition() - m_pCharacter->GetPosition();
-				float distance = direction.length();
-				if (distance < m_threshold)
+				if ((*it) != m_pCharacter)
 				{
-					float strength = std::fmin(m_decayCofficient / (distance*distance), m_maxAcceleration);
-					direction.normalize();
-					output.linear += strength * direction;
-				}				
+					ofVec2f direction = m_pCharacter->GetPosition() - (*it)->GetPosition();
+					float distance = direction.length();
+					if (distance < m_threshold)
+					{
+						float strength = std::fmin(m_decayCofficient / (distance*distance), m_maxAcceleration);
+						direction.normalize();
+						output.linear += strength * direction;
+					}
+				}
 			}
 
 			if (output.linear.length() > m_maxAcceleration)

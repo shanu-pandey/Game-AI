@@ -125,15 +125,56 @@ namespace AIForGames
 
 	void Physics::Kinematic::Update(KinematicSteeringOutput i_steering)
 	{
+		{
+			if (m_position.x <= 0)
+			{
+				m_position.x = ofGetWidth();
+			}
+			else if (m_position.x >= ofGetWidth())
+			{
+				m_position.x = 0;
+			}
+
+			if (m_position.y <= 0)
+			{
+				m_position.y = ofGetHeight();
+			}
+			else if (m_position.y >= ofGetHeight())
+			{
+				m_position.y = 0;
+			}
+		}
 		m_position.x += m_velocity.x * ofGetLastFrameTime() ;
 		m_position.y += m_velocity.y * ofGetLastFrameTime();
 		m_orientation += i_steering.rotation * ofGetLastFrameTime();
 		m_velocity = i_steering.velocity;
 
+		//Keep in bounds
+		
+
 	}
 
 	void Physics::Kinematic::Update(DynamicSteeringOutput i_steering)
 	{
+		{
+			if (m_position.x <= 0)
+			{
+				m_position.x = ofGetWidth();
+			}
+			else if (m_position.x >= ofGetWidth())
+			{
+				m_position.x = 0;
+			}
+
+			if (m_position.y <= 0)
+			{
+				m_position.y = ofGetHeight();
+			}
+			else if (m_position.y >= ofGetHeight())
+			{
+				m_position.y = 0;
+			}
+		}
 		m_position.x += m_velocity.x * ofGetLastFrameTime();
 		m_position.y += m_velocity.y * ofGetLastFrameTime();
 		m_orientation += i_steering.angular * ofGetLastFrameTime();

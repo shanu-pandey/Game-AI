@@ -94,12 +94,7 @@ namespace AIForGames
 
 	void GameObject::Update(KinematicSteeringOutput i_steering)
 	{
-		counter++;		
-		//Algorithm 1: Basic Motion; movement round the corners
-		//KinematicSteeringOutput steering = Movement::MovementAlgorithms::BasicMotion(this, 600);
-
-		//Algorithm 2: Seek Steering Behavior, using Kinematics Arrive and Dynamic Arrive
-		//KinematicSteeringOutput steering = Movement::MovementAlgorithms::KinematicArrive(this, this->m_pTarget, 10, 1, 800);
+		counter++;				
 		m_pKinematic->Update(i_steering);
 	}
 

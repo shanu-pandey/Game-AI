@@ -46,13 +46,7 @@ namespace AIForGames
 			{
 				output.linear.normalize();
 				output.linear *= m_maxAcceleration;
-			}
-
-			if (output.linear.length() > m_maxAcceleration)
-			{
-				output.linear.normalize();
-				output.linear *= m_maxAcceleration;
-			}
+			}			
 
 			if (output.angular < -3.14)
 				output.angular += 6.28;

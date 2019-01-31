@@ -31,5 +31,8 @@ private:
 	AIForGames::GameObject* m_pTarget;
 	std::vector<AIForGames::GameObject*> m_pObjects;
 	AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo;
+	std::vector<AIForGames::Movement::IMovementAlgorithm*> m_pBlendedMovement;
+	std::vector<AIForGames::Physics::Kinematic*> allKinematics;
+	AIForGames::Physics::Kinematic* matchKinematic;
 	int m_numberOfBoids;
 };

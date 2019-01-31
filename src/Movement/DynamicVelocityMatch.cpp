@@ -7,15 +7,10 @@ namespace AIForGames
 {
 	namespace Movement
 	{
-		DynamicVelocityMatch::DynamicVelocityMatch(Physics::Kinematic* i_character, std::vector<Physics::Kinematic*>  i_targets, float i_maxAcc, float i_timeToTarget)
+		DynamicVelocityMatch::DynamicVelocityMatch(Physics::Kinematic* i_character, Physics::Kinematic*  i_target, float i_maxAcc, float i_timeToTarget)
 		{			
-			m_pCharacter = i_character;
-			/*for (std::vector<Physics::Kinematic*>::iterator it = i_targets.begin(); it != i_targets.end(); ++it)
-			{
-				Physics::Kinematic* target = new Physics::Kinematic((*it)->);				
-				m_pTargets.push_back(target);
-			}*/
-			//m_pTargets = i_targets;
+			m_pCharacter = i_character;			
+			m_pTarget = i_target;
 			m_MaxAcceleration = i_maxAcc;
 			m_timeToTarget = i_timeToTarget;
 		}
@@ -41,15 +36,8 @@ namespace AIForGames
 			DynamicSteeringOutput output;
 			output.angular = 0;
 			output.linear = ofVec2f(0, 0);
-			for (std::vector<AIForGames::Physics::Kinematic*>::iterator it = m_pTargets.begin(); it != m_pTargets.end(); ++it)
-			{
-				DynamicSteeringOutput temp;
-				temp.linear = (*it)->GetVelocity() - m_pCharacter->GetVelocity();
-				temp.linear /= m_timeToTarget;
-				output.linear += temp.linear;
-			}
-			
-
+			output.linear = m_pTarget->GetVelocity() - m_pCharacter->GetVelocity();
+			output.linear /= m_timeToTarget;
 			if (output.linear.length() > m_MaxAcceleration)
 			{
 				output.linear.normalize();

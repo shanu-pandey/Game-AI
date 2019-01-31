@@ -3,13 +3,17 @@
 #include "Movement/Wander.h"
 #include "Movement/Align.h"
 #include "Movement/Seek.h"
+#include "Movement/BlendedSteering.h"
+#include "Movement/DynamicSeperation.h"
+#include "Movement/DynamicVelocityMatch.h"
+
 
 
 //#define BASICMOTION
 //#define SEEK_STEERING_01
 //#define SEEK_STEERING_02
 //#define WANDER_STEERING_01
-#define WANDER_STEERING_02
+//#define WANDER_STEERING_02
 #define FLOCKING
 
 
@@ -60,14 +64,18 @@ void ofApp::setup()
 
 
 #ifdef FLOCKING
+	
 	m_numberOfBoids = 10;
 	m_pObjects.reserve(m_numberOfBoids);
-
+	allKinematics.reserve(m_numberOfBoids);
+	m_pBlendedMovement.reserve(m_numberOfBoids);
+	matchKinematic = new AIForGames::Physics::Kinematic();
 	//Fill all boids
 	for (int i = 0; i < 10; i++)
 	{
-		AIForGames::GameObject* temp = new AIForGames::GameObject(radius, ofVec3f(radius, radius), orientation);
+		AIForGames::GameObject* temp = new AIForGames::GameObject(radius, ofVec3f(300+ofRandom(20), 400+ofRandom(30)), ofRandom(1));
 		m_pObjects.push_back(temp);
+		allKinematics.push_back(temp->GetKinematic());
 	}
 #endif // FLOCKING
 }
@@ -119,23 +127,106 @@ void ofApp::update() {
 	m_pBoidObject->Update(m_pMovementAlgo->GetDynamicSteering());
 #endif // WANDER_STEERING_02
 
+#ifdef FLOCKING
+	float centerX = 0;
+	float centerY = 0;
+	float sumX = 0;
+	float sumY = 0;
+	float velX = 0;
+	float velY = 0;
+	float sumVelX = 0;
+	float sumVelY = 0;
+	
+	//calculate center of mass and velocity to match
+	for (int i = 0; i < 10; i++)
+	{		
+		sumX += m_pObjects[i]->GetKinematic()->GetPosition().x;
+		sumY += m_pObjects[i]->GetKinematic()->GetPosition().y;
+		sumVelX += m_pObjects[i]->GetKinematic()->GetVelocity().x;
+		sumVelY += m_pObjects[i]->GetKinematic()->GetVelocity().y;
+	}
+	velX = sumVelX / 10;
+	velY = sumVelY / 10;
+	sumX = sumX / 10;
+	sumY = sumY / 10;
+	matchKinematic->SetPosition(ofVec2f(sumX, sumY));
+	matchKinematic->SetVelocity(ofVec2f(sumVelX, sumVelY));
+	//Iterate through boids
+	for (int i = 0; i < 10; i++)
+	{
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo1 = new AIForGames::Movement::DynamicSeparation(m_pObjects[i]->GetKinematic(), allKinematics, 200, -5000.0f, 1200);
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo2 = new AIForGames::Movement::DynamicVelocityMatch(m_pObjects[i]->GetKinematic(), matchKinematic, 1000, 0.3);
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo3 = new AIForGames::Movement::Seek(m_pObjects[i]->GetKinematic(), matchKinematic, 1500);
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo4 = new AIForGames::Movement::Align(m_pObjects[i]->GetKinematic(), matchKinematic, 3, 20, 20, 5, 2);
+
+		std::vector<BehaviorAndWeight*> behaviorAndWeight;
+		BehaviorAndWeight* b1 = new BehaviorAndWeight();
+		b1->p_behavior = m_pMovementAlgo1;
+		b1->weight = 0.9;
+		behaviorAndWeight.push_back(b1);
+
+		BehaviorAndWeight* b2 = new BehaviorAndWeight();
+		b2->p_behavior = m_pMovementAlgo2;
+		b2->weight = 0.4;
+		behaviorAndWeight.push_back(b2);
+
+		BehaviorAndWeight* b3 = new BehaviorAndWeight();
+		b3->p_behavior = m_pMovementAlgo3;
+		b3->weight = 0.05;
+		behaviorAndWeight.push_back(b3);
+
+
+		BehaviorAndWeight* b4 = new BehaviorAndWeight();
+		b4->p_behavior = m_pMovementAlgo4;
+		b4->weight = 0.6;
+		behaviorAndWeight.push_back(b4);
+
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgoBlended = new AIForGames::Movement::BlendedSteering(behaviorAndWeight, 200, 5);
+		m_pBlendedMovement.push_back(m_pMovementAlgoBlended);
+	}
+
+
+	for (int i = 0; i < 10; i++)
+	{
+		m_pObjects[i]->Update(m_pBlendedMovement[i]->GetDynamicSteering());
+	}
+#endif // FLOCKING
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {		
+	
+#ifdef BASICMOTION	
 	m_pBoidObject->DrawObject();
-#ifdef BASICMOTION		
 	m_pBoidObject->DrawBreadCrumbs();
 #endif // BASICMOTION
 
 #ifdef SEEK_STEERING_01 
+	m_pBoidObject->DrawObject();
 	m_pTarget->DrawObject();
 #endif // SEEK_STEERING
 
 #ifdef SEEK_STEERING_02 
+	m_pBoidObject->DrawObject();
+	m_pBoidObject->DrawObject();
 	m_pTarget->DrawObject();
 #endif // SEEK_STEERING
 
+#ifdef WANDER_STEERING_01	
+	m_pBoidObject->DrawObject();
+#endif // WANDER_STEERING_01
+
+#ifdef WANDER_STEERING_02	
+	m_pBoidObject->DrawObject();
+#endif // WANDER_STEERING_02
+
+#ifdef FLOCKING
+	for (int i = 0; i < 10; i++)
+	{
+		m_pObjects[i]->DrawObject();
+	}
+#endif // FLOCKING
 }
 
 //--------------------------------------------------------------

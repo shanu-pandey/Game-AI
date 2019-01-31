@@ -103,7 +103,8 @@ namespace AIForGames
 				output.linear.normalize();
 				output.linear *= m_pInputs->maxAcceleration;
 			}
-			m_pInputs->source->SetOrientation(CalculateNewOrientation(m_pInputs->source->GetOrientation(), output.linear));
+			//m_pInputs->source->SetOrientation(CalculateNewOrientation(m_pInputs->source->GetOrientation(), output.linear));
+			output.angular = (CalculateNewOrientation(m_pInputs->source->GetOrientation(), output.linear));
 
 			return output;
 		}

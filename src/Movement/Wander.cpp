@@ -84,7 +84,7 @@ namespace AIForGames
 			output.linear = ofVec2f(0, 0);
 
 			//Keep in bounds
-			{
+			/*{
 				if (m_pInputs->source->GetPosition().x <= 0)
 				{
 					m_pInputs->source->SetPosition(ofVec2f(ofGetWidth(), m_pInputs->source->GetPosition().y));
@@ -93,7 +93,8 @@ namespace AIForGames
 				{
 					m_pInputs->source->SetPosition(ofVec2f(0, m_pInputs->source->GetPosition().y));
 				}
-				else if (m_pInputs->source->GetPosition().y <= 0)
+				
+				if (m_pInputs->source->GetPosition().y <= 0)
 				{
 					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, ofGetHeight()));
 				}
@@ -101,7 +102,7 @@ namespace AIForGames
 				{
 					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, 0));
 				}
-			}
+			}*/
 			float wanderOrientation = (ofRandom(1) - ofRandom(1)) * m_pInputs->wanderRate;
 			float targetOrientation = wanderOrientation + m_pInputs->source->GetOrientation();
 			ofVec2f targetPos = m_pInputs->source->GetPosition() + m_pInputs->wanderOffset * ofVec2f(std::cos(m_pInputs->source->GetOrientation()), std::sin(m_pInputs->source->GetOrientation()));
