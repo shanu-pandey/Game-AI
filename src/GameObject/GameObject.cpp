@@ -85,14 +85,11 @@ namespace AIForGames
 	void GameObject::DrawObject()
 	{
 		m_pBoid->Draw(m_radius, m_pKinematic->GetPosition(), m_pKinematic->GetOrientation());		
-		
-		//Uncomment to draw bread crumbs
-
-		if (counter%5 == 0)
+		if (counter%10 == 0)
 		{
 			AddBreadCrumb(m_pKinematic->GetPosition());
 		}
-		//DrawBreadCrumbs();
+		
 	}
 
 	void GameObject::Update(KinematicSteeringOutput i_steering)
