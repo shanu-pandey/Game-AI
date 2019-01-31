@@ -1,0 +1,22 @@
+#pragma once
+#include "ofVec2f.h"
+#include "IMovementAlgorithm.h"
+
+namespace AIForGames
+{
+	namespace Movement
+	{
+		class Align : public IMovementAlgorithm
+		{
+		public:
+			Align(Physics::Kinematic* i_character, Physics::Kinematic* i_target, float i_maxSpeed, float i_radius, float i_timeToTarget);
+			Align(Physics::Kinematic* i_character, Physics::Kinematic* i_target, float i_maxSpeed, float i_maxAcc, float i_targetRadius, float i_slowRadius, float i_timeToTarget);
+			Align(MovementInputs* i_pInput);
+			float CalculateNewOrientation(float i_orientation, ofVec2f i_velocity);
+			KinematicSteeringOutput GetKinematicSteering();
+			DynamicSteeringOutput GetDynamicSteering();
+		private:
+			MovementInputs * m_pInputs;
+		};
+	}
+}
