@@ -104,10 +104,12 @@ namespace AIForGames
 			float targetOrientation = wanderOrientation + m_pInputs->source->GetOrientation();
 			ofVec2f targetPos = m_pInputs->source->GetPosition() + m_pInputs->wanderOffset * ofVec2f(std::cos(m_pInputs->source->GetOrientation()), std::sin(m_pInputs->source->GetOrientation()));
 			targetPos += m_pInputs->wanderRadius*ofVec2f(std::cos(targetOrientation), std::sin(targetOrientation));
+			
 			Physics::Kinematic* i_newTarget = new Physics::Kinematic(targetPos, targetOrientation);
-			m_pInputs->destination = i_newTarget;
-			Face* p_faceSteering = new Face(m_pInputs->source, m_pInputs->destination, 200, 20, 8, 15, 1);
+			m_pInputs->destination = i_newTarget;			
+			Face* p_faceSteering = new Face(m_pInputs->source, m_pInputs->destination, 1200, 200, 8, 15, 1);
 			output = p_faceSteering->GetDynamicSteering();
+			
 			output.linear = m_pInputs->maxAcceleration * ofVec2f(std::cos(m_pInputs->source->GetOrientation()), std::sin(m_pInputs->source->GetOrientation()));
 			return output;
 		}

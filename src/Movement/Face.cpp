@@ -1,5 +1,6 @@
 #pragma once
 #include "Face.h"
+#include "Align.h"
 #include "../Physics/Kinematic.h"
 #include "../ofApp.h"
 
@@ -58,38 +59,18 @@ namespace AIForGames
 			/*if (m_pInputs->destination->GetPosition().x < -50)
 				return output;*/
 
-			float rotation = m_pInputs->destination->GetOrientation() - m_pInputs->source->GetOrientation();
-
-			//Map rotation to [-3.14, 3.14]
-			if (rotation < 0 && rotation < -3.14)
-				rotation += 6.28;
-			else if (rotation > 0 && rotation > 3.14)
-				rotation -= 6.28;
-
-			float rotationSize = std::abs(rotation);
-
-			if (rotationSize < m_pInputs->targetAngleThreshold)
+			ofVec2f direction = m_pInputs->destination->GetPosition() - m_pInputs->source->GetPosition();
+			float newOrientation = 0;
+			if (direction.length() == 0)
 				return output;
-
-			float targetRotation = 0;
-			if (rotationSize > m_pInputs->slowAngleThreshold)
-				targetRotation = m_pInputs->maxRotation;
 			else
-				targetRotation = m_pInputs->maxRotation * rotationSize / m_pInputs->slowAngleThreshold;
+				newOrientation = std::atan2(direction.y, direction.x);
 
-			targetRotation *= rotation / rotationSize;
+			Physics::Kinematic* i_newTarget = new Physics::Kinematic(m_pInputs->destination->GetPosition(), newOrientation);
+			m_pInputs->destination = i_newTarget;
+			Align* p_alignSteering = new Align(m_pInputs->source, m_pInputs->destination, 5.0, 1.5, 1.0, 0.2, 1);
+			output = p_alignSteering->GetDynamicSteering();
 
-			output.angular = m_pInputs->destination->GetRotation() - m_pInputs->source->GetRotation();
-			output.angular /= m_pInputs->timeToTarget;
-
-			float angularAcc = std::abs(output.angular);
-			if (angularAcc > m_pInputs->maxAngularAcceleration)
-			{
-				output.angular /= angularAcc;
-				output.angular *= m_pInputs->maxAngularAcceleration;
-			}
-
-			//m_pInputs->source->SetRotation(output.angular);
 			return output;
 		}
 	}

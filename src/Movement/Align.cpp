@@ -104,7 +104,8 @@ namespace AIForGames
 
 			targetRotation *= rotation / rotationSize;
 			
-			output.angular = m_pInputs->destination->GetRotation() - m_pInputs->source->GetRotation();
+			//output.angular = m_pInputs->destination->GetRotation() - m_pInputs->source->GetRotation();
+			output.angular = m_pInputs->destination->GetOrientation() - m_pInputs->source->GetRotation();
 			output.angular /= m_pInputs->timeToTarget;
 
 			float angularAcc = std::abs(output.angular);

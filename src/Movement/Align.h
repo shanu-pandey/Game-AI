@@ -10,7 +10,8 @@ namespace AIForGames
 		{
 		public:
 			Align(Physics::Kinematic* i_character, Physics::Kinematic* i_target, float i_maxSpeed, float i_radius, float i_timeToTarget);
-			Align(Physics::Kinematic* i_character, Physics::Kinematic* i_target, float i_maxSpeed, float i_maxAcc, float i_targetRadius, float i_slowRadius, float i_timeToTarget);
+			Align(Physics::Kinematic* i_character, Physics::Kinematic* i_target, float i_maxRotation, float i_maxAngularAcc,
+				float i_slowAngleThreshold, float i_targetAngleThreshold, float i_timeToTarget);
 			Align(MovementInputs* i_pInput);
 			float CalculateNewOrientation(float i_orientation, ofVec2f i_velocity);
 			KinematicSteeringOutput GetKinematicSteering();
