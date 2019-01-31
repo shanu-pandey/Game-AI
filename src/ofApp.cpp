@@ -9,10 +9,20 @@ void ofApp::setup()
 {
 	m_numberOfBoids = 10;
 	float orientation = 0;
-	float radius = 20;
+	float radius = 15;
 	ofVec2f position = ofVec3f(radius, radius);
 	m_pBoidObject = new AIForGames::GameObject(radius, position, orientation);
 	m_pTarget = new AIForGames::GameObject(300, 420);
+	m_pObjects.reserve(m_numberOfBoids);
+
+	//Fill all boids
+	for (int i = 0; i < 10; i++)
+	{
+		AIForGames::GameObject* temp = new AIForGames::GameObject(radius, position, orientation);
+		m_pObjects.push_back(temp);
+	}
+
+
 
 	//Kinematic Arrive
 	//m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 10, 1);
