@@ -100,6 +100,7 @@ namespace AIForGames
 
 	void GameObject::Update(DynamicSteeringOutput i_steering)
 	{
+		counter++;
 		m_pKinematic->Update(i_steering);
 	}
 
@@ -108,7 +109,7 @@ namespace AIForGames
 		for (std::list<ofVec2f>::iterator it = breadCrumbs.begin(); it != breadCrumbs.end(); ++it)
 		{		
 			ofSetColor(255, 212, 0);
-			ofDrawCircle(*it, 10);
+			ofDrawCircle(*it, 5);
 		}
 	}
 

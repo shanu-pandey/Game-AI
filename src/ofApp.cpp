@@ -11,10 +11,10 @@
 
 //#define BASICMOTION
 //#define SEEK_STEERING_01
-//#define SEEK_STEERING_02
+#define SEEK_STEERING_02
 //#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
-#define FLOCKING
+//#define FLOCKING
 
 
 //--------------------------------------------------------------
@@ -59,7 +59,7 @@ void ofApp::setup()
 	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(500, 500), orientation);
 	m_pTarget = new AIForGames::GameObject(-100, -100);
 	//Dynamic Wander
-	m_pMovementAlgo = new AIForGames::Movement::Wander(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 500, 120, 10, 200, 1);
+	m_pMovementAlgo = new AIForGames::Movement::Wander(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 500, 200, 100, 200, 10);
 #endif // WANDER_STEERING_02
 
 
@@ -154,9 +154,9 @@ void ofApp::update() {
 	//Iterate through boids
 	for (int i = 0; i < 10; i++)
 	{
-		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo1 = new AIForGames::Movement::DynamicSeparation(m_pObjects[i]->GetKinematic(), allKinematics, 200, -5000.0f, 1200);
-		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo2 = new AIForGames::Movement::DynamicVelocityMatch(m_pObjects[i]->GetKinematic(), matchKinematic, 1000, 0.3);
-		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo3 = new AIForGames::Movement::Seek(m_pObjects[i]->GetKinematic(), matchKinematic, 1500);
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo1 = new AIForGames::Movement::DynamicSeparation(m_pObjects[i]->GetKinematic(), allKinematics, 100, 9000.0f, 1200);
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo2 = new AIForGames::Movement::DynamicVelocityMatch(m_pObjects[i]->GetKinematic(), matchKinematic, 1000, 1);
+		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo3 = new AIForGames::Movement::Seek(m_pObjects[i]->GetKinematic(), matchKinematic, 200);
 		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo4 = new AIForGames::Movement::Align(m_pObjects[i]->GetKinematic(), matchKinematic, 3, 20, 20, 5, 2);
 
 		std::vector<BehaviorAndWeight*> behaviorAndWeight;
@@ -167,18 +167,18 @@ void ofApp::update() {
 
 		BehaviorAndWeight* b2 = new BehaviorAndWeight();
 		b2->p_behavior = m_pMovementAlgo2;
-		b2->weight = 0.4;
+		b2->weight = 0.2;
 		behaviorAndWeight.push_back(b2);
 
 		BehaviorAndWeight* b3 = new BehaviorAndWeight();
 		b3->p_behavior = m_pMovementAlgo3;
-		b3->weight = 0.05;
+		b3->weight = 0.1;
 		behaviorAndWeight.push_back(b3);
 
 
 		BehaviorAndWeight* b4 = new BehaviorAndWeight();
 		b4->p_behavior = m_pMovementAlgo4;
-		b4->weight = 0.6;
+		b4->weight = 0.3;
 		behaviorAndWeight.push_back(b4);
 
 		AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgoBlended = new AIForGames::Movement::BlendedSteering(behaviorAndWeight, 200, 5);
