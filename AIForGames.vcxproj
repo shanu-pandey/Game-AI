@@ -181,7 +181,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject\GameObject.cpp" />
-    <ClCompile Include="src\Graph\DirectedWeightedEdge.cpp" />
+    <ClCompile Include="src\Graph\Graph.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Movement\Align.cpp" />
     <ClCompile Include="src\Movement\Arrive.cpp" />
@@ -212,7 +212,7 @@
   <ItemGroup>
     <ClInclude Include="src\GameObject\GameObject.h" />
     <ClInclude Include="src\GameStructs.h" />
-    <ClInclude Include="src\Graph\DirectedWeightedEdge.h" />
+    <ClInclude Include="src\Graph\Graph.h" />
     <ClInclude Include="src\Movement\Align.h" />
     <ClInclude Include="src\Movement\Arrive.h" />
     <ClInclude Include="src\Movement\BlendedSteering.h" />

@@ -82,7 +82,7 @@
     <ClCompile Include="src\Movement\BlendedSteering.cpp">
       <Filter>src\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graph\DirectedWeightedEdge.cpp">
+    <ClCompile Include="src\Graph\Graph.cpp">
       <Filter>src\Graph</Filter>
     </ClCompile>
   </ItemGroup>
@@ -218,7 +218,7 @@
     <ClInclude Include="src\Movement\BlendedSteering.h">
       <Filter>src\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graph\DirectedWeightedEdge.h">
+    <ClInclude Include="src\Graph\Graph.h">
       <Filter>src\Graph</Filter>
     </ClInclude>
   </ItemGroup>
