@@ -82,6 +82,9 @@
     <ClCompile Include="src\Movement\BlendedSteering.cpp">
       <Filter>src\Movement</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graph\DirectedWeightedEdge.cpp">
+      <Filter>src\Graph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -116,6 +119,9 @@
     </Filter>
     <Filter Include="src\Physics">
       <UniqueIdentifier>{75dcf4b9-d2f6-48cf-a170-a9ab35ae7ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graph">
+      <UniqueIdentifier>{dc6b61d5-1587-4a89-a381-64da47ed171a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="src\Movement\BlendedSteering.h">
       <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph\DirectedWeightedEdge.h">
+      <Filter>src\Graph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

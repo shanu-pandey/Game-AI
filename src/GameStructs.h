@@ -78,3 +78,15 @@ struct DynamicSteeringOutput
 	float angular;
 };
 
+struct DirectedWeightedEdge
+{
+	float cost;
+	int source;
+	int sink;
+};
+
+struct NodeRecord
+{
+	int node;
+	DirectedWeightedEdge incomingEdge;
+};
