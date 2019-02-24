@@ -10,7 +10,7 @@ namespace AIForGames
 		public:
 			Graph();
 			~Graph();
-			DirectedWeightedEdge GetOutgoingEdge(int i_node);
+			int GetOutgoingEdge(int i_node);
 
 		private:
 			std::vector<DirectedWeightedEdge* > m_edges;
