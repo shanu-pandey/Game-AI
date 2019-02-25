@@ -78,15 +78,66 @@ struct DynamicSteeringOutput
 	float angular;
 };
 
+struct Node
+{
+	int index;
+	ofVec2f position;
+
+	Node()
+	{
+		index = 0;
+		position = ofVec2f(0, 0);
+	}
+
+	Node(int i_index, ofVec2f i_pos)
+	{
+		index = i_index;
+		position = i_pos;
+	}
+};
+
 struct DirectedWeightedEdge
 {
 	float cost;
-	int source;
-	int sink;
+	Node source;
+	Node sink;
+
+	DirectedWeightedEdge()
+	{
+		cost = 0;
+		source = Node();
+		sink = Node();
+	}
+
+	DirectedWeightedEdge(float i_cost, Node i_source, Node i_sink)
+	{
+		cost = i_cost;
+		source = i_source;
+		sink = i_sink;
+	}
 };
 
 struct NodeRecord
 {
-	int node;
+	Node node;
 	DirectedWeightedEdge incomingEdge;
+	float costSoFar;
+	float estimatedTotalCost;
+
+	NodeRecord()		
+	{
+		node = Node();
+		costSoFar = 0.0f;
+		estimatedTotalCost = 0.0f;
+	}
+
+	NodeRecord(Node i_node, DirectedWeightedEdge i_edge, float i_cost, float i_totalCost) :
+		node(i_node),
+		incomingEdge(i_edge),
+		costSoFar(i_cost),
+		estimatedTotalCost(i_totalCost)
+	{
+
+	}
 };
+

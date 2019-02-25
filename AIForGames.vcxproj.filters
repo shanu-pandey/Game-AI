@@ -85,6 +85,15 @@
     <ClCompile Include="src\Graph\Graph.cpp">
       <Filter>src\Graph</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graph\EuclidianHeuristics.cpp">
+      <Filter>src\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PathFinding\A-Star.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PriorityQueue\PriorityQueue.cpp">
+      <Filter>src\DataStructures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -122,6 +131,12 @@
     </Filter>
     <Filter Include="src\Graph">
       <UniqueIdentifier>{dc6b61d5-1587-4a89-a381-64da47ed171a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Pathfinding">
+      <UniqueIdentifier>{cd0f5de7-e0ec-46ef-a6ed-6dc55a74e87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DataStructures">
+      <UniqueIdentifier>{8c95e3ba-28ce-4886-9e26-b8b83b9cb93c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +235,18 @@
     </ClInclude>
     <ClInclude Include="src\Graph\Graph.h">
       <Filter>src\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph\IHeuristics.h">
+      <Filter>src\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph\EuclidianHeuristics.h">
+      <Filter>src\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PathFinding\A-Star.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PriorityQueue\PriorityQueue.h">
+      <Filter>src\DataStructures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

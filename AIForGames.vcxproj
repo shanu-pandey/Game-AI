@@ -181,6 +181,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject\GameObject.cpp" />
+    <ClCompile Include="src\Graph\EuclidianHeuristics.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Movement\Align.cpp" />
@@ -205,14 +206,18 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
     <ClCompile Include="..\..\..\addons\ofxVectorGraphics\src\ofxVectorGraphics.cpp" />
     <ClCompile Include="..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp" />
+    <ClCompile Include="src\PathFinding\A-Star.cpp" />
     <ClCompile Include="src\Physics\Kinematic.cpp" />
+    <ClCompile Include="src\PriorityQueue\PriorityQueue.cpp" />
     <ClCompile Include="src\Renderer\BoidRenderer.cpp" />
     <ClCompile Include="src\Renderer\TargetRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\GameObject.h" />
     <ClInclude Include="src\GameStructs.h" />
+    <ClInclude Include="src\Graph\EuclidianHeuristics.h" />
     <ClInclude Include="src\Graph\Graph.h" />
+    <ClInclude Include="src\Graph\IHeuristics.h" />
     <ClInclude Include="src\Movement\Align.h" />
     <ClInclude Include="src\Movement\Arrive.h" />
     <ClInclude Include="src\Movement\BlendedSteering.h" />
@@ -238,7 +243,9 @@
     <ClInclude Include="..\..\..\addons\ofxVectorGraphics\src\ofxVectorGraphics.h" />
     <ClInclude Include="..\..\..\addons\ofxVectorGraphics\libs\CreEPS.hpp" />
     <ClInclude Include="..\..\..\addons\ofxVectorGraphics\libs\CreEPS_Types.hpp" />
+    <ClInclude Include="src\PathFinding\A-Star.h" />
     <ClInclude Include="src\Physics\Kinematic.h" />
+    <ClInclude Include="src\PriorityQueue\PriorityQueue.h" />
     <ClInclude Include="src\Renderer\BoidRenderer.h" />
     <ClInclude Include="src\Renderer\IRenderer.h" />
     <ClInclude Include="src\Renderer\TargetRenderer.h" />
