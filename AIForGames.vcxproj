@@ -183,6 +183,7 @@
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\Graph\EuclidianHeuristics.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
+    <ClCompile Include="src\Graph\ManhattanHeuristics.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Movement\Align.cpp" />
     <ClCompile Include="src\Movement\Arrive.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="src\Graph\EuclidianHeuristics.h" />
     <ClInclude Include="src\Graph\Graph.h" />
     <ClInclude Include="src\Graph\IHeuristics.h" />
+    <ClInclude Include="src\Graph\ManhattanHeuristics.h" />
     <ClInclude Include="src\Movement\Align.h" />
     <ClInclude Include="src\Movement\Arrive.h" />
     <ClInclude Include="src\Movement\BlendedSteering.h" />

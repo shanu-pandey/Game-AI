@@ -97,6 +97,9 @@
     <ClCompile Include="src\PathFinding\Dijkstra.cpp">
       <Filter>src\Pathfinding</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graph\ManhattanHeuristics.cpp">
+      <Filter>src\Graph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="src\PathFinding\Dijkstra.h">
       <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph\ManhattanHeuristics.h">
+      <Filter>src\Graph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
