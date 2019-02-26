@@ -94,6 +94,14 @@ struct Node
 		index = i_index;
 		position = i_pos;
 	}
+	
+	inline bool operator==(Node i_Node) 
+	{
+		if (this->index == i_Node.index && this->position == i_Node.position)
+			return true;
+		else
+			return false;
+	}
 };
 
 struct DirectedWeightedEdge
@@ -114,6 +122,14 @@ struct DirectedWeightedEdge
 		cost = i_cost;
 		source = i_source;
 		sink = i_sink;
+	}
+
+	inline bool operator==(DirectedWeightedEdge i_Edge) 
+	{
+		if (this->source == i_Edge.source && this->sink == i_Edge.sink)
+			return true;
+		else
+			return false;
 	}
 };
 
@@ -138,6 +154,14 @@ struct NodeRecord
 		estimatedTotalCost(i_totalCost)
 	{
 
+	}
+
+	inline bool operator==(NodeRecord i_record)
+	{
+		if (this->node == i_record.node && this->incomingEdge == i_record.incomingEdge)
+			return true;
+		else
+			return false;
 	}
 };
 

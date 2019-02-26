@@ -94,6 +94,9 @@
     <ClCompile Include="src\PriorityQueue\PriorityQueue.cpp">
       <Filter>src\DataStructures</Filter>
     </ClCompile>
+    <ClCompile Include="src\PathFinding\Dijkstra.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="src\PriorityQueue\PriorityQueue.h">
       <Filter>src\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PathFinding\Dijkstra.h">
+      <Filter>src\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,14 @@
 #pragma once
 #include "../GameStructs.h"
+#include <list>
 
 namespace AIForGames
 {
 	class PriorityQueue
 	{
 	public:
-		void Push(NodeRecord i_record);
+		void PushCostSoFar(NodeRecord* i_record);
+		void PushEstimatedCost(NodeRecord* i_record);
 		void Pop();
 		void Remove(NodeRecord i_record);
 		bool IfExists(NodeRecord i_record);
@@ -16,7 +18,7 @@ namespace AIForGames
 		NodeRecord Find(Node i_node);
 				
 	private:
-		std::vector<NodeRecord*> m_Queue;
+		std::list<NodeRecord*> m_Queue;
 		int m_length = 0;
 	};
 }

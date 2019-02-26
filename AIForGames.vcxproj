@@ -207,6 +207,7 @@
     <ClCompile Include="..\..\..\addons\ofxVectorGraphics\src\ofxVectorGraphics.cpp" />
     <ClCompile Include="..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp" />
     <ClCompile Include="src\PathFinding\A-Star.cpp" />
+    <ClCompile Include="src\PathFinding\Dijkstra.cpp" />
     <ClCompile Include="src\Physics\Kinematic.cpp" />
     <ClCompile Include="src\PriorityQueue\PriorityQueue.cpp" />
     <ClCompile Include="src\Renderer\BoidRenderer.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="..\..\..\addons\ofxVectorGraphics\libs\CreEPS.hpp" />
     <ClInclude Include="..\..\..\addons\ofxVectorGraphics\libs\CreEPS_Types.hpp" />
     <ClInclude Include="src\PathFinding\A-Star.h" />
+    <ClInclude Include="src\PathFinding\Dijkstra.h" />
     <ClInclude Include="src\Physics\Kinematic.h" />
     <ClInclude Include="src\PriorityQueue\PriorityQueue.h" />
     <ClInclude Include="src\Renderer\BoidRenderer.h" />

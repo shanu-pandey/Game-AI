@@ -1,11 +1,13 @@
 #pragma once
-#include "A-Star.h"
+#include "Dijkstra.h"
 #include "../PriorityQueue/PriorityQueue.h"
+
+
 namespace AIForGames
 {
 	namespace PathFinding
 	{
-		std::vector<DirectedWeightedEdge> AStar::FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph)
+		std::vector<DirectedWeightedEdge> Dijkstra::FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph)
 		{
 			std::vector<DirectedWeightedEdge> o_path;
 
@@ -13,19 +15,18 @@ namespace AIForGames
 			startRecord.node = i_startNode;
 			startRecord.incomingEdge = DirectedWeightedEdge();
 			startRecord.costSoFar = 0;
-			startRecord.estimatedTotalCost = i_graph->GetHeuristics()->GetEstimate(i_startNode, i_goalNode);
 
 			PriorityQueue open;
-			open.PushEstimatedCost(&startRecord);
+			open.PushCostSoFar(&startRecord);
 			PriorityQueue closed;
-			NodeRecord current; 
+			NodeRecord current;
 
 			while (open.Length() > 0)
 			{
 				current = open.GetSmallest();
-				if (current.node.index == i_goalNode.index)
+				if (current.node.index = i_goalNode.index)
 				{
-					break;
+					break;				
 				}
 				else
 				{
@@ -34,19 +35,9 @@ namespace AIForGames
 					{
 						Node endNode = (*it)->sink;
 						float endNodeCost = current.costSoFar + (*it)->cost;
-						//NodeRecord endNodeRecord = NodeRecord(endNode, )
 						if (closed.Contains(endNode))
 						{
-							NodeRecord endNodeRecord = closed.Find(endNode);
-							if (endNodeRecord.costSoFar <= endNodeCost)
-							{
-								continue;
-							}
-							else
-							{
-								closed.Remove(endNodeRecord);
-								float endNodeHeuristics = endNodeRecord.incomingEdge.cost - endNodeRecord.costSoFar;
-							}
+							continue;
 						}
 						else if (open.Contains(endNode))
 						{
@@ -55,27 +46,26 @@ namespace AIForGames
 							{
 								continue;
 							}
-							float endNodeHeuristics = i_graph->GetHeuristics()->GetEstimate(endNode, i_goalNode);
 						}
 						else
 						{
 							NodeRecord endNodeRecord = NodeRecord();
 							endNodeRecord.node = endNode;
-							float endNodeHeuristics = i_graph->GetHeuristics()->GetEstimate(endNode, i_goalNode);
-							endNodeRecord.incomingEdge = *(*it);
 							endNodeRecord.costSoFar = endNodeCost;
-							endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristics;
+							endNodeRecord.incomingEdge = *(*it);
 
-							open.PushEstimatedCost(&endNodeRecord);
+							if (!(open.Contains(endNode)))
+							{
+								open.PushCostSoFar(&endNodeRecord);
+							}
 						}
 						open.Remove(current);
-						closed.PushEstimatedCost(&current);
+						closed.PushCostSoFar(&current);
 					}
 				}
 			}
 			if (current.node.index != i_goalNode.index)
 			{
-
 			}
 			else
 			{
@@ -86,8 +76,6 @@ namespace AIForGames
 				}
 				return o_path;
 			}
-
-			
 		}
 	}
-} 
+}
