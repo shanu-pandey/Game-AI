@@ -7,6 +7,7 @@
 #include "Movement/DynamicSeperation.h"
 #include "Movement/DynamicVelocityMatch.h"
 #include "PathFinding\Dijkstra.h"
+#include "PathFinding\A-Star.h"
 
 
 //#define BASICMOTION
@@ -15,7 +16,7 @@
 //#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
 //#define FLOCKING
-#define DIJKSTRA
+//#define DIJKSTRA
 #define ASTAR
 
 //--------------------------------------------------------------
@@ -80,8 +81,6 @@ void ofApp::setup()
 	}
 #endif // FLOCKING
 
-
-#ifdef DIJKSTRA
 	m_pGraph = new AIForGames::PathFinding::Graph();
 
 	std::vector<Node> nodeList;
@@ -154,8 +153,13 @@ void ofApp::setup()
 		m_pGraph->AddEdge(p14);
 	}
 
+#ifdef DIJKSTRA
 	o_path = AIForGames::PathFinding::Dijkstra::FindPath(nodeList[1], nodeList[5], m_pGraph);
-#endif // FLOCKING
+#endif 
+
+#ifdef ASTAR
+	o_path = AIForGames::PathFinding::AStar::FindPath(nodeList[1], nodeList[5], m_pGraph);
+#endif
 }
 
 //--------------------------------------------------------------

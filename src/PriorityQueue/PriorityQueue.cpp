@@ -34,6 +34,8 @@ namespace AIForGames
 
 	void PriorityQueue::PushEstimatedCost(NodeRecord* i_record)
 	{
+		bool bInsert = false;
+
 		if (m_length > 0)
 		{
 			int index = 0;
@@ -42,13 +44,19 @@ namespace AIForGames
 				if ((*it)->estimatedTotalCost < i_record->estimatedTotalCost)
 				{
 					m_Queue.insert(it, i_record);
+					bInsert = true;
+					break;
 				}
 			}
 		}
 		else
 		{
 			m_Queue.emplace_back(i_record);
+			bInsert = true;
 		}
+
+		if (!bInsert)
+			m_Queue.emplace_back(i_record);
 
 		m_length++;
 	}

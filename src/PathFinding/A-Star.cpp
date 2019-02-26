@@ -5,9 +5,9 @@ namespace AIForGames
 {
 	namespace PathFinding
 	{
-		std::vector<DirectedWeightedEdge> AStar::FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph)
+		std::list<DirectedWeightedEdge> AStar::FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph)
 		{
-			std::vector<DirectedWeightedEdge> o_path;
+			std::list<DirectedWeightedEdge> o_path;
 
 			NodeRecord startRecord = NodeRecord();
 			startRecord.node = i_startNode;
@@ -68,10 +68,10 @@ namespace AIForGames
 
 							open.PushEstimatedCost(endNodeRecord);
 						}
-						open.Remove(current);
-						NodeRecord* p = new NodeRecord(current.node, current.incomingEdge, current.costSoFar, current.estimatedTotalCost);
-						closed.PushEstimatedCost(p);
 					}
+					open.Remove(current);
+					NodeRecord* p = new NodeRecord(current.node, current.incomingEdge, current.costSoFar, current.estimatedTotalCost);
+					closed.PushEstimatedCost(p);
 				}
 			}
 			if (current.node.index != i_goalNode.index)
@@ -83,7 +83,7 @@ namespace AIForGames
 				while (current.node.index != i_startNode.index)
 				{
 					o_path.emplace_back(current.incomingEdge);
-					current.node = current.incomingEdge.source;
+					current = closed.Find(current.incomingEdge.source);
 				}
 				return o_path;
 			}

@@ -1,6 +1,6 @@
 #pragma once
 #include "../Graph/Graph.h"
-#include <vector>
+#include <list>
 #include "../GameStructs.h"
 
 namespace AIForGames
@@ -10,7 +10,7 @@ namespace AIForGames
 		class AStar
 		{
 		public:
-			static std::vector<DirectedWeightedEdge> FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph);
+			static std::list<DirectedWeightedEdge> FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph);
 		};
 	}
 }
