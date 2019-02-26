@@ -16,8 +16,8 @@
 //#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
 //#define FLOCKING
-//#define DIJKSTRA
-#define ASTAR
+#define DIJKSTRA
+//#define ASTAR
 
 //--------------------------------------------------------------
 void ofApp::setup()
@@ -116,7 +116,7 @@ void ofApp::setup()
 		DirectedWeightedEdge* p2 = new DirectedWeightedEdge(8, nodeList[1], nodeList[2]);
 		m_pGraph->AddEdge(p2);
 
-		DirectedWeightedEdge* p3 = new DirectedWeightedEdge(7, nodeList[2], nodeList[3]);
+		DirectedWeightedEdge* p3 = new DirectedWeightedEdge(17, nodeList[2], nodeList[3]);
 		m_pGraph->AddEdge(p3);
 
 		DirectedWeightedEdge* p4 = new DirectedWeightedEdge(9, nodeList[3], nodeList[4]);
@@ -143,7 +143,7 @@ void ofApp::setup()
 		DirectedWeightedEdge* p11 = new DirectedWeightedEdge(4, nodeList[5], nodeList[2]);
 		m_pGraph->AddEdge(p11);
 
-		DirectedWeightedEdge* p12 = new DirectedWeightedEdge(14, nodeList[3], nodeList[5]);
+		DirectedWeightedEdge* p12 = new DirectedWeightedEdge(24, nodeList[3], nodeList[5]);
 		m_pGraph->AddEdge(p12);
 
 		DirectedWeightedEdge* p13 = new DirectedWeightedEdge(11, nodeList[1], nodeList[7]);
