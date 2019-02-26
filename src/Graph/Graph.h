@@ -16,7 +16,6 @@ namespace AIForGames
 		private:
 			std::vector<DirectedWeightedEdge*> m_edges;
 			AIForGames::IHeuristics* m_pHeuristics;
-
 		};
 	}
 }
