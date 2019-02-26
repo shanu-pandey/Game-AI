@@ -7,9 +7,9 @@ namespace AIForGames
 {
 	namespace PathFinding
 	{
-		std::vector<DirectedWeightedEdge> Dijkstra::FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph)
+		std::list<DirectedWeightedEdge> Dijkstra::FindPath(Node i_startNode, Node i_goalNode, Graph* i_graph)
 		{
-			std::vector<DirectedWeightedEdge> o_path;
+			std::list<DirectedWeightedEdge> o_path;
 
 			NodeRecord startRecord = NodeRecord();
 			startRecord.node = i_startNode;
@@ -24,7 +24,7 @@ namespace AIForGames
 			while (open.Length() > 0)
 			{
 				current = open.GetSmallest();
-				if (current.node.index = i_goalNode.index)
+				if (current.node == i_goalNode)
 				{
 					break;				
 				}
@@ -49,19 +49,20 @@ namespace AIForGames
 						}
 						else
 						{
-							NodeRecord endNodeRecord = NodeRecord();
-							endNodeRecord.node = endNode;
-							endNodeRecord.costSoFar = endNodeCost;
-							endNodeRecord.incomingEdge = *(*it);
+							NodeRecord* endNodeRecord = new NodeRecord();
+							endNodeRecord->node = endNode;
+							endNodeRecord->costSoFar = endNodeCost;
+							endNodeRecord->incomingEdge = *(*it);
 
 							if (!(open.Contains(endNode)))
 							{
-								open.PushCostSoFar(&endNodeRecord);
+								open.PushCostSoFar(endNodeRecord);
 							}
 						}
-						open.Remove(current);
-						closed.PushCostSoFar(&current);
 					}
+					open.Remove(current);
+					NodeRecord* p = new NodeRecord(current.node, current.incomingEdge, current.costSoFar, current.estimatedTotalCost);
+					closed.PushCostSoFar(p);
 				}
 			}
 			if (current.node.index != i_goalNode.index)
@@ -71,8 +72,9 @@ namespace AIForGames
 			{
 				while (current.node.index != i_startNode.index)
 				{
-					o_path.emplace_back(current.incomingEdge);
-					current.node = current.incomingEdge.source;
+					o_path.emplace_front(current.incomingEdge);
+					//current.node = current.incomingEdge.source;
+					current = closed.Find(current.incomingEdge.source);
 				}
 				return o_path;
 			}

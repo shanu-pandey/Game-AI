@@ -5,6 +5,8 @@ namespace AIForGames
 {
 	void PriorityQueue::PushCostSoFar(NodeRecord* i_record)
 	{
+		bool bInsert = false;
+
 		if (m_length > 0)
 		{
 			int index = 0;
@@ -13,13 +15,19 @@ namespace AIForGames
 				if ((*it)->costSoFar < i_record->costSoFar)
 				{
 					m_Queue.insert(it, i_record);
+					bInsert = true;
+					break;
 				}
 			}
 		}
 		else
 		{
 			m_Queue.emplace_back(i_record);
+			bInsert = true;
 		}
+
+		if (!bInsert)
+			m_Queue.emplace_back(i_record);
 
 		m_length++;
 	}
@@ -62,12 +70,12 @@ namespace AIForGames
 			{
 				if (*(*it) == i_record)
 				{
-					m_Queue.erase(it);
+					it = m_Queue.erase(it);
+					m_length--;
 					break;
 				}
 			}
 		}
-		m_length--;
 	}
 
 	bool PriorityQueue::IfExists(NodeRecord i_record)
@@ -95,11 +103,11 @@ namespace AIForGames
 
 	NodeRecord PriorityQueue::GetSmallest()
 	{
-		/*NodeRecord* smallest = m_Queue.back();
-		return *smallest;*/
+		NodeRecord* smallest = m_Queue.back();
+		return *smallest;
 
-		NodeRecord smallest = NodeRecord();
-		return smallest;
+		//NodeRecord smallest = NodeRecord();
+		//return smallest;
 	}
 
 	bool PriorityQueue::Contains(Node i_node)
@@ -122,7 +130,7 @@ namespace AIForGames
 
 	NodeRecord PriorityQueue::Find(Node i_node)
 	{
-		/*NodeRecord* record = new NodeRecord();
+		NodeRecord* record = new NodeRecord();
 
 		if (m_length > 0)
 		{
@@ -135,9 +143,9 @@ namespace AIForGames
 				}
 			}
 		}
-		return *record;*/
+		return *record;
 
-		NodeRecord smallest = NodeRecord();
-		return smallest;
+		/*NodeRecord smallest = NodeRecord();
+		return smallest;*/
 	}
 }

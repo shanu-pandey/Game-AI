@@ -4,6 +4,7 @@
 #include "GameObject/GameObject.h"
 #include "ofxGui.h"
 #include "Movement/IMovementAlgorithm.h"
+#include "Graph\Graph.h"
 
 class ofApp : public ofBaseApp
 {
@@ -34,5 +35,6 @@ private:
 	std::vector<AIForGames::Movement::IMovementAlgorithm*> m_pBlendedMovement;
 	std::vector<AIForGames::Physics::Kinematic*> allKinematics;
 	AIForGames::Physics::Kinematic* matchKinematic;
-	int m_numberOfBoids;
+	AIForGames::PathFinding::Graph* m_pGraph;
+	int m_numberOfBoids0  ;
 };

@@ -59,17 +59,18 @@ namespace AIForGames
 						}
 						else
 						{
-							NodeRecord endNodeRecord = NodeRecord();
-							endNodeRecord.node = endNode;
+							NodeRecord* endNodeRecord = new NodeRecord();
+							endNodeRecord->node = endNode;
 							float endNodeHeuristics = i_graph->GetHeuristics()->GetEstimate(endNode, i_goalNode);
-							endNodeRecord.incomingEdge = *(*it);
-							endNodeRecord.costSoFar = endNodeCost;
-							endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristics;
+							endNodeRecord->incomingEdge = *(*it);
+							endNodeRecord->costSoFar = endNodeCost;
+							endNodeRecord->estimatedTotalCost = endNodeCost + endNodeHeuristics;
 
-							open.PushEstimatedCost(&endNodeRecord);
+							open.PushEstimatedCost(endNodeRecord);
 						}
 						open.Remove(current);
-						closed.PushEstimatedCost(&current);
+						NodeRecord* p = new NodeRecord(current.node, current.incomingEdge, current.costSoFar, current.estimatedTotalCost);
+						closed.PushEstimatedCost(p);
 					}
 				}
 			}

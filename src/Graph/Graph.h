@@ -13,6 +13,7 @@ namespace AIForGames
 			~Graph();			
 			std::vector<DirectedWeightedEdge*> GetConnections(Node i_nodeRecord);
 			AIForGames::IHeuristics* GetHeuristics();
+			void AddEdge(DirectedWeightedEdge* i_edge);
 		private:
 			std::vector<DirectedWeightedEdge*> m_edges;
 			AIForGames::IHeuristics* m_pHeuristics;

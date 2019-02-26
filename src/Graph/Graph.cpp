@@ -35,5 +35,9 @@ namespace AIForGames
 			return m_pHeuristics;
 		}
 
+		void Graph::AddEdge(DirectedWeightedEdge* i_edge)
+		{
+			m_edges.emplace_back(i_edge);
+		}
 	}
 }
