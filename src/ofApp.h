@@ -28,6 +28,10 @@ public:
 
 
 private:
+
+	void InitailizeGameWorld();
+	void DrawGameWorld();
+
 	AIForGames::GameObject* m_pBoidObject;
 	AIForGames::GameObject* m_pTarget;
 	std::vector<AIForGames::GameObject*> m_pObjects;
@@ -36,5 +40,9 @@ private:
 	std::vector<AIForGames::Physics::Kinematic*> allKinematics;
 	AIForGames::Physics::Kinematic* matchKinematic;
 	AIForGames::PathFinding::Graph* m_pGraph;
-	int m_numberOfBoids0  ;
+	std::vector<ofVec2f> m_WallTopLocation;
+	std::vector<float> m_WallWidth;
+	std::vector<float> m_WallHeight;
+	int m_noOfWalls;
+	int m_numberOfBoids;
 };

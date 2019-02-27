@@ -20,8 +20,87 @@
 #define ASTAR
 
 //--------------------------------------------------------------
+void ofApp::DrawGameWorld()
+{
+	for (int i = 0; i < m_noOfWalls; i++)
+	{
+		ofSetColor(0, 0, 0);
+		ofDrawRectangle(m_WallTopLocation[i], m_WallWidth[i], m_WallHeight[i]);
+	}
+}
+
+void ofApp::InitailizeGameWorld()
+{
+	m_noOfWalls = 9;
+	//Initailize top left of walls
+	{
+		ofVec2f w1 = ofVec2f(0, 250);
+		m_WallTopLocation.emplace_back(w1);
+		ofVec2f w2 = ofVec2f(350, 0);
+		m_WallTopLocation.emplace_back(w2);
+		ofVec2f w3 = ofVec2f(100, 420);
+		m_WallTopLocation.emplace_back(w3);
+		ofVec2f w4 = ofVec2f(220, 440);
+		m_WallTopLocation.emplace_back(w4);
+		ofVec2f w5 = ofVec2f(550, 120);
+		m_WallTopLocation.emplace_back(w5);
+		ofVec2f w6 = ofVec2f(370, 460);
+		m_WallTopLocation.emplace_back(w6);
+		ofVec2f w7 = ofVec2f(550,600);
+		m_WallTopLocation.emplace_back(w7);
+		ofVec2f w8 = ofVec2f(750, 240);
+		m_WallTopLocation.emplace_back(w8);
+		ofVec2f w9 = ofVec2f(820, 520);
+		m_WallTopLocation.emplace_back(w9);	
+	}
+	//Initialize width of walls
+	{
+		float w1 = 200;
+		m_WallWidth.emplace_back(w1);
+		float w2 = 40;
+		m_WallWidth.emplace_back(w2);
+		float w3 = 40;
+		m_WallWidth.emplace_back(w3);
+		float w4 = 380;
+		m_WallWidth.emplace_back(w4);
+		float w5 = 30;
+		m_WallWidth.emplace_back(w5);
+		float w6 = 70;
+		m_WallWidth.emplace_back(w6);
+		float w7 = 80;
+		m_WallWidth.emplace_back(w7);
+		float w8 = 320;
+		m_WallWidth.emplace_back(w8);
+		float w9 = 40;
+		m_WallWidth.emplace_back(w9);
+	}
+	//Initialize height of walls
+	{
+		float h1 = 50;
+		m_WallHeight.emplace_back(h1);
+		float h2 = 150;
+		m_WallHeight.emplace_back(h2);
+		float h3 = 180;
+		m_WallHeight.emplace_back(h3);
+		float h4 = 40;
+		m_WallHeight.emplace_back(h4);
+		float h5 = 320;
+		m_WallHeight.emplace_back(h5);
+		float h6 = 150;
+		m_WallHeight.emplace_back(h6);
+		float h7 = 190;
+		m_WallHeight.emplace_back(h7);
+		float h8 = 60;
+		m_WallHeight.emplace_back(h8);
+		float h9 = 160;
+		m_WallHeight.emplace_back(h9);
+	}
+
+}
+
 void ofApp::setup()
 {
+	InitailizeGameWorld();
 	float orientation = 0;
 	float radius = 15;
 
@@ -228,7 +307,7 @@ void ofApp::setup()
 
 	}
 
-	o_path = AIForGames::PathFinding::AStar::FindPath(nodeList[0], nodeList[5], m_pGraph);
+	//o_path = AIForGames::PathFinding::AStar::FindPath(nodeList[0], nodeList[5], m_pGraph);
 #endif
 }
 
@@ -347,8 +426,10 @@ void ofApp::update() {
 }
 
 //--------------------------------------------------------------
-void ofApp::draw() {		
-	
+void ofApp::draw() {
+
+	DrawGameWorld();
+
 #ifdef BASICMOTION	
 	m_pBoidObject->DrawObject();
 	m_pBoidObject->DrawBreadCrumbs();
