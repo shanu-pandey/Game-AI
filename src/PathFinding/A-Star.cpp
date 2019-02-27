@@ -34,28 +34,36 @@ namespace AIForGames
 					{
 						Node endNode = (*it)->sink;
 						float endNodeCost = current.costSoFar + (*it)->cost;
-						//NodeRecord endNodeRecord = NodeRecord(endNode, )
+						float endNodeHeuristics = i_graph->GetHeuristics()->GetEstimate(endNode, i_goalNode);;
 						if (closed.Contains(endNode))
 						{
-							NodeRecord endNodeRecord = closed.Find(endNode);
-							if (endNodeRecord.costSoFar <= endNodeCost)
+							NodeRecord* endNodeRecord = new NodeRecord();
+							endNodeRecord = closed.Find(endNode);
+							if (endNodeRecord->costSoFar <= endNodeCost)
 							{
 								continue;
 							}
 							else
 							{
-								closed.Remove(endNodeRecord);
-								float endNodeHeuristics = endNodeRecord.incomingEdge.cost - endNodeRecord.costSoFar;
+								closed.Remove(*endNodeRecord);
+								//float endNodeHeuristics = endNodeRecord->incomingEdge.cost - endNodeRecord->costSoFar;
+								//endNodeRecord->estimatedTotalCost = endNodeHeuristics + endNodeCost; //maybe??
 							}
 						}
 						else if (open.Contains(endNode))
 						{
-							NodeRecord endNodeRecord = open.Find(endNode);
-							if (endNodeRecord.costSoFar <= endNodeCost)
+							NodeRecord* endNodeRecord = new NodeRecord();
+							endNodeRecord = open.Find(endNode);
+							if (endNodeRecord->costSoFar <= endNodeCost)
 							{
 								continue;
 							}
-							float endNodeHeuristics = i_graph->GetHeuristics()->GetEstimate(endNode, i_goalNode);
+							else
+							{
+							    endNodeRecord->estimatedTotalCost = endNodeCost + endNodeHeuristics;		//maybe??
+								endNodeRecord->costSoFar = endNodeCost;
+								endNodeRecord->incomingEdge = *(*it);
+							}							
 						}
 						else
 						{
@@ -65,7 +73,6 @@ namespace AIForGames
 							endNodeRecord->incomingEdge = *(*it);
 							endNodeRecord->costSoFar = endNodeCost;
 							endNodeRecord->estimatedTotalCost = endNodeCost + endNodeHeuristics;
-
 							open.PushEstimatedCost(endNodeRecord);
 						}
 					}
@@ -83,7 +90,7 @@ namespace AIForGames
 				while (current.node.index != i_startNode.index)
 				{
 					o_path.emplace_back(current.incomingEdge);
-					current = closed.Find(current.incomingEdge.source);
+					current = *(closed.Find(current.incomingEdge.source));
 				}
 				return o_path;
 			}

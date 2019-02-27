@@ -11,13 +11,13 @@ namespace AIForGames
 		{
 			std::list<DirectedWeightedEdge> o_path;
 
-			NodeRecord startRecord = NodeRecord();
-			startRecord.node = i_startNode;
-			startRecord.incomingEdge = DirectedWeightedEdge();
-			startRecord.costSoFar = 0;
+			NodeRecord* startRecord = new NodeRecord();
+			startRecord->node = i_startNode;
+			startRecord->incomingEdge = DirectedWeightedEdge();
+			startRecord->costSoFar = 0;
 
 			PriorityQueue open;
-			open.PushCostSoFar(&startRecord);
+			open.PushCostSoFar(startRecord);
 			PriorityQueue closed;
 			NodeRecord current;
 
@@ -37,14 +37,25 @@ namespace AIForGames
 						float endNodeCost = current.costSoFar + (*it)->cost;
 						if (closed.Contains(endNode))
 						{
-							continue;
+							NodeRecord* endNodeRecord = new NodeRecord();
+							/*endNodeRecord = closed.Find(endNode);
+							if (endNodeRecord->costSoFar <= endNodeCost)
+								continue;
+
+							closed.Remove(*endNodeRecord);				*/			
 						}
 						else if (open.Contains(endNode))
 						{
-							NodeRecord endNodeRecord = open.Find(endNode);
-							if (endNodeRecord.costSoFar <= endNodeCost)
+							NodeRecord* endNodeRecord = new NodeRecord();
+							endNodeRecord = open.Find(endNode);
+							if (endNodeRecord->costSoFar <= endNodeCost)
 							{
 								continue;
+							}
+							else
+							{
+								endNodeRecord->costSoFar = endNodeCost;
+								endNodeRecord->incomingEdge = *(*it);
 							}
 						}
 						else
@@ -67,6 +78,8 @@ namespace AIForGames
 			}
 			if (current.node.index != i_goalNode.index)
 			{
+				//result not found
+				return o_path;
 			}
 			else
 			{
@@ -74,7 +87,7 @@ namespace AIForGames
 				{
 					o_path.emplace_front(current.incomingEdge);
 					//current.node = current.incomingEdge.source;
-					current = closed.Find(current.incomingEdge.source);
+					current = *(closed.Find(current.incomingEdge.source));
 				}
 				return o_path;
 			}

@@ -15,7 +15,7 @@ namespace AIForGames
 		int Length();
 		NodeRecord GetSmallest();
 		bool Contains(Node i_node);
-		NodeRecord Find(Node i_node);
+		NodeRecord* Find(Node i_node);
 				
 	private:
 		std::list<NodeRecord*> m_Queue;

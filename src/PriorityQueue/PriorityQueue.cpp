@@ -136,7 +136,7 @@ namespace AIForGames
 		return result;
 	}
 
-	NodeRecord PriorityQueue::Find(Node i_node)
+	NodeRecord* PriorityQueue::Find(Node i_node)
 	{
 		NodeRecord* record = new NodeRecord();
 
@@ -151,7 +151,7 @@ namespace AIForGames
 				}
 			}
 		}
-		return *record;
+		return record;
 
 		/*NodeRecord smallest = NodeRecord();
 		return smallest;*/

@@ -16,8 +16,8 @@
 //#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
 //#define FLOCKING
-#define DIJKSTRA
-//#define ASTAR
+//#define DIJKSTRA
+#define ASTAR
 
 //--------------------------------------------------------------
 void ofApp::setup()
