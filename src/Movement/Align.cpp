@@ -118,5 +118,16 @@ namespace AIForGames
 			//m_pInputs->source->SetRotation(output.angular);
 			return output;
 		}
+
+		DynamicSteeringOutput Align::GeneratePath(std::list<DirectedWeightedEdge>& i_path)
+		{
+			DynamicSteeringOutput output;
+			output.angular = 0;
+			output.linear = ofVec2f(0, 0);
+
+			return output;
+
+		}
+
 	}
 }

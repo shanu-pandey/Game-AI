@@ -108,5 +108,28 @@ namespace AIForGames
 
 			return output;
 		}
+
+		DynamicSteeringOutput Arrive::GeneratePath(std::list<DirectedWeightedEdge>& i_path)
+		{
+			DynamicSteeringOutput output;
+			output.angular = 0;
+			output.linear = ofVec2f(0, 0);
+
+			if (i_path.size() > 0)
+			{
+				DirectedWeightedEdge top = i_path.front();
+				m_pInputs->destination->SetPosition(top.sink.position);
+				output = GetDynamicSteering();
+				if (output.linear == ofVec2f(0, 0) && i_path.size() > 1)
+				{
+					i_path.pop_front();
+					DirectedWeightedEdge top = i_path.front();
+					m_pInputs->destination->SetPosition(top.source.position);
+				}
+			}
+			
+			return output;
+		}
+
 	}
 }

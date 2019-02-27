@@ -16,6 +16,7 @@ namespace AIForGames
 			float CalculateNewOrientation(float i_orientation, ofVec2f i_velocity);
 			KinematicSteeringOutput GetKinematicSteering();
 			DynamicSteeringOutput GetDynamicSteering();
+			DynamicSteeringOutput GeneratePath(std::list<DirectedWeightedEdge>& i_path);
 		private:
 			MovementInputs * m_pInputs;
 		};

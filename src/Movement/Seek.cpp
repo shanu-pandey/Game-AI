@@ -64,5 +64,15 @@ namespace AIForGames
 
 			return output;
 		}
+		DynamicSteeringOutput Seek::GeneratePath(std::list<DirectedWeightedEdge>& i_path)
+		{
+			DynamicSteeringOutput output;
+			output.angular = 0;
+			output.linear = ofVec2f(0, 0);
+
+			return output;
+
+		}
+
 	}
 }

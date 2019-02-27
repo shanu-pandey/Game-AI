@@ -43,6 +43,7 @@ private:
 	std::vector<ofVec2f> m_WallTopLocation;
 	std::vector<float> m_WallWidth;
 	std::vector<float> m_WallHeight;
+	std::list<DirectedWeightedEdge> o_path;
 	int m_noOfWalls;
 	int m_numberOfBoids;
 };

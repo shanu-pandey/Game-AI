@@ -16,8 +16,9 @@
 //#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
 //#define FLOCKING
-//#define DIJKSTRA
-#define ASTAR
+#define DIJKSTRA
+//#define ASTARLARGENODES
+//#define ASTAOBSTACLEAVOIDANCE
 
 //--------------------------------------------------------------
 void ofApp::DrawGameWorld()
@@ -100,7 +101,6 @@ void ofApp::InitailizeGameWorld()
 
 void ofApp::setup()
 {
-	InitailizeGameWorld();
 	float orientation = 0;
 	float radius = 15;
 
@@ -123,7 +123,7 @@ void ofApp::setup()
 	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(radius, radius), orientation);
 	m_pTarget = new AIForGames::GameObject(-100, -100);	
 	//Dynamic Arrive
-	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 200, 20, 5, 1);
+	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 400, 100, 20, 5, 1);
 
 #endif // SEEK_STEERING
 
@@ -163,8 +163,6 @@ void ofApp::setup()
 	m_pGraph = new AIForGames::PathFinding::Graph();
 
 	std::vector<Node> nodeList;
-	std::list<DirectedWeightedEdge> o_path;
-
 	
 #ifdef DIJKSTRA
 	//Create Nodes
@@ -236,7 +234,8 @@ void ofApp::setup()
 	o_path = AIForGames::PathFinding::Dijkstra::FindPath(nodeList[1], nodeList[5], m_pGraph);
 #endif 
 
-#ifdef ASTAR
+#ifdef ASTARLARGENODES
+	InitailizeGameWorld();
 	//Create Nodes
 	{
 		Node n1 = Node(0, ofVec2f(80, 530));
@@ -316,6 +315,11 @@ void ofApp::update() {
 
 	//m_pBoidObject->Update(m_pMovementAlgo->GetDynamicSteering());
 
+#ifdef DIJKSTRA
+	   m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
+#endif 
+
+
 #ifdef BASICMOTION	
 	{
 		m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
@@ -345,7 +349,7 @@ void ofApp::update() {
 
 #ifdef SEEK_STEERING_02
 	//For Dynamic Align
-	m_pBoidObject->Update(m_pMovementAlgo->GetDynamicSteering());
+	//m_pBoidObject->Update(m_pMovementAlgo->GetDynamicSteering());
 #endif // SEEK_STEERING_02
 
 #ifdef WANDER_STEERING_01
@@ -427,9 +431,22 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+	ofDrawArrow(ofVec3f(100, 100, 0), ofVec3f(200, 200, 0), 15.5f);
 
+
+#ifdef DIJKSTRA	
+#endif
+
+
+#ifdef ASTAOBSTACLEAVOIDANCE	
 	DrawGameWorld();
+#endif
 
+
+#ifdef ASTARLARGENODES	
+	DrawGameWorld();
+#endif
+	
 #ifdef BASICMOTION	
 	m_pBoidObject->DrawObject();
 	m_pBoidObject->DrawBreadCrumbs();

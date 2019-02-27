@@ -1,6 +1,6 @@
 #pragma once
 #include "BlendedSteering.h"
-
+#include <list>
 
 namespace AIForGames
 {
@@ -54,6 +54,16 @@ namespace AIForGames
 				output.angular -= 6.28;
 			
 			return output;
+		}
+
+		DynamicSteeringOutput BlendedSteering::GeneratePath(std::list<DirectedWeightedEdge>& i_path)
+		{
+			DynamicSteeringOutput output;
+			output.angular = 0;
+			output.linear = ofVec2f(0, 0);
+
+			return output;
+
 		}
 		
 	}

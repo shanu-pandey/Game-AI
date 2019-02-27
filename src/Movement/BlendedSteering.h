@@ -13,7 +13,9 @@ namespace AIForGames
 			BlendedSteering(std::vector<BehaviorAndWeight*> i_behaviors, float i_maxAcc, float i_maxRotation);
 			float CalculateNewOrientation(float i_orientation, ofVec2f i_velocity);
 			KinematicSteeringOutput GetKinematicSteering();
-			DynamicSteeringOutput GetDynamicSteering();			
+			DynamicSteeringOutput GetDynamicSteering();		
+			DynamicSteeringOutput GeneratePath(std::list<DirectedWeightedEdge>& i_path);
+
 		private:
 			std::vector<BehaviorAndWeight*> m_pBehaviors;
 			float m_maxAcceleration;

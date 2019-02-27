@@ -123,5 +123,16 @@ namespace AIForGames
 			m_pInputs->wanderRadius = i_wanderRadius;
 			m_pInputs->wanderRate = i_wanderRate;
 		}
+
+		DynamicSteeringOutput Wander::GeneratePath(std::list<DirectedWeightedEdge>& i_path)
+		{
+			DynamicSteeringOutput output;
+			output.angular = 0;
+			output.linear = ofVec2f(0, 0);
+
+			return output;
+
+		}
+
 	}
 }

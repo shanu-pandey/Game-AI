@@ -16,6 +16,8 @@ namespace AIForGames
 			KinematicSteeringOutput GetKinematicSteering();
 			DynamicSteeringOutput GetDynamicSteering();
 			void SetWanderParameters(float i_wanderOffset, float i_wanderRadius, float i_wanderRate);
+			DynamicSteeringOutput GeneratePath(std::list<DirectedWeightedEdge>& i_path);
+
 		private:
 			MovementInputs * m_pInputs;
 		};

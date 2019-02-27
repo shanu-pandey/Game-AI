@@ -1,7 +1,7 @@
 #pragma once
 #include "DynamicSeperation.h"
 #include "../Physics/Kinematic.h"
-
+#include <list>
 
 namespace AIForGames
 {
@@ -59,6 +59,16 @@ namespace AIForGames
 				output.linear *= m_maxAcceleration;
 			}		
 			return output;
+		}
+
+		DynamicSteeringOutput DynamicSeparation::GeneratePath(std::list<DirectedWeightedEdge>& i_path)
+		{
+			DynamicSteeringOutput output;
+			output.angular = 0;
+			output.linear = ofVec2f(0, 0);
+
+			return output;
+
 		}
 	}
 }
