@@ -1,6 +1,7 @@
 #pragma once
 #include "Graph.h"
 #include "../Graph/EuclidianHeuristics.h"
+#include "../Graph/ManhattanHeuristics.h"
 
 namespace AIForGames
 {
@@ -8,7 +9,7 @@ namespace AIForGames
 	{
 		Graph::Graph()
 		{
-			m_pHeuristics = new AIForGames::EuclidianHeuristics();
+			m_pHeuristics = new AIForGames::ManhattanHeuristics();
 		}
 		
 		Graph::~Graph()

@@ -86,6 +86,8 @@ void ofApp::setup()
 	std::vector<Node> nodeList;
 	std::list<DirectedWeightedEdge> o_path;
 
+	
+#ifdef DIJKSTRA
 	//Create Nodes
 	{
 		Node n1 = Node(0, ofVec2f(0, 100));
@@ -152,13 +154,81 @@ void ofApp::setup()
 		DirectedWeightedEdge* p14 = new DirectedWeightedEdge(8, nodeList[7], nodeList[0]);
 		m_pGraph->AddEdge(p14);
 	}
-
-#ifdef DIJKSTRA
 	o_path = AIForGames::PathFinding::Dijkstra::FindPath(nodeList[1], nodeList[5], m_pGraph);
 #endif 
 
 #ifdef ASTAR
-	o_path = AIForGames::PathFinding::AStar::FindPath(nodeList[1], nodeList[5], m_pGraph);
+	//Create Nodes
+	{
+		Node n1 = Node(0, ofVec2f(80, 530));
+		nodeList.emplace_back(n1);
+		Node n2 = Node(1, ofVec2f(50, 210));
+		nodeList.emplace_back(n2);
+		Node n3 = Node(2, ofVec2f(30, 40));
+		nodeList.emplace_back(n3);
+		Node n4 = Node(3, ofVec2f(400, 40));
+		nodeList.emplace_back(n4);
+		Node n5 = Node(4, ofVec2f(730, 30));
+		nodeList.emplace_back(n5);
+		Node n6 = Node(5, ofVec2f(710, 250));
+		nodeList.emplace_back(n6);
+		Node n7 = Node(6, ofVec2f(750, 560));
+		nodeList.emplace_back(n7);
+		Node n8 = Node(7, ofVec2f(450, 540));
+		nodeList.emplace_back(n8);
+		Node n9 = Node(8, ofVec2f(420, 400));
+		nodeList.emplace_back(n9);
+		Node n10 = Node(9, ofVec2f(120, 480));
+		nodeList.emplace_back(n9);
+	}
+
+	//Create Edges for Graph
+	{
+		DirectedWeightedEdge* p1 = new DirectedWeightedEdge(45, nodeList[0], nodeList[1]);
+		m_pGraph->AddEdge(p1);
+
+		DirectedWeightedEdge* p2 = new DirectedWeightedEdge(20, nodeList[1], nodeList[2]);
+		m_pGraph->AddEdge(p2);
+
+		DirectedWeightedEdge* p3 = new DirectedWeightedEdge(47, nodeList[2], nodeList[3]);
+		m_pGraph->AddEdge(p3);
+
+		DirectedWeightedEdge* p4 = new DirectedWeightedEdge(42, nodeList[3], nodeList[4]);
+		m_pGraph->AddEdge(p4);
+
+		DirectedWeightedEdge* p5 = new DirectedWeightedEdge(31, nodeList[4], nodeList[5]);
+		m_pGraph->AddEdge(p5);
+
+		DirectedWeightedEdge* p6 = new DirectedWeightedEdge(44, nodeList[6], nodeList[5]);
+		m_pGraph->AddEdge(p6);
+
+		DirectedWeightedEdge* p7 = new DirectedWeightedEdge(39, nodeList[7], nodeList[6]);
+		m_pGraph->AddEdge(p7);
+
+		DirectedWeightedEdge* p8 = new DirectedWeightedEdge(50, nodeList[6], nodeList[8]);
+		m_pGraph->AddEdge(p8);
+
+		DirectedWeightedEdge* p9 = new DirectedWeightedEdge(67, nodeList[4], nodeList[8]);
+		m_pGraph->AddEdge(p9);
+
+		DirectedWeightedEdge* p10 = new DirectedWeightedEdge(49, nodeList[8], nodeList[9]);
+		m_pGraph->AddEdge(p10);
+
+		DirectedWeightedEdge* p11 = new DirectedWeightedEdge(12, nodeList[0], nodeList[9]);
+		m_pGraph->AddEdge(p11);
+
+		DirectedWeightedEdge* p12 = new DirectedWeightedEdge(45, nodeList[9], nodeList[1]);
+		m_pGraph->AddEdge(p12);
+
+		DirectedWeightedEdge* p13 = new DirectedWeightedEdge(55, nodeList[1], nodeList[3]);
+		m_pGraph->AddEdge(p13);
+
+		//DirectedWeightedEdge* p14 = new DirectedWeightedEdge(52, nodeList[0], nodeList[7]);
+		//m_pGraph->AddEdge(p14);
+
+	}
+
+	o_path = AIForGames::PathFinding::AStar::FindPath(nodeList[0], nodeList[5], m_pGraph);
 #endif
 }
 
