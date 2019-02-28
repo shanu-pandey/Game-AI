@@ -21,6 +21,41 @@
 //#define ASTAOBSTACLEAVOIDANCE
 
 //--------------------------------------------------------------
+
+void DrawDijkstraGraph()
+{
+	float nodeRadius = 3.0f;
+	float arrowHeadRadius = 8.0f;
+	ofSetColor(0, 0, 0);
+
+	
+	ofDrawCircle(ofVec2f(300, 400), nodeRadius);
+	ofDrawCircle(ofVec2f(400, 320), nodeRadius);
+	ofDrawCircle(ofVec2f(500, 320), nodeRadius);
+	ofDrawCircle(ofVec2f(600, 320), nodeRadius);
+	ofDrawCircle(ofVec2f(700, 400), nodeRadius);
+	ofDrawCircle(ofVec2f(600, 500), nodeRadius);
+	ofDrawCircle(ofVec2f(500, 500), nodeRadius);
+	ofDrawCircle(ofVec2f(400, 500), nodeRadius);
+	ofDrawCircle(ofVec2f(500, 400), nodeRadius);
+	
+	ofDrawArrow(ofVec3f(300, 400, 0), ofVec3f(400, 320, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(400, 320, 0), ofVec3f(500, 320, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(500, 320, 0), ofVec3f(600, 320, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(600, 320, 0), ofVec3f(700, 400, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(700, 400, 0), ofVec3f(600, 500, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(600, 500, 0), ofVec3f(500, 500, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(500, 500, 0), ofVec3f(400, 500, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(500, 400, 0), ofVec3f(400, 500, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(500, 320, 0), ofVec3f(500, 400, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(500, 400, 0), ofVec3f(500, 500, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(600, 500, 0), ofVec3f(500, 320, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(600, 320, 0), ofVec3f(600, 500, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(400, 320, 0), ofVec3f(400, 500, 0), arrowHeadRadius);
+	ofDrawArrow(ofVec3f(400, 500, 0), ofVec3f(300, 400, 0), arrowHeadRadius);
+
+}
+
 void ofApp::DrawGameWorld()
 {
 	for (int i = 0; i < m_noOfWalls; i++)
@@ -127,7 +162,6 @@ void ofApp::setup()
 
 #endif // SEEK_STEERING
 
-
 #ifdef WANDER_STEERING_01
 	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(500, 500), orientation);
 	m_pTarget = new AIForGames::GameObject(-100, -100);
@@ -161,29 +195,30 @@ void ofApp::setup()
 #endif // FLOCKING
 
 	m_pGraph = new AIForGames::PathFinding::Graph();
-
 	std::vector<Node> nodeList;
 	
 #ifdef DIJKSTRA
+
+	m_pBoidObject->GetKinematic()->SetPosition(ofVec2f(300, 400));
 	//Create Nodes
 	{
-		Node n1 = Node(0, ofVec2f(0, 100));
+		Node n1 = Node(0, ofVec2f(300, 400));
 		nodeList.emplace_back(n1);
-		Node n2 = Node(1, ofVec2f(100, 20));
+		Node n2 = Node(1, ofVec2f(400, 320));
 		nodeList.emplace_back(n2);
-		Node n3 = Node(2, ofVec2f(200, 20));
+		Node n3 = Node(2, ofVec2f(500, 320));
 		nodeList.emplace_back(n3);
-		Node n4 = Node(3, ofVec2f(300, 20));
+		Node n4 = Node(3, ofVec2f(600, 320));
 		nodeList.emplace_back(n4);
-		Node n5 = Node(4, ofVec2f(400, 100));
+		Node n5 = Node(4, ofVec2f(700, 400));
 		nodeList.emplace_back(n5);
-		Node n6 = Node(5, ofVec2f(300, 200));
+		Node n6 = Node(5, ofVec2f(600, 500));
 		nodeList.emplace_back(n6);
-		Node n7 = Node(6, ofVec2f(200, 200));
+		Node n7 = Node(6, ofVec2f(500, 500));
 		nodeList.emplace_back(n7);
-		Node n8 = Node(7, ofVec2f(100, 200));
+		Node n8 = Node(7, ofVec2f(400, 500));
 		nodeList.emplace_back(n8);
-		Node n9 = Node(8, ofVec2f(200, 100));
+		Node n9 = Node(8, ofVec2f(500, 400));
 		nodeList.emplace_back(n9);
 	}
 
@@ -231,7 +266,7 @@ void ofApp::setup()
 		DirectedWeightedEdge* p14 = new DirectedWeightedEdge(8, nodeList[7], nodeList[0]);
 		m_pGraph->AddEdge(p14);
 	}
-	o_path = AIForGames::PathFinding::Dijkstra::FindPath(nodeList[1], nodeList[5], m_pGraph);
+	o_path = AIForGames::PathFinding::Dijkstra::FindPath(nodeList[0], nodeList[5], m_pGraph);
 #endif 
 
 #ifdef ASTARLARGENODES
@@ -431,10 +466,8 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	ofDrawArrow(ofVec3f(100, 100, 0), ofVec3f(200, 200, 0), 15.5f);
-
-
 #ifdef DIJKSTRA	
+	DrawDijkstraGraph();
 #endif
 
 
