@@ -83,13 +83,14 @@ namespace AIForGames
 			}
 			if (current.node.index != i_goalNode.index)
 			{
-
+				//no path found
+				return o_path;
 			}
 			else
 			{
 				while (current.node.index != i_startNode.index)
 				{
-					o_path.emplace_back(current.incomingEdge);
+					o_path.emplace_front(current.incomingEdge);
 					current = *(closed.Find(current.incomingEdge.source));
 				}
 				return o_path;
