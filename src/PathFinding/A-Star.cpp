@@ -95,8 +95,6 @@ namespace AIForGames
 				}
 				return o_path;
 			}
-
-			
 		}
 	}
 } 

@@ -5,6 +5,7 @@
 #include "ofxGui.h"
 #include "Movement/IMovementAlgorithm.h"
 #include "Graph\Graph.h"
+#include "Graph\TileMap.h"
 
 class ofApp : public ofBaseApp
 {
@@ -44,6 +45,7 @@ private:
 	std::vector<float> m_WallWidth;
 	std::vector<float> m_WallHeight;
 	std::list<DirectedWeightedEdge> o_path;
+	AIForGames::PathFinding::TileMap* m_pTileMap;
 	int m_noOfWalls;
 	int m_numberOfBoids;
 };

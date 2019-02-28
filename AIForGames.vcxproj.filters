@@ -100,6 +100,12 @@
     <ClCompile Include="src\Graph\ManhattanHeuristics.cpp">
       <Filter>src\Graph</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graph\TileMap.cpp">
+      <Filter>src\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph\Tile.cpp">
+      <Filter>src\Graph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -258,6 +264,12 @@
       <Filter>src\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="src\Graph\ManhattanHeuristics.h">
+      <Filter>src\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph\TileMap.h">
+      <Filter>src\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph\Tile.h">
       <Filter>src\Graph</Filter>
     </ClInclude>
   </ItemGroup>
