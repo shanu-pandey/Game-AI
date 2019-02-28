@@ -23,8 +23,8 @@
 #pragma region Assignment 2
 
 //#define DIJKSTRA
-//#define ASTARSMALLSAMPLE
-#define ASTARTILEMAP
+#define ASTARSMALLSAMPLE
+//#define ASTARTILEMAP
 #pragma endregion
 
 //--------------------------------------------------------------
@@ -321,9 +321,7 @@ void ofApp::setup()
 	m_pTarget->SetRadius(6.0f);
 	m_pBoidObject->GetKinematic()->SetPosition(ofVec2f(2, 2));
 	m_pGraph = m_pTileMap->GetGraph();
-	Node n1 = Node(0, m_pTileMap->GetTile(0)->GetPosition());
-	Node n2 = Node(1856, m_pTileMap->GetTile(1856)->GetPosition());
-	o_path = AIForGames::PathFinding::AStar::FindPath(Node(5, m_pTileMap->GetTile(5)->GetPosition()), Node(186, m_pTileMap->GetTile(186)->GetPosition()), m_pGraph);
+	//o_path = AIForGames::PathFinding::AStar::FindPath(Node(5, m_pTileMap->GetTile(5)->GetPosition()), Node(186, m_pTileMap->GetTile(186)->GetPosition()), m_pGraph);
 #endif
 
 
@@ -532,9 +530,7 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	ofSetColor(102, 25, 12);
-	ofDrawCircle(m_pTileMap->GetTile(1856)->GetPosition(), 10);
-	DrawGameWorld();
+	
 #ifdef DIJKSTRA	
 	DrawDijkstraGraph();
 #endif
@@ -543,14 +539,11 @@ void ofApp::draw() {
 	DrawAStarSampleGraph();
 #endif
 
-#ifdef ASTAOBSTACLEAVOIDANCE	
+#ifdef ASTARTILEMAP	
 	DrawGameWorld();
 #endif
 
-#ifdef ASTARLARGENODES	
-	DrawGameWorld();
-#endif
-	
+
 #ifdef BASICMOTION	
 	m_pBoidObject->DrawObject();
 	m_pBoidObject->DrawBreadCrumbs();
@@ -619,6 +612,23 @@ void ofApp::mousePressed(int x, int y, int button) {
 	else
 		m_pTarget->GetKinematic()->SetPosition(ofVec2f(-300, -300));
 #endif // SEEK_STEERING_02
+
+#ifdef ASTARTILEMAP	
+	if (button == 0)
+	{
+		Node n1 = Node(0, m_pBoidObject->GetKinematic()->GetPosition());
+		Node n2 = Node(m_pTileMap->GetTileIndex(ofVec2f(x, y)), ofVec2f(x, y));
+		m_pTarget->GetKinematic()->SetPosition(ofVec2f(x, y));
+		o_path = AIForGames::PathFinding::AStar::FindPath(n1, n2, m_pGraph);
+	}
+		
+	else
+	{
+		o_path.clear();
+	}
+		
+	
+#endif
 }
 
 //--------------------------------------------------------------

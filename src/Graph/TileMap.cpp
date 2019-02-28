@@ -78,7 +78,6 @@ namespace AIForGames
 			return m_Tiles[i_index];
 		}
 
-
 		void TileMap::SetObstaclesTiles(int i_numberOfObstacles, std::vector<ofVec2f> i_obstaclePos, std::vector<float> i_obstacleWidth, std::vector<float> i_obstacleHeight)
 		{
 			for (int i = 0; i < i_numberOfObstacles; i++)
