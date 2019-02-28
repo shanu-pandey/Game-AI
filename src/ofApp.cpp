@@ -22,8 +22,8 @@
 
 #pragma region Assignment 2
 
-//#define DIJKSTRA
-#define ASTARSMALLSAMPLE
+#define DIJKSTRA
+//#define ASTARSMALLSAMPLE
 //#define ASTARLARGENODES
 //#define ASTAOBSTACLEAVOIDANCE
 
