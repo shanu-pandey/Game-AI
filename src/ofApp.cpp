@@ -556,8 +556,8 @@ void ofApp::draw() {
 
 #ifdef SEEK_STEERING_02 
 	m_pBoidObject->DrawObject();
-	//m_pBoidObject->DrawObject();
-	m_pTarget->DrawObject();
+	m_pBoidObject->DrawBreadCrumbs();	
+	//m_pTarget->DrawObject();
 #endif // SEEK_STEERING
 
 #ifdef WANDER_STEERING_01	

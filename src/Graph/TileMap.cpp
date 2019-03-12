@@ -252,6 +252,16 @@ namespace AIForGames
 						i_tile->SetWalkable(false);
 					}
 				}
+
+				if (i_tile->GetPosition().x + m_tileWidth / 2 >= m_obstaclePos[i].x &&
+					i_tile->GetPosition().x + m_tileWidth / 2 <= m_obstaclePos[i].x + m_obstacleWidth[i])
+				{
+					if (i_tile->GetPosition().y + m_tileHeight / 2 >= m_obstaclePos[i].y &&
+						i_tile->GetPosition().y + m_tileWidth / 2 <= m_obstaclePos[i].y + m_obstacleHeight[i])
+					{
+						i_tile->SetWalkable(false);
+					}
+				}
 			}
 		}
 	}
