@@ -96,7 +96,7 @@ struct Node
 	}
 	
 	inline bool operator==(Node i_Node) 
-	{
+	{		
 		if (this->index == i_Node.index && this->position == i_Node.position)
 			return true;
 		else

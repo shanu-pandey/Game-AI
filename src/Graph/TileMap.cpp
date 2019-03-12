@@ -24,9 +24,10 @@ namespace AIForGames
 					Tile* tile = new Tile(index, ofVec2f(j + m_tileWidth/2, i + m_tileHeight/2), true);
 					m_Tiles.emplace_back(tile);
 					index++;
+					SetIfWalkable(tile, i_numberOfObstacles, i_obstaclePos, i_obstacleWidth, i_obstacleHeight);
 				}
 			}
-			SetObstaclesTiles(i_numberOfObstacles, i_obstaclePos, i_obstacleWidth, i_obstacleHeight);
+			//SetObstaclesTiles(i_numberOfObstacles, i_obstaclePos, i_obstacleWidth, i_obstacleHeight);
 			GenerateGraph();
 		}
 
@@ -78,6 +79,12 @@ namespace AIForGames
 			return m_Tiles[i_index];
 		}
 
+		Tile* TileMap::GetTile(ofVec2f i_worldPosition)
+		{
+			int index = GetTileIndex(i_worldPosition);
+			return GetTile(index);
+		}
+
 		void TileMap::SetObstaclesTiles(int i_numberOfObstacles, std::vector<ofVec2f> i_obstaclePos, std::vector<float> i_obstacleWidth, std::vector<float> i_obstacleHeight)
 		{
 			for (int i = 0; i < i_numberOfObstacles; i++)
@@ -94,7 +101,7 @@ namespace AIForGames
 					Tile* tile = GetTile(GetTileIndex(obstaclePos));
 					tile->SetWalkable(false);
 					temp += m_tileWidth;
-					obstaclePos.x += m_tileWidth;
+					obstaclePos.x += m_tileWidth/2;
 				}
 
 				obstaclePos = i_obstaclePos[i];
@@ -107,7 +114,7 @@ namespace AIForGames
 					Tile* tile = GetTile(GetTileIndex(obstaclePos));
 					tile->SetWalkable(false);
 					temp += m_tileHeight;
-					obstaclePos.y += m_tileHeight;
+					obstaclePos.y += m_tileHeight/2;
 				}
 			}
 		}
@@ -132,7 +139,7 @@ namespace AIForGames
 						//left DWE added
 						if (m_Tiles[i - 1]->IsWalkable())
 						{
-							DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(i, m_Tiles[i]->GetPosition()), Node(i - 1, m_Tiles[i - 1]->GetPosition()));
+							DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i-1]->GetIndex(), m_Tiles[i - 1]->GetPosition()));
 							m_pGraph->AddEdge(dwe);
 						}
 						//do up down check
@@ -140,16 +147,16 @@ namespace AIForGames
 						{
 							//up exists
 							//up DWE added
-							if (m_Tiles[i - yDivisions]->IsWalkable())
+							if (m_Tiles[i - xDivisions]->IsWalkable())
 							{
-								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(i, m_Tiles[i]->GetPosition()), Node(i - yDivisions, m_Tiles[i - yDivisions]->GetPosition()));
+								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i - xDivisions]->GetIndex(), m_Tiles[i - xDivisions]->GetPosition()));
 								m_pGraph->AddEdge(dwe);
 								bUpAdded = true;
 							}
 							//up-left DWE added
-							if (m_Tiles[i - yDivisions -1]->IsWalkable())
+							if (m_Tiles[i - xDivisions -1]->IsWalkable())
 							{
-								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(i, m_Tiles[i]->GetPosition()), Node(i - yDivisions - 1, m_Tiles[i - yDivisions - 1]->GetPosition()));
+								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i - xDivisions - 1]->GetIndex(), m_Tiles[i - xDivisions - 1]->GetPosition()));
 								m_pGraph->AddEdge(dwe);
 							}
 						}
@@ -158,16 +165,16 @@ namespace AIForGames
 						{
 							//down exists						
 							//down DWE added
-							if (m_Tiles[i + yDivisions]->IsWalkable())
+							if (m_Tiles[i + xDivisions]->IsWalkable())
 							{
-								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(i, m_Tiles[i]->GetPosition()), Node(i + yDivisions, m_Tiles[i + yDivisions]->GetPosition()));
+								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i + xDivisions]->GetIndex(), m_Tiles[i + xDivisions]->GetPosition()));
 								m_pGraph->AddEdge(dwe);
 								bDownAdded = true;
 							}
 							//down-left DWE added
-							if (m_Tiles[i + yDivisions - 1]->IsWalkable())
+							if (m_Tiles[i + xDivisions - 1]->IsWalkable())
 							{
-								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(i, m_Tiles[i]->GetPosition()), Node(i + yDivisions - 1, m_Tiles[i + yDivisions - 1]->GetPosition()));
+								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i + xDivisions - 1]->GetIndex(), m_Tiles[i + xDivisions - 1]->GetPosition()));
 								m_pGraph->AddEdge(dwe);
 							}
 						}
@@ -181,7 +188,7 @@ namespace AIForGames
 						//right DWE added
 						if (m_Tiles[i + 1]->IsWalkable())
 						{
-							DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(i, m_Tiles[i]->GetPosition()), Node(i + 1, m_Tiles[i + 1]->GetPosition()));
+							DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i + 1]->GetIndex(), m_Tiles[i + 1]->GetPosition()));
 							m_pGraph->AddEdge(dwe);
 						}
 						//do up down check
@@ -191,17 +198,17 @@ namespace AIForGames
 							//up DWE added
 							if (!bUpAdded)
 							{
-								if (m_Tiles[i - yDivisions]->IsWalkable())
+								if (m_Tiles[i - xDivisions]->IsWalkable())
 								{
-									DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(i, m_Tiles[i]->GetPosition()), Node(i - yDivisions, m_Tiles[i - yDivisions]->GetPosition()));
+									DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i - xDivisions]->GetIndex(), m_Tiles[i - xDivisions]->GetPosition()));
 									m_pGraph->AddEdge(dwe);
 								}
 							}
 
 							//up-right DWE added
-							if (m_Tiles[i - yDivisions +1]->IsWalkable())
+							if (m_Tiles[i - xDivisions +1]->IsWalkable())
 							{
-								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(i, m_Tiles[i]->GetPosition()), Node(i - yDivisions + 1, m_Tiles[i - yDivisions + 1]->GetPosition()));
+								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i - xDivisions + 1]->GetIndex(), m_Tiles[i - xDivisions + 1]->GetPosition()));
 								m_pGraph->AddEdge(dwe);
 							}
 						}
@@ -212,17 +219,17 @@ namespace AIForGames
 							//up DWE added
 							if (!bDownAdded)
 							{
-								if (m_Tiles[i + yDivisions]->IsWalkable())
+								if (m_Tiles[i + xDivisions]->IsWalkable())
 								{
-									DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(i, m_Tiles[i]->GetPosition()), Node(i + yDivisions, m_Tiles[i + yDivisions]->GetPosition()));
+									DirectedWeightedEdge* dwe = new DirectedWeightedEdge(4, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i + xDivisions]->GetIndex(), m_Tiles[i + xDivisions]->GetPosition()));
 									m_pGraph->AddEdge(dwe);
 								}
 							}
 
 							//down-right DWE added
-							if (m_Tiles[i + yDivisions +1]->IsWalkable())
+							if (m_Tiles[i + xDivisions +1]->IsWalkable())
 							{
-								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(i, m_Tiles[i]->GetPosition()), Node(i + yDivisions + 1, m_Tiles[i + yDivisions + 1]->GetPosition()));
+								DirectedWeightedEdge* dwe = new DirectedWeightedEdge(6, Node(m_Tiles[i]->GetIndex(), m_Tiles[i]->GetPosition()), Node(m_Tiles[i + xDivisions + 1]->GetIndex(), m_Tiles[i + xDivisions + 1]->GetPosition()));
 								m_pGraph->AddEdge(dwe);
 							}
 						}
@@ -230,6 +237,22 @@ namespace AIForGames
 				}
 			}
 
+		}
+
+		void TileMap::SetIfWalkable(Tile* i_tile, int i_numberOfObstacles, std::vector<ofVec2f> m_obstaclePos, std::vector<float> m_obstacleWidth, std::vector<float> m_obstacleHeight)
+		{
+			for (int i = 0; i < i_numberOfObstacles; i++)
+			{
+				if (i_tile->GetPosition().x - m_tileWidth / 2 >= m_obstaclePos[i].x &&
+					i_tile->GetPosition().x - m_tileWidth / 2 <= m_obstaclePos[i].x + m_obstacleWidth[i])
+				{
+					if (i_tile->GetPosition().y - m_tileHeight / 2 >= m_obstaclePos[i].y &&
+						i_tile->GetPosition().y - m_tileWidth / 2 <= m_obstaclePos[i].y + m_obstacleHeight[i])
+					{
+						i_tile->SetWalkable(false);
+					}
+				}
+			}
 		}
 	}
 }

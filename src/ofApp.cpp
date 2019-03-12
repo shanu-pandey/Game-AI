@@ -23,8 +23,8 @@
 #pragma region Assignment 2
 
 //#define DIJKSTRA
-#define ASTARSMALLSAMPLE
-//#define ASTARTILEMAP
+//#define ASTARSMALLSAMPLE
+#define ASTARTILEMAP
 #pragma endregion
 
 //--------------------------------------------------------------
@@ -616,8 +616,12 @@ void ofApp::mousePressed(int x, int y, int button) {
 #ifdef ASTARTILEMAP	
 	if (button == 0)
 	{
-		Node n1 = Node(0, m_pBoidObject->GetKinematic()->GetPosition());
-		Node n2 = Node(m_pTileMap->GetTileIndex(ofVec2f(x, y)), ofVec2f(x, y));
+		AIForGames::PathFinding::Tile* t1 = m_pTileMap->GetTile(m_pBoidObject->GetKinematic()->GetPosition());
+		Node n1 = Node(t1->GetIndex(), t1->GetPosition());
+
+		AIForGames::PathFinding::Tile* t2 = m_pTileMap->GetTile(ofVec2f(x, y));
+		Node n2 = Node(t2->GetIndex(), t2->GetPosition());		
+		
 		m_pTarget->GetKinematic()->SetPosition(ofVec2f(x, y));
 		o_path = AIForGames::PathFinding::AStar::FindPath(n1, n2, m_pGraph);
 	}
