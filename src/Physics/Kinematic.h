@@ -31,7 +31,7 @@ namespace AIForGames
 			void SetVelocity(ofVec2f i_velocity);
 			float GetRotation();
 			void SetRotation(float i_rotation);
-			
+			void Stop();
 			void Update(KinematicSteeringOutput i_steering);
 			void Update(DynamicSteeringOutput i_steering);
 

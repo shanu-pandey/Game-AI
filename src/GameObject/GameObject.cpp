@@ -91,6 +91,11 @@ namespace AIForGames
 		}
 		
 	}
+	
+	void GameObject::Stop()
+	{
+		m_pKinematic->Stop();
+	}
 
 	void GameObject::Update(KinematicSteeringOutput i_steering)
 	{

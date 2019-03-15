@@ -123,6 +123,12 @@ namespace AIForGames
 
 	}
 
+	void Physics::Kinematic::Stop()
+	{
+		m_velocity.x = 0;
+		m_velocity.y = 0;
+	}
+
 	void Physics::Kinematic::Update(KinematicSteeringOutput i_steering)
 	{
 		{

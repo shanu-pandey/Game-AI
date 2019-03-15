@@ -29,6 +29,7 @@
 
 //--------------------------------------------------------------
 
+
 void DrawDijkstraGraph()
 {
 	float nodeRadius = 3.0f;
@@ -414,8 +415,8 @@ void ofApp::update() {
 	   m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
 #endif 
 
-#ifdef ASTARTILEMAP
-	   m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
+#ifdef ASTARTILEMAP	  
+		   m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
 #endif
 
 
@@ -616,6 +617,8 @@ void ofApp::mousePressed(int x, int y, int button) {
 #ifdef ASTARTILEMAP	
 	if (button == 0)
 	{
+		m_pBoidObject->Stop();
+		o_path.clear();
 		AIForGames::PathFinding::Tile* t1 = m_pTileMap->GetTile(m_pBoidObject->GetKinematic()->GetPosition());
 		Node n1 = Node(t1->GetIndex(), t1->GetPosition());
 
@@ -623,12 +626,13 @@ void ofApp::mousePressed(int x, int y, int button) {
 		Node n2 = Node(t2->GetIndex(), t2->GetPosition());		
 		
 		m_pTarget->GetKinematic()->SetPosition(ofVec2f(x, y));
-		o_path = AIForGames::PathFinding::AStar::FindPath(n1, n2, m_pGraph);
+		o_path = AIForGames::PathFinding::AStar::FindPath(n1, n2, m_pGraph);		
 	}
 		
 	else
 	{
 		o_path.clear();
+		m_pBoidObject->Stop();
 	}
 		
 	

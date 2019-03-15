@@ -118,14 +118,23 @@ namespace AIForGames
 			if (i_path.size() > 0)
 			{
 				DirectedWeightedEdge top = i_path.front();
-				m_pInputs->destination->SetPosition(top.sink.position);
+				m_pInputs->destination->SetPosition(top.source.position);
 				output = GetDynamicSteering();
 				if (output.linear == ofVec2f(0, 0) && i_path.size() > 1)
 				{
 					i_path.pop_front();
-					DirectedWeightedEdge top = i_path.front();
-					m_pInputs->destination->SetPosition(top.source.position);
+					//DirectedWeightedEdge top = i_path.front();
+					//m_pInputs->destination->SetPosition(top.source.position);
 				}
+				else if (output.linear == ofVec2f(0, 0))
+				{
+					m_pInputs->destination->SetPosition(top.sink.position);
+					i_path.pop_front();					
+				}
+			}
+			else
+			{
+				output = GetDynamicSteering();
 			}
 			
 			return output;

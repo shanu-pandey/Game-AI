@@ -30,7 +30,7 @@ namespace AIForGames
 		void AddBreadCrumb(ofVec2f i_position);
 		void Update(KinematicSteeringOutput i_steering);
 		void Update(DynamicSteeringOutput i_steering);
-
+		void Stop();
 	private:
 		int counter = 0;
 		std::list<ofVec2f> breadCrumbs;
