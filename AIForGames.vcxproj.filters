@@ -121,6 +121,9 @@
     <ClCompile Include="src\DecisionMaking\DecisionTree.cpp">
       <Filter>src\DecisionMaking</Filter>
     </ClCompile>
+    <ClCompile Include="src\AI\AIController.cpp">
+      <Filter>src\AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -167,6 +170,9 @@
     </Filter>
     <Filter Include="src\DecisionMaking">
       <UniqueIdentifier>{154c6b24-2721-4b81-8184-90cdcd0993c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\AI">
+      <UniqueIdentifier>{d73f9dcd-ba61-4719-b17a-400af291143b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\DecisionTree.h">
       <Filter>src\DecisionMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AI\AIController.h">
+      <Filter>src\AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

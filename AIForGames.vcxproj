@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AI\AIController.cpp" />
     <ClCompile Include="src\DecisionMaking\Action.cpp" />
     <ClCompile Include="src\DecisionMaking\ActionManager.cpp" />
     <ClCompile Include="src\DecisionMaking\ActionNode.cpp" />
@@ -222,6 +223,7 @@
     <ClCompile Include="src\Renderer\TargetRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AI\AIController.h" />
     <ClInclude Include="src\DecisionMaking\Action.h" />
     <ClInclude Include="src\DecisionMaking\ActionManager.h" />
     <ClInclude Include="src\DecisionMaking\ActionNode.h" />
