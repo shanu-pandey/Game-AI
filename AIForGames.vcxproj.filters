@@ -118,6 +118,9 @@
     <ClCompile Include="src\DecisionMaking\ActionNode.cpp">
       <Filter>src\DecisionMaking</Filter>
     </ClCompile>
+    <ClCompile Include="src\DecisionMaking\DecisionTree.cpp">
+      <Filter>src\DecisionMaking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -300,6 +303,12 @@
       <Filter>src\DecisionMaking</Filter>
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\ActionNode.h">
+      <Filter>src\DecisionMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\IDecisionMakingTechnique.h">
+      <Filter>src\DecisionMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\DecisionTree.h">
       <Filter>src\DecisionMaking</Filter>
     </ClInclude>
   </ItemGroup>
