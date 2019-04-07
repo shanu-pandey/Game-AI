@@ -165,3 +165,10 @@ struct NodeRecord
 	}
 };
 
+enum Status
+{
+	SUCCESS,
+	FAILURE,
+	RUNNING,
+	FAILED,
+};

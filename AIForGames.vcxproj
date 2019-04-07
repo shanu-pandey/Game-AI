@@ -180,6 +180,10 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\DecisionMaking\Action.cpp" />
+    <ClCompile Include="src\DecisionMaking\ActionManager.cpp" />
+    <ClCompile Include="src\DecisionMaking\ActionNode.cpp" />
+    <ClCompile Include="src\DecisionMaking\DecisionNode.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\Graph\EuclidianHeuristics.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
@@ -217,6 +221,11 @@
     <ClCompile Include="src\Renderer\TargetRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\DecisionMaking\Action.h" />
+    <ClInclude Include="src\DecisionMaking\ActionManager.h" />
+    <ClInclude Include="src\DecisionMaking\ActionNode.h" />
+    <ClInclude Include="src\DecisionMaking\DecisionNode.h" />
+    <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h" />
     <ClInclude Include="src\GameObject\GameObject.h" />
     <ClInclude Include="src\GameStructs.h" />
     <ClInclude Include="src\Graph\EuclidianHeuristics.h" />
