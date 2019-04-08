@@ -33,11 +33,16 @@ namespace AIForGames
 
 		Action* DecisionTree::GetAction()
 		{
-			ActionNode* p_ActionNode = reinterpret_cast<ActionNode*>(m_pRoot->MakeDecision());
-			Action* p_Action = p_ActionNode->GetAction();
+			ActionNode* p_ActionNode = dynamic_cast<ActionNode*>(m_pRoot->MakeDecision());
 
-			if (p_Action)
-				return p_Action;
+			if (p_ActionNode)
+			{
+				Action* p_Action = p_ActionNode->GetAction();
+				if (p_Action)
+					return p_Action;
+				else
+					return nullptr;
+			}
 			else
 				return nullptr;
 		}
