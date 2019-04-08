@@ -18,6 +18,7 @@ namespace AIForGames
 
 	AIController::~AIController()
 	{	
+
 	}
 
 	GameObject * AIController::GetOwner() const
