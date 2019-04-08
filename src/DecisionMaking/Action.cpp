@@ -25,11 +25,6 @@ namespace AIForGames
 
 		}
 
-		bool Action::CanInterrupt()
-		{
-			return true;
-		}
-
 		bool Action::CanInterruptAction(Action* i_action)
 		{
 			return true;

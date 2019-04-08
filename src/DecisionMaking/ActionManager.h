@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
 #include "Action.h"
+#include "../PriorityQueue/PriorityQueue.h"
 
 using namespace std;
 
@@ -23,11 +24,15 @@ namespace AIForGames
 			void RemoveFromPending(Action* i_action);
 			void AddToActive(Action* i_action);
 			void RemoveFromActive(Action* i_action);
-			void Update();
+			void Update(float i_dt);
 
 		private:
-			std::priority_queue<Action*, std::vector<Action*>, ComparerFunctor> m_pending;
-			std::priority_queue<Action*, std::vector<Action*>, ComparerFunctor> m_active;
+			void PendingQueueUpdate(float i_dt);
+			void ActiveQueueUpdate(float i_dt);
+			//std::priority_queue<Action*, std::vector<Action*>, ComparerFunctor> m_pending;
+			std::vector<Action*> m_pending;
+			std::vector<Action*> m_active;
+			//std::priority_queue<Action*, std::vector<Action*>, ComparerFunctor> m_active;
 		};
 	}
 }
