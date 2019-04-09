@@ -4,7 +4,7 @@
 #include "../DecisionMaking/WanderAction.h"
 #include "../DecisionMaking/Chase.h"
 #include "../DecisionMaking/ActionNode.h"
-#include "../DecisionMaking/DecisionNode.h"
+#include "../DecisionMaking/DistanceFromPlayer.h"
 
 
 namespace AIForGames
@@ -48,7 +48,6 @@ namespace AIForGames
 	void AIController::Update(float i_dt)
 	{
 		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
-
 		m_pActionManager->Update(i_dt);
 	}	
 
@@ -61,12 +60,11 @@ namespace AIForGames
 		AIForGames::DecisionMaking::ActionNode* wanderNode = new AIForGames::DecisionMaking::ActionNode(pWanderAction);
 		AIForGames::DecisionMaking::ActionNode* chaseNode = new AIForGames::DecisionMaking::ActionNode(pChaseAction);
 
-		AIForGames::DecisionMaking::DecisionNode* pDecisionNode = new AIForGames::DecisionMaking::DecisionNode();
-		pDecisionNode->SetOwner(m_pOwner);
-		pDecisionNode->AddFalseNode(wanderNode);
-		pDecisionNode->AddTrurNode(chaseNode);
+		AIForGames::DecisionMaking::DistanceFromPlayer* pDistanceNode = new AIForGames::DecisionMaking::DistanceFromPlayer(m_pOwner, 100.0f);
+		pDistanceNode->AddFalseNode(wanderNode);
+		pDistanceNode->AddTrurNode(chaseNode);
 
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::DecisionTree(pDecisionNode);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::DecisionTree(pDistanceNode);
 		//m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
 	}
 

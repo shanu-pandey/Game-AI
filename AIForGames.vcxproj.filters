@@ -112,12 +112,6 @@
     <ClCompile Include="src\DecisionMaking\ActionManager.cpp">
       <Filter>src\DecisionMaking</Filter>
     </ClCompile>
-    <ClCompile Include="src\DecisionMaking\DecisionNode.cpp">
-      <Filter>src\DecisionMaking</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DecisionMaking\ActionNode.cpp">
-      <Filter>src\DecisionMaking</Filter>
-    </ClCompile>
     <ClCompile Include="src\DecisionMaking\DecisionTree.cpp">
       <Filter>src\DecisionMaking</Filter>
     </ClCompile>
@@ -127,11 +121,20 @@
     <ClCompile Include="src\WorldData\WorldManager.cpp">
       <Filter>src\WorldData</Filter>
     </ClCompile>
-    <ClCompile Include="src\DecisionMaking\WanderAction.cpp">
-      <Filter>src\DecisionMaking</Filter>
+    <ClCompile Include="src\DecisionMaking\ActionNode.cpp">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
     </ClCompile>
     <ClCompile Include="src\DecisionMaking\Chase.cpp">
-      <Filter>src\DecisionMaking</Filter>
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionMaking\DecisionNode.cpp">
+      <Filter>src\DecisionMaking\DecisionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionMaking\WanderAction.cpp">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionMaking\DistanceFromPlayer.cpp">
+      <Filter>src\DecisionMaking\DecisionNodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +188,12 @@
     </Filter>
     <Filter Include="src\WorldData">
       <UniqueIdentifier>{b2059976-16fa-44b1-9e73-dca1c0bc425a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DecisionMaking\DecisionNodes">
+      <UniqueIdentifier>{e5ee9a72-5602-4560-a1e0-9219981bc8e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DecisionMaking\ActionNodes">
+      <UniqueIdentifier>{db4f7edb-5861-4fb0-9608-6ba168755400}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -317,12 +326,6 @@
     <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h">
       <Filter>src\DecisionMaking</Filter>
     </ClInclude>
-    <ClInclude Include="src\DecisionMaking\DecisionNode.h">
-      <Filter>src\DecisionMaking</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DecisionMaking\ActionNode.h">
-      <Filter>src\DecisionMaking</Filter>
-    </ClInclude>
     <ClInclude Include="src\DecisionMaking\IDecisionMakingTechnique.h">
       <Filter>src\DecisionMaking</Filter>
     </ClInclude>
@@ -335,11 +338,20 @@
     <ClInclude Include="src\WorldData\WorldManager.h">
       <Filter>src\WorldData</Filter>
     </ClInclude>
-    <ClInclude Include="src\DecisionMaking\WanderAction.h">
-      <Filter>src\DecisionMaking</Filter>
+    <ClInclude Include="src\DecisionMaking\ActionNode.h">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\Chase.h">
-      <Filter>src\DecisionMaking</Filter>
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\DecisionNode.h">
+      <Filter>src\DecisionMaking\DecisionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\WanderAction.h">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\DistanceFromPlayer.h">
+      <Filter>src\DecisionMaking\DecisionNodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
