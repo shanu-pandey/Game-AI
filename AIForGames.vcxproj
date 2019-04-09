@@ -186,6 +186,7 @@
     <ClCompile Include="src\DecisionMaking\ActionNode.cpp" />
     <ClCompile Include="src\DecisionMaking\DecisionNode.cpp" />
     <ClCompile Include="src\DecisionMaking\DecisionTree.cpp" />
+    <ClCompile Include="src\DecisionMaking\WanderAction.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\Graph\EuclidianHeuristics.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="src\DecisionMaking\DecisionTree.h" />
     <ClInclude Include="src\DecisionMaking\IDecisionMakingTechnique.h" />
     <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h" />
+    <ClInclude Include="src\DecisionMaking\WanderAction.h" />
     <ClInclude Include="src\GameObject\GameObject.h" />
     <ClInclude Include="src\GameStructs.h" />
     <ClInclude Include="src\Graph\EuclidianHeuristics.h" />

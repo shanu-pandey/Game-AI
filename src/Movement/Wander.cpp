@@ -48,27 +48,7 @@ namespace AIForGames
 			KinematicSteeringOutput output;
 			output.velocity = ofVec2f(0, 0);
 			output.rotation = 0;
-
-			//Keep in bounds
-			/*{
-				if (m_pInputs->source->GetPosition().x <= 0)
-				{
-					m_pInputs->source->SetPosition(ofVec2f(ofGetWidth(), m_pInputs->source->GetPosition().y));
-				}
-				else if (m_pInputs->source->GetPosition().x >= ofGetWidth())
-				{
-					m_pInputs->source->SetPosition(ofVec2f(0, m_pInputs->source->GetPosition().y));
-				}
-				else if (m_pInputs->source->GetPosition().y <= 0)
-				{
-					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, ofGetHeight()));
-				}
-				else if (m_pInputs->source->GetPosition().y >= ofGetHeight())
-				{
-					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, 0));
-				}
-			}
-			*/
+			
 			ofVec2f orientationVector = ofVec2f(std::cos(m_pInputs->source->GetOrientation()), std::sin(m_pInputs->source->GetOrientation()));
 			output.velocity = orientationVector * m_pInputs->maxSpeed;
 			output.rotation = m_pInputs->maxRotation * (ofRandom(1) - ofRandom(1));
@@ -81,28 +61,7 @@ namespace AIForGames
 		{
 			DynamicSteeringOutput output;
 			output.angular = 0;
-			output.linear = ofVec2f(0, 0);
-
-			//Keep in bounds
-			/*{
-				if (m_pInputs->source->GetPosition().x <= 0)
-				{
-					m_pInputs->source->SetPosition(ofVec2f(ofGetWidth(), m_pInputs->source->GetPosition().y));
-				}
-				else if (m_pInputs->source->GetPosition().x >= ofGetWidth())
-				{
-					m_pInputs->source->SetPosition(ofVec2f(0, m_pInputs->source->GetPosition().y));
-				}
-				
-				if (m_pInputs->source->GetPosition().y <= 0)
-				{
-					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, ofGetHeight()));
-				}
-				else if (m_pInputs->source->GetPosition().y >= ofGetHeight())
-				{
-					m_pInputs->source->SetPosition(ofVec2f(m_pInputs->source->GetPosition().x, 0));
-				}
-			}*/
+			output.linear = ofVec2f(0, 0);			
 
 			float wanderOrientation = (ofRandom(1) - ofRandom(1)) * m_pInputs->wanderRate;
 			float targetOrientation = wanderOrientation + m_pInputs->source->GetOrientation();

@@ -14,7 +14,7 @@ namespace AIForGames
 			bool CanInterruptAction(Action* i_action);
 			bool CanDoBoth(Action* i_action);
 			bool IsComplete();
-			void Update();
+			virtual void Update() = 0;
 			bool IsHigherPriority(Action* i_action);
 			float GetQueuedTime() { return m_queuedTime; }
 			float GetExpiryTime() { return m_expiryTime; }

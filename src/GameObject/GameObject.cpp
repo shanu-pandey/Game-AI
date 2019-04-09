@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "../Movement/Movement.h"
 #include "../ofApp.h"
+#include "../AI/AIController.h"
 
 namespace AIForGames
 {
@@ -39,6 +40,7 @@ namespace AIForGames
 		m_radius = i_radius;
 		m_pBoid = new Renderer::BoidRenderer();
 		m_pKinematic = new Physics::Kinematic(i_position, i_orientation);
+		m_pAIController = new AIController(this);
 	}
 
 	GameObject::GameObject(ofVec2f i_position, ofVec2f i_velocity, float i_orientation, float i_rotation)
@@ -60,6 +62,11 @@ namespace AIForGames
 	void GameObject::SetRenderer(Renderer::IRenderer* i_renderer)
 	{
 		m_pBoid = i_renderer;
+	}
+
+	void GameObject::SetController(AIController* i_controller)
+	{
+		m_pAIController = i_controller;
 	}
 
 	Physics::Kinematic* GameObject::GetKinematic()
@@ -100,6 +107,7 @@ namespace AIForGames
 	void GameObject::Update(KinematicSteeringOutput i_steering)
 	{
 		counter++;				
+		m_pAIController->Update();
 		m_pKinematic->Update(i_steering);
 	}
 

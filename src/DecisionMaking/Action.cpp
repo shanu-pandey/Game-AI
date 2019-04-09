@@ -40,11 +40,6 @@ namespace AIForGames
 			return true;
 		}
 
-		void Action::Update()
-		{
-			//game code goes here
-		}
-
 		bool Action::IsHigherPriority(Action* i_action)
 		{
 			return m_priority > i_action->m_priority;

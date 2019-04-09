@@ -9,9 +9,11 @@ namespace AIForGames
 	{
 	public:
 		AIController();
+		AIController(GameObject* i_owner);
 		AIController(GameObject* i_owner, AIForGames::DecisionMaking::IDecisionMakingTechnique* i_decision, AIForGames::DecisionMaking::ActionManager* i_ActionManager);
 		~AIController();
 		GameObject* GetOwner() const;
+		void SetDecisionTechniques(AIForGames::DecisionMaking::IDecisionMakingTechnique* i_decision);
 		void Update();
 
 

@@ -13,18 +13,23 @@
 
 //#define BASICMOTION
 //#define SEEK_STEERING_01
-#define SEEK_STEERING_02
-//#define WANDER_STEERING_01
+//#define SEEK_STEERING_02
+#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
 //#define FLOCKING
 
 # pragma endregion 
 
 #pragma region Assignment 2
-
 //#define DIJKSTRA
 //#define ASTARSMALLSAMPLE
-#define ASTARTILEMAP
+//#define ASTARTILEMAP
+#pragma endregion
+
+#pragma region Assignment 3
+//#define DECISIONTREE
+//#define BEHAVIORTREE
+//#define DECISIONLEARNING
 #pragma endregion
 
 //--------------------------------------------------------------
@@ -400,6 +405,21 @@ void ofApp::setup()
 	m_pBoidObject->GetKinematic()->SetPosition(ofVec2f(80, 530));
 	o_path = AIForGames::PathFinding::AStar::FindPath(nodeList[0], nodeList[5], m_pGraph);
 #endif
+
+#ifdef DECISIONTREE
+
+	m_pWorldManager = new AIForGames::WorldData::WorldManager();
+	InitailizeGameWorld();
+	m_pGraph = m_pTileMap->GetGraph();
+	m_pWorldManager->SetWorldMap(m_pTileMap);
+	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(500, 500), orientation);
+	m_pWorldManager->RegisterPlayerCharacter(m_pBoidObject);
+	
+	m_pTarget = new AIForGames::GameObject(-100, -100);
+	//Kinematic Wander
+	m_pMovementAlgo = new AIForGames::Movement::Wander(m_pBoidObject->GetKinematic(), 100, 6.8);
+#endif // WANDER_STEERING_01
+
 }
 
 //--------------------------------------------------------------

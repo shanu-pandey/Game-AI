@@ -25,6 +25,11 @@ namespace AIForGames
 			m_pNPCList.emplace_back(i_NPC);
 		}
 
+		void WorldManager::SetWorldMap(AIForGames::PathFinding::TileMap * i_pWorldMap)
+		{
+			m_pWorldMap = i_pWorldMap;
+		}
+
 		ofVec2f WorldManager::GetPlayerLocation()
 		{
 			return m_pPlayerCharacter->GetKinematic()->GetPosition();

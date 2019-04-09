@@ -2,12 +2,17 @@
 #include "../Renderer/BoidRenderer.h"
 #include "../Physics/Kinematic.h"
 #include "../Renderer/TargetRenderer.h"
+//#include "../AI/AIController.h"
+
 #include <list>
 
 using namespace std;
 
 namespace AIForGames
 {
+	//forward Declaration
+	class AIController;
+
 	class GameObject
 	{
 	public:
@@ -21,6 +26,7 @@ namespace AIForGames
 		~GameObject();
 		Renderer::IRenderer* GetRenderer();
 		void SetRenderer(Renderer::IRenderer* i_renderer);
+		void SetController(AIController* i_AI);
 		Physics::Kinematic* GetKinematic();
 		float Getradius();
 		void SetRadius(float i_radius);
@@ -38,6 +44,6 @@ namespace AIForGames
 		//Renderer::BoidRenderer* m_pBoid;		
 		Renderer::IRenderer* m_pBoid;
 		Physics::Kinematic* m_pKinematic;
-		
+		AIController* m_pAIController;
 	};
 }

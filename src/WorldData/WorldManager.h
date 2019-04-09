@@ -17,6 +17,7 @@ namespace AIForGames
 			~WorldManager();
 			void RegisterPlayerCharacter(AIForGames::GameObject* i_player);
 			void RegisterNPC(AIForGames::GameObject* i_NPC);
+			void SetWorldMap(AIForGames::PathFinding::TileMap* i_pWorldMap);
 			ofVec2f GetPlayerLocation();
 
 		private:

@@ -7,6 +7,13 @@ namespace AIForGames
 	{
 		m_pOwner = new GameObject();
 		m_pDecisionTechnique = nullptr;
+		m_pActionManager = new AIForGames::DecisionMaking::ActionManager();
+	}
+
+	AIController::AIController(GameObject * i_owner)
+	{
+		m_pOwner = i_owner;
+		m_pActionManager = new AIForGames::DecisionMaking::ActionManager();
 	}
 
 	AIController::AIController(GameObject * i_owner, AIForGames::DecisionMaking::IDecisionMakingTechnique * i_decision, AIForGames::DecisionMaking::ActionManager* i_ActionManager)
@@ -26,8 +33,14 @@ namespace AIForGames
 		return m_pOwner;
 	}
 
+	void AIController::SetDecisionTechniques(AIForGames::DecisionMaking::IDecisionMakingTechnique * i_decision)
+	{
+		m_pDecisionTechnique = i_decision;
+	}
+
 	void AIController::Update()
 	{
 		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
+		//m_pOwner->GetKinematic()->Update();
 	}	
 }
