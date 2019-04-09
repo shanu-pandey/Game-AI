@@ -106,8 +106,9 @@ namespace AIForGames
 
 	void GameObject::Update(KinematicSteeringOutput i_steering)
 	{
+		float dt = (float)ofGetLastFrameTime();
 		counter++;				
-		m_pAIController->Update();
+		m_pAIController->Update(dt);
 		//m_pKinematic->Update(i_steering);
 	}
 

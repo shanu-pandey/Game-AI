@@ -32,12 +32,12 @@ namespace AIForGames
 
 		bool Action::CanDoBoth(Action* i_action)
 		{
-			return true;
+			return false;
 		}
 
 		bool Action::IsComplete()
 		{
-			return true;
+			return false;
 		}
 
 		bool Action::IsHigherPriority(const Action& i_action) const

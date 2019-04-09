@@ -39,8 +39,64 @@ namespace AIForGames
 
 		void ActionManager::Update(float i_dt)
 		{
-			PendingQueueUpdate(i_dt);
-			ActiveQueueUpdate(i_dt);
+			//PendingQueueUpdate(i_dt);
+			//ActiveQueueUpdate(i_dt);
+
+			auto &it1 = m_pending.begin();
+			while (it1 != m_pending.end())
+			{
+				(*it1)->IncrementQueuedTime(i_dt);
+				float topRunningPriority = -1;
+				if (m_active.size() > 0)
+					float topRunningPriority = m_active[0]->GetPriority();
+
+				if (topRunningPriority > (*it1)->GetPriority())
+				{
+					break;
+				}
+
+				if ((*it1)->CanInterrupt())
+				{
+					m_active.clear();
+					AddToActive(*it1);
+					it1 = m_pending.erase(it1);
+				}
+			}
+
+			auto &it = m_pending.begin();
+			while (it != m_pending.end())
+			{
+				if ((*it)->GetQueuedTime() > (*it)->GetExpiryTime())
+				{
+					it = m_pending.erase(it);
+				}
+
+				for (auto &itActive : m_active)
+				{
+					if (!(*it)->CanDoBoth(itActive))
+					{
+						++it;
+						continue;
+					}
+					m_pending.erase(it);
+					AddToActive(*it);
+				}
+			}
+
+			auto &it2 = m_active.begin();
+			while (it2 != m_active.end())
+			{
+				if ((*it2)->IsComplete())
+				{
+					it2 = m_active.erase(it2);
+					//++it;
+				}
+				else
+				{
+					(*it2)->Update();
+					++it2;
+				}
+			}
 		}
 
 		void ActionManager::PendingQueueUpdate(float i_dt)
@@ -85,7 +141,7 @@ namespace AIForGames
 						}
 					}
 					AddToActive(*it);
-					//m_pending.erase(it);
+					m_pending.erase(it);
 					++it;
 				}
 			}
@@ -98,8 +154,8 @@ namespace AIForGames
 			{
 				if ((*it)->IsComplete())
 				{
-					m_active.erase(it);
-					++it;
+					it = m_active.erase(it);
+					//++it;
 				}
 				else
 				{

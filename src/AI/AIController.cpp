@@ -20,6 +20,8 @@ namespace AIForGames
 		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());
 		AIForGames::DecisionMaking::ActionNode* node = new AIForGames::DecisionMaking::ActionNode(pWanderAction);
 		m_pDecisionTechnique = new AIForGames::DecisionMaking::DecisionTree(node);
+		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
+
 	}
 
 	AIController::AIController(GameObject * i_owner, AIForGames::DecisionMaking::IDecisionMakingTechnique * i_decision, AIForGames::DecisionMaking::ActionManager* i_ActionManager)
@@ -44,9 +46,8 @@ namespace AIForGames
 		m_pDecisionTechnique = i_decision;
 	}
 
-	void AIController::Update()
+	void AIController::Update(float i_dt)
 	{
-		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());	
-		m_pActionManager->Update(0.01f);
+		m_pActionManager->Update(i_dt);
 	}	
 }

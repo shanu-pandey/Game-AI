@@ -14,7 +14,7 @@ namespace AIForGames
 		void WanderAction::Update()
 		{
 			//game code goes here
-			m_pOwnerObject->Update(m_pMovementAlgo->GetDynamicSteering());
+			m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
 		}
 	}
 }

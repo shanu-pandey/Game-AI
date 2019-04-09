@@ -14,7 +14,7 @@ namespace AIForGames
 		~AIController();
 		GameObject* GetOwner() const;
 		void SetDecisionTechniques(AIForGames::DecisionMaking::IDecisionMakingTechnique* i_decision);
-		void Update();
+		void Update(float i_dt);
 
 	private:
 		GameObject* m_pOwner;
