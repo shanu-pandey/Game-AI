@@ -8,13 +8,14 @@
 #include "Movement/DynamicVelocityMatch.h"
 #include "PathFinding\Dijkstra.h"
 #include "PathFinding\A-Star.h"
+#include "AI\AIController.h"
 
 #pragma region Assignment 1
 
 //#define BASICMOTION
 //#define SEEK_STEERING_01
 //#define SEEK_STEERING_02
-#define WANDER_STEERING_01
+//#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
 //#define FLOCKING
 
@@ -27,7 +28,7 @@
 #pragma endregion
 
 #pragma region Assignment 3
-//#define DECISIONTREE
+#define DECISIONTREE
 //#define BEHAVIORTREE
 //#define DECISIONLEARNING
 #pragma endregion
@@ -408,16 +409,19 @@ void ofApp::setup()
 
 #ifdef DECISIONTREE
 
-	m_pWorldManager = new AIForGames::WorldData::WorldManager();
+	AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
 	InitailizeGameWorld();
 	m_pGraph = m_pTileMap->GetGraph();
-	m_pWorldManager->SetWorldMap(m_pTileMap);
-	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(500, 500), orientation);
-	m_pWorldManager->RegisterPlayerCharacter(m_pBoidObject);
-	
+	m_pWorldManager.SetWorldMap(m_pTileMap);
+
+	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(radius, radius), orientation);
 	m_pTarget = new AIForGames::GameObject(-100, -100);
-	//Kinematic Wander
-	m_pMovementAlgo = new AIForGames::Movement::Wander(m_pBoidObject->GetKinematic(), 100, 6.8);
+	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 10, 1);
+	m_pWorldManager.RegisterPlayerCharacter(m_pBoidObject);
+	
+	m_pNPC = new AIForGames::GameObject(radius, ofVec3f(200, 200), orientation);
+	m_pNPC->GetAIController()->CreateDecisionTree();
+
 #endif // WANDER_STEERING_01
 
 }
@@ -547,6 +551,12 @@ void ofApp::update() {
 	}
 #endif // FLOCKING
 
+#ifdef DECISIONTREE
+	//For Dynamic Align
+	m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
+	//m_pTarget->Update();
+	m_pNPC->Update();
+#endif // DECISIONTREE
 }
 
 //--------------------------------------------------------------
@@ -589,6 +599,13 @@ void ofApp::draw() {
 	m_pBoidObject->DrawObject();
 #endif // WANDER_STEERING_02
 
+#ifdef DECISIONTREE	
+	m_pBoidObject->DrawObject();
+	m_pNPC->DrawObject();
+	m_pTarget->DrawObject();
+#endif // DECISIONTREE
+
+
 #ifdef FLOCKING
 	for (int i = 0; i < 10; i++)
 	{
@@ -626,6 +643,13 @@ void ofApp::mousePressed(int x, int y, int button) {
 	else
 		m_pTarget->GetKinematic()->SetPosition(ofVec2f(-300, -300));
 #endif // SEEK_STEERING_01
+
+#ifdef DECISIONTREE
+	if (button == 0)
+		m_pTarget->GetKinematic()->SetPosition(ofVec2f(x, y));
+	else
+		m_pTarget->GetKinematic()->SetPosition(ofVec2f(-300, -300));
+#endif // DECISIONTREE
 
 #ifdef SEEK_STEERING_02
 	if (button == 0)

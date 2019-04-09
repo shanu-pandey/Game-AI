@@ -35,6 +35,7 @@ private:
 
 	AIForGames::GameObject* m_pBoidObject;
 	AIForGames::GameObject* m_pTarget;
+	AIForGames::GameObject* m_pNPC;
 	std::vector<AIForGames::GameObject*> m_pObjects;
 	AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo;
 	std::vector<AIForGames::Movement::IMovementAlgorithm*> m_pBlendedMovement;
@@ -46,7 +47,6 @@ private:
 	std::vector<float> m_WallHeight;
 	std::list<DirectedWeightedEdge> o_path;
 	AIForGames::PathFinding::TileMap* m_pTileMap;
-	AIForGames::WorldData::WorldManager* m_pWorldManager;
 	int m_noOfWalls;
 	int m_numberOfBoids;
 };

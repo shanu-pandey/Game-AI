@@ -13,14 +13,18 @@ namespace AIForGames
 		class WorldManager
 		{
 		public:
-			WorldManager();
+			WorldManager(const WorldManager&) = delete;
 			~WorldManager();
+			static WorldManager& Get();
 			void RegisterPlayerCharacter(AIForGames::GameObject* i_player);
 			void RegisterNPC(AIForGames::GameObject* i_NPC);
 			void SetWorldMap(AIForGames::PathFinding::TileMap* i_pWorldMap);
 			ofVec2f GetPlayerLocation();
+			AIForGames::GameObject* GetPlayerCharacter();
+
 
 		private:
+			WorldManager();
 			AIForGames::GameObject* m_pPlayerCharacter;
 			AIForGames::PathFinding::TileMap* m_pWorldMap;
 			std::vector<AIForGames::GameObject*> m_pNPCList;

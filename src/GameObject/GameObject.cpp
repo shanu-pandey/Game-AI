@@ -59,6 +59,11 @@ namespace AIForGames
 		return m_pBoid;
 	}
 
+	void GameObject::AddAIController(AIController* i_controller)
+	{
+		m_pAIController = i_controller;
+	}
+
 	void GameObject::SetRenderer(Renderer::IRenderer* i_renderer)
 	{
 		m_pBoid = i_renderer;
@@ -105,17 +110,23 @@ namespace AIForGames
 	}
 
 	void GameObject::Update(KinematicSteeringOutput i_steering)
-	{
-		float dt = (float)ofGetLastFrameTime();
+	{		
 		counter++;				
-		m_pAIController->Update(dt);
-		//m_pKinematic->Update(i_steering);
+		//m_pAIController->Update(dt);
+		m_pKinematic->Update(i_steering);
 	}
 
 	void GameObject::Update(DynamicSteeringOutput i_steering)
 	{
 		counter++;
 		m_pKinematic->Update(i_steering);
+	}
+
+	void GameObject::Update()
+	{
+		float dt = (float)ofGetLastFrameTime();
+		counter++;
+		m_pAIController->Update(dt);
 	}
 
 	void GameObject::DrawBreadCrumbs()

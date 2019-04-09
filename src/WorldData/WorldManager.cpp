@@ -5,6 +5,13 @@ namespace AIForGames
 {
 	namespace WorldData
 	{
+
+		WorldManager& WorldManager::Get()
+		{
+			static WorldManager instance;
+			return instance;
+		}
+
 		WorldManager::WorldManager()
 		{
 
@@ -33,6 +40,11 @@ namespace AIForGames
 		ofVec2f WorldManager::GetPlayerLocation()
 		{
 			return m_pPlayerCharacter->GetKinematic()->GetPosition();
+		}
+
+		AIForGames::GameObject* WorldManager::GetPlayerCharacter()
+		{
+			return m_pPlayerCharacter;
 		}
 	}
 }

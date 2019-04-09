@@ -184,6 +184,7 @@
     <ClCompile Include="src\DecisionMaking\Action.cpp" />
     <ClCompile Include="src\DecisionMaking\ActionManager.cpp" />
     <ClCompile Include="src\DecisionMaking\ActionNode.cpp" />
+    <ClCompile Include="src\DecisionMaking\Chase.cpp" />
     <ClCompile Include="src\DecisionMaking\DecisionNode.cpp" />
     <ClCompile Include="src\DecisionMaking\DecisionTree.cpp" />
     <ClCompile Include="src\DecisionMaking\WanderAction.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="src\DecisionMaking\Action.h" />
     <ClInclude Include="src\DecisionMaking\ActionManager.h" />
     <ClInclude Include="src\DecisionMaking\ActionNode.h" />
+    <ClInclude Include="src\DecisionMaking\Chase.h" />
     <ClInclude Include="src\DecisionMaking\DecisionNode.h" />
     <ClInclude Include="src\DecisionMaking\DecisionTree.h" />
     <ClInclude Include="src\DecisionMaking\IDecisionMakingTechnique.h" />

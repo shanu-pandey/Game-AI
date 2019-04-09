@@ -2,12 +2,15 @@
 #include "AIController.h"
 #include "../DecisionMaking/DecisionTree.h"
 #include "../DecisionMaking/WanderAction.h"
+#include "../DecisionMaking/Chase.h"
 #include "../DecisionMaking/ActionNode.h"
+
 
 namespace AIForGames
 {
 	AIController::AIController()
 	{
+		//pWorldManager = AIForGames::WorldData::WorldManager::Get();
 		m_pOwner = new GameObject();
 		m_pDecisionTechnique = nullptr;
 		m_pActionManager = new AIForGames::DecisionMaking::ActionManager();
@@ -16,12 +19,11 @@ namespace AIForGames
 	AIController::AIController(GameObject * i_owner)
 	{
 		m_pOwner = i_owner;
-		m_pActionManager = new AIForGames::DecisionMaking::ActionManager();		
-		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());
-		AIForGames::DecisionMaking::ActionNode* node = new AIForGames::DecisionMaking::ActionNode(pWanderAction);
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::DecisionTree(node);
-		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
-
+		m_pActionManager = new AIForGames::DecisionMaking::ActionManager();	
+		
+		//CreateDecisionTree();
+		//CreateBehaviorTree();
+		//DecisionTreeLearning();
 	}
 
 	AIController::AIController(GameObject * i_owner, AIForGames::DecisionMaking::IDecisionMakingTechnique * i_decision, AIForGames::DecisionMaking::ActionManager* i_ActionManager)
@@ -50,4 +52,25 @@ namespace AIForGames
 	{
 		m_pActionManager->Update(i_dt);
 	}	
+
+	void AIController::CreateDecisionTree()
+	{
+		AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
+		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());
+		AIForGames::DecisionMaking::Chase* pChaseAction = new AIForGames::DecisionMaking::Chase(m_pOwner->GetKinematic(), m_pWorldManager.GetPlayerCharacter()->GetKinematic());
+		AIForGames::DecisionMaking::ActionNode* wanderNode = new AIForGames::DecisionMaking::ActionNode(pWanderAction);
+		AIForGames::DecisionMaking::ActionNode* chaseNode = new AIForGames::DecisionMaking::ActionNode(pChaseAction);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::DecisionTree(chaseNode);
+		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
+	}
+
+	void AIController::CreateBehaviorTree()
+	{
+
+	}
+
+	void AIController::DecisionTreeLearning()
+	{
+
+	}
 }

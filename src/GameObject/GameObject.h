@@ -25,6 +25,8 @@ namespace AIForGames
 		GameObject(ofVec2f i_position, ofVec2f i_velocity, float i_orientation, float i_rotation);
 		~GameObject();
 		Renderer::IRenderer* GetRenderer();
+		void AddAIController(AIController* i_controller);
+		AIController* GetAIController() { return m_pAIController; }
 		void SetRenderer(Renderer::IRenderer* i_renderer);
 		void SetController(AIController* i_AI);
 		Physics::Kinematic* GetKinematic();
@@ -36,6 +38,7 @@ namespace AIForGames
 		void AddBreadCrumb(ofVec2f i_position);
 		void Update(KinematicSteeringOutput i_steering);
 		void Update(DynamicSteeringOutput i_steering);
+		void Update();
 		void Stop();
 	private:
 		int counter = 0;
