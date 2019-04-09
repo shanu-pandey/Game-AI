@@ -40,9 +40,9 @@ namespace AIForGames
 			return true;
 		}
 
-		bool Action::IsHigherPriority(Action* i_action)
+		bool Action::IsHigherPriority(const Action& i_action) const
 		{
-			return m_priority > i_action->m_priority;
+			return m_priority > i_action.m_priority;
 		}
 	}
 }

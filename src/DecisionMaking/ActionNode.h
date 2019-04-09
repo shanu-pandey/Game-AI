@@ -9,6 +9,7 @@ namespace AIForGames
 		class ActionNode : public IDecisionTreeNode
 		{
 		public:
+			ActionNode(Action * i_pAction);
 			virtual IDecisionTreeNode* MakeDecision() override;
 			Action* GetAction();
 

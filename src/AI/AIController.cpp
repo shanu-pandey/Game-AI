@@ -1,5 +1,8 @@
 #pragma once
 #include "AIController.h"
+#include "../DecisionMaking/DecisionTree.h"
+#include "../DecisionMaking/WanderAction.h"
+#include "../DecisionMaking/ActionNode.h"
 
 namespace AIForGames
 {
@@ -13,7 +16,10 @@ namespace AIForGames
 	AIController::AIController(GameObject * i_owner)
 	{
 		m_pOwner = i_owner;
-		m_pActionManager = new AIForGames::DecisionMaking::ActionManager();
+		m_pActionManager = new AIForGames::DecisionMaking::ActionManager();		
+		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());
+		AIForGames::DecisionMaking::ActionNode* node = new AIForGames::DecisionMaking::ActionNode(pWanderAction);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::DecisionTree(node);
 	}
 
 	AIController::AIController(GameObject * i_owner, AIForGames::DecisionMaking::IDecisionMakingTechnique * i_decision, AIForGames::DecisionMaking::ActionManager* i_ActionManager)
@@ -40,7 +46,6 @@ namespace AIForGames
 
 	void AIController::Update()
 	{
-		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
-		//m_pOwner->GetKinematic()->Update();
+		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());		
 	}	
 }

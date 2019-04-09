@@ -10,8 +10,8 @@ namespace AIForGames
 	namespace DecisionMaking
 	{
 		struct ComparerFunctor {
-			bool operator()(Action* i_left, Action* i_right) const {
-				return !i_left->IsHigherPriority(i_right);
+			bool operator()(const Action& i_left, const Action& i_right) const {
+				return (i_left.IsHigherPriority(i_right));
 			}
 		};
 

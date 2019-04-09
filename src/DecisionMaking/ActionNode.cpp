@@ -5,6 +5,11 @@ namespace AIForGames
 {
 	namespace DecisionMaking
 	{
+		ActionNode::ActionNode(Action * i_pAction)
+		{
+			m_pAction = i_pAction;
+		}
+
 		IDecisionTreeNode * ActionNode::MakeDecision()
 		{
 			return this;

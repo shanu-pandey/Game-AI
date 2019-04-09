@@ -18,7 +18,7 @@ namespace AIForGames
 		void ActionManager::AddToPending(Action* i_action)
 		{
 			m_pending.push_back(i_action);
-			std::push_heap(begin(m_pending), end(m_pending), ComparerFunctor());
+			//std::push_heap(begin(m_pending), end(m_pending), ComparerFunctor());
 		}
 		
 		void ActionManager::RemoveFromPending(Action* i_action)
@@ -29,7 +29,7 @@ namespace AIForGames
 		void ActionManager::AddToActive(Action* i_action)
 		{
 			m_active.push_back(i_action);
-			std::push_heap(begin(m_active), end(m_active), ComparerFunctor());
+			//std::push_heap(begin(m_active), end(m_active), ComparerFunctor());
 		}
 
 		void ActionManager::RemoveFromActive(Action* i_action)

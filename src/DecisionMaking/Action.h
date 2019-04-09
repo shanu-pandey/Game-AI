@@ -15,7 +15,7 @@ namespace AIForGames
 			bool CanDoBoth(Action* i_action);
 			bool IsComplete();
 			virtual void Update() = 0;
-			bool IsHigherPriority(Action* i_action);
+			bool IsHigherPriority(const Action& i_action) const;
 			float GetQueuedTime() { return m_queuedTime; }
 			float GetExpiryTime() { return m_expiryTime; }
 			float GetPriority() { return m_priority; }

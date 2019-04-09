@@ -16,7 +16,6 @@ namespace AIForGames
 		void SetDecisionTechniques(AIForGames::DecisionMaking::IDecisionMakingTechnique* i_decision);
 		void Update();
 
-
 	private:
 		GameObject* m_pOwner;
 		AIForGames::DecisionMaking::IDecisionMakingTechnique* m_pDecisionTechnique;

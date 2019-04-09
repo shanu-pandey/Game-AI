@@ -11,9 +11,9 @@ namespace AIForGames
 		class WanderAction : public Action
 		{
 		public:
-			WanderAction() : Action() {};
-			WanderAction(Physics::Kinematic* i_object);
+			WanderAction() : Action() {};			
 			WanderAction(float i_expiryTime, float i_priority) : Action(i_expiryTime, i_priority) {}
+			WanderAction(Physics::Kinematic* i_object);
 			~WanderAction() {};
 			//bool CanInterrupt() { return m_bInterrupt; }
 			//bool CanInterruptAction(Action* i_action);
