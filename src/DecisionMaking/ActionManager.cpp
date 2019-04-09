@@ -51,7 +51,7 @@ namespace AIForGames
 			while (it != m_pending.end())
 			{
 				(*it)->IncrementQueuedTime(i_dt);
-				if (m_active[0] != nullptr)
+				if (m_active.size() > 0)
 					float topRunningPriority = m_active[0]->GetPriority();
 
 				if (topRunningPriority > (*it)->GetPriority())
@@ -85,7 +85,8 @@ namespace AIForGames
 						}
 					}
 					AddToActive(*it);
-					m_pending.erase(it);
+					//m_pending.erase(it);
+					++it;
 				}
 			}
 		}
@@ -98,6 +99,7 @@ namespace AIForGames
 				if ((*it)->IsComplete())
 				{
 					m_active.erase(it);
+					++it;
 				}
 				else
 				{

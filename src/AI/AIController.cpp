@@ -46,6 +46,7 @@ namespace AIForGames
 
 	void AIController::Update()
 	{
-		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());		
+		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());	
+		m_pActionManager->Update(0.01f);
 	}	
 }

@@ -108,7 +108,7 @@ namespace AIForGames
 	{
 		counter++;				
 		m_pAIController->Update();
-		m_pKinematic->Update(i_steering);
+		//m_pKinematic->Update(i_steering);
 	}
 
 	void GameObject::Update(DynamicSteeringOutput i_steering)
