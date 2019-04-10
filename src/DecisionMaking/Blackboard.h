@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 namespace AIForGames
 {
 	namespace DecisionMaking
