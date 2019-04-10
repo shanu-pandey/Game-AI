@@ -136,6 +136,12 @@
     <ClCompile Include="src\DecisionMaking\DistanceFromPlayer.cpp">
       <Filter>src\DecisionMaking\DecisionNodes</Filter>
     </ClCompile>
+    <ClCompile Include="src\DecisionMaking\Tick.cpp">
+      <Filter>src\DecisionMaking\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionMaking\Blackboard.cpp">
+      <Filter>src\DecisionMaking\BehaviorTree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -194,6 +200,9 @@
     </Filter>
     <Filter Include="src\DecisionMaking\ActionNodes">
       <UniqueIdentifier>{db4f7edb-5861-4fb0-9608-6ba168755400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DecisionMaking\BehaviorTree">
+      <UniqueIdentifier>{13118f61-eecb-40b1-9603-7ff9418969fc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +361,15 @@
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\DistanceFromPlayer.h">
       <Filter>src\DecisionMaking\DecisionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\Task.h">
+      <Filter>src\DecisionMaking\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\Tick.h">
+      <Filter>src\DecisionMaking\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\Blackboard.h">
+      <Filter>src\DecisionMaking\BehaviorTree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
