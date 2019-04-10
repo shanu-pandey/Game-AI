@@ -3,30 +3,37 @@
 
 namespace AIForGames
 {
+	void Renderer::BoidRenderer::SetColor(float i_R, float i_G, float i_B)
+	{
+		R = i_R;
+		G = i_G;
+		B = i_B;
+	}
+
 	void Renderer::BoidRenderer::Draw()
 	{
-		ofSetColor(0, 0, 0);	
+		ofSetColor(R, G, B);	
 		ofDrawCircle(0,0, 10);
 		DrawBoidHead(10, ofVec2f(0, 0), 0);
 	}		
 	
 	void Renderer::BoidRenderer::Draw(float i_x, float i_y)
 	{
-		ofSetColor(0, 0, 0);
+		ofSetColor(R, G, B);
 		ofDrawCircle(i_x, i_y, 10);
 		DrawBoidHead(10, ofVec2f(i_x, i_y), 0);
 	}
 
 	void Renderer::BoidRenderer::Draw(float i_x, float i_y, float i_orientation)
 	{
-		ofSetColor(0, 0, 0);
+		ofSetColor(R, G, B);
 		ofDrawCircle(i_x, i_y, 10);
 		DrawBoidHead(10, ofVec2f(i_x, i_y), i_orientation);
 	}
 
 	void Renderer::BoidRenderer::Draw(ofVec2f i_position)
 	{
-		ofSetColor(0, 0, 0);	
+		ofSetColor(R, G, B);	
 		ofDrawCircle(i_position, 10);
 		DrawBoidHead(10, i_position, 0);
 		
@@ -45,7 +52,7 @@ namespace AIForGames
 
 	void Renderer::BoidRenderer::Draw(ofVec2f i_position, float i_orientation)
 	{
-		ofSetColor(0, 0, 0);
+		ofSetColor(R, G, B);
 		ofDrawCircle(i_position, 10);
 		DrawBoidHead(10, i_position, i_orientation);
 		
@@ -53,7 +60,7 @@ namespace AIForGames
 
 	void Renderer::BoidRenderer::Draw(float i_radius, ofVec2f i_position, float i_orientation)
 	{
-		ofSetColor(0, 0, 0);
+		ofSetColor(R, G, B);
 		ofDrawCircle(i_position, i_radius);
 		DrawBoidHead(i_radius, i_position, i_orientation);
 

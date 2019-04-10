@@ -18,6 +18,7 @@ namespace AIForGames
 			void Draw(ofVec2f i_position);
 			void Draw(ofVec2f i_position, float i_rotation);
 			void Draw(float i_radius, ofVec2f i_position, float i_rotation);
+			void SetColor(float i_R, float i_G, float i_B);
 
 		private:
 			void DrawBoidHead(float i_radius, ofVec2f i_position, float i_orientation);

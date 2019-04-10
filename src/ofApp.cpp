@@ -422,6 +422,9 @@ void ofApp::setup()
 	m_pNPC = new AIForGames::GameObject(radius, ofVec3f(200, 200), orientation);
 	m_pNPC->GetAIController()->CreateDecisionTree();
 
+	m_pTarget->GetRenderer()->SetColor(0, 255, 0);
+	m_pNPC->GetRenderer()->SetColor(255, 0, 0);
+
 #endif // WANDER_STEERING_01
 
 }

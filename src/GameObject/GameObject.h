@@ -43,7 +43,7 @@ namespace AIForGames
 	private:
 		int counter = 0;
 		std::list<ofVec2f> breadCrumbs;
-		float m_radius = 10;
+		float m_radius = 5;
 		//Renderer::BoidRenderer* m_pBoid;		
 		Renderer::IRenderer* m_pBoid;
 		Physics::Kinematic* m_pKinematic;

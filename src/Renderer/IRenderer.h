@@ -15,6 +15,11 @@ namespace AIForGames
 			virtual void Draw(ofVec2f i_position) = 0;
 			virtual void Draw(ofVec2f i_position, float i_orientation) = 0;
 			virtual void Draw(float i_radius, ofVec2f i_position, float i_rotation) = 0;
+			virtual void SetColor(float i_R, float i_G, float i_B) = 0;
+		protected:
+			float R = 0;
+			float G = 0;
+			float B = 0;
 		};
 	}
 }
