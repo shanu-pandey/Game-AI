@@ -14,10 +14,10 @@ namespace AIForGames
 			public:
 				Blackboard();
 				~Blackboard();
-				void Set(char* i_key, Action* i_value, uint8_t i_treeId, uint8_t i_taskID);
-				void Set(char* i_key, ITask* i_value, uint8_t i_treeId, uint8_t i_taskID);
-				Action* Get(char* i_key, uint8_t treeID, uint8_t i_taskID);
-				ITask* Get(char* i_key, uint8_t treeID);
+				void SetAction(char* i_key, Action* i_value, uint8_t i_treeId, uint8_t i_taskID);
+				void SetTask(char* i_key, ITask* i_value, uint8_t i_treeId, uint8_t i_taskID);
+				Action* GetAction(char* i_key, uint8_t treeID, uint8_t i_taskID);
+				ITask* GetTask(char* i_key, uint8_t treeID);
 			private:
 				Action* m_activeAction;
 				ITask* m_runningTask;

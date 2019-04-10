@@ -10,7 +10,7 @@ namespace AIForGames
 		{
 			BehaviorTree::BehaviorTree()
 			{
-
+				m_pBlackBoard = new Blackboard();
 			}
 
 			BehaviorTree::~BehaviorTree()
@@ -20,7 +20,7 @@ namespace AIForGames
 
 			Action* BehaviorTree::GetAction()
 			{
-				return m_pRoot->GetAction();
+				return m_pBlackBoard->GetAction("ActiveAction", m_id, m_pRoot->ID());				
 			}
 
 			ITask* BehaviorTree::GetRoot() const
@@ -31,6 +31,11 @@ namespace AIForGames
 			void BehaviorTree::SetRoot(ITask* i_root)
 			{
 				m_pRoot = i_root;
+			}
+
+			void BehaviorTree::Update()
+			{
+				m_pRoot->Run();
 			}
 		}
 	}

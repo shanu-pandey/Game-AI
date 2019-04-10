@@ -106,9 +106,6 @@
     <ClCompile Include="src\Graph\Tile.cpp">
       <Filter>src\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="src\DecisionMaking\Action.cpp">
-      <Filter>src\DecisionMaking</Filter>
-    </ClCompile>
     <ClCompile Include="src\DecisionMaking\ActionManager.cpp">
       <Filter>src\DecisionMaking</Filter>
     </ClCompile>
@@ -144,6 +141,9 @@
     </ClCompile>
     <ClCompile Include="src\DecisionMaking\BehaviorTree.cpp">
       <Filter>src\DecisionMaking\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionMaking\Action.cpp">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,13 +329,7 @@
     <ClInclude Include="src\Graph\Tile.h">
       <Filter>src\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="src\DecisionMaking\Action.h">
-      <Filter>src\DecisionMaking</Filter>
-    </ClInclude>
     <ClInclude Include="src\DecisionMaking\ActionManager.h">
-      <Filter>src\DecisionMaking</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h">
       <Filter>src\DecisionMaking</Filter>
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\IDecisionMakingTechnique.h">
@@ -376,6 +370,12 @@
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\ITask.h">
       <Filter>src\DecisionMaking\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\Action.h">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h">
+      <Filter>src\DecisionMaking\DecisionNodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

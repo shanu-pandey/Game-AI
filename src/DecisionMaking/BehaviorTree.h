@@ -1,6 +1,7 @@
 #pragma once
 #include "IDecisionMakingTechnique.h"
 #include "ITask.h"
+#include "Blackboard.h"
 
 namespace AIForGames
 {
@@ -16,9 +17,12 @@ namespace AIForGames
 				virtual Action* GetAction() override;
 				ITask* GetRoot() const;
 				void SetRoot(ITask* i_root);
+				void Update();
 
 			private:
-				ITask * m_pRoot;			
+				uint8_t m_id;
+				ITask * m_pRoot;		
+				Blackboard* m_pBlackBoard;
 			};
 		}
 

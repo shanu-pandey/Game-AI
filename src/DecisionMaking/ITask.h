@@ -25,6 +25,7 @@ namespace AIForGames
 				void AddChild(ITask* i_task) { m_childList.emplace_back(i_task); m_length++; }
 				uint8_t Length() { return m_length; }
 				std::vector<ITask*> GetChildren() { return m_childList; }
+				uint8_t ID() { return m_id; }
 				virtual Action* GetAction() = 0;
 				virtual void Run() = 0;
 
