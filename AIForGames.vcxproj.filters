@@ -148,6 +148,9 @@
     <ClCompile Include="src\DecisionMaking\WanderTask.cpp">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClCompile>
+    <ClCompile Include="src\DecisionMaking\Patrol.cpp">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -384,6 +387,9 @@
       <Filter>src\DecisionMaking\DecisionNodes</Filter>
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\WanderTask.h">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\Patrol.h">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClInclude>
   </ItemGroup>
