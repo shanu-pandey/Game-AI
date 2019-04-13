@@ -20,16 +20,23 @@ namespace AIForGames
 			{
 				m_pPatrolPoints.emplace_back(i_point);
 				m_patrolPointsCount++;
-			}
+			}	
+
 
 			uint8_t Patrol::GetCount()
 			{
 				return m_patrolPointsCount;
 			}
 
+			void Patrol::SetAction(Action * i_pAction)
+			{
+				m_pAction = i_pAction;
+			}
+
+
 			void Patrol::OnEnter(Tick* i_tick)
 			{
-				i_tick->GetBlackBoard()->SetAction("ActiveAction", m_pAction, 1, m_id);
+				
 			}
 
 			void Patrol::OnExit(Tick* i_tick)
@@ -49,7 +56,7 @@ namespace AIForGames
 
 			void Patrol::OnExecute(Tick* i_tick)
 			{
-
+				i_tick->GetBlackBoard()->SetAction("ActiveAction", m_pAction, 1, m_id);
 			}
 
 			Action* Patrol::GetAction()

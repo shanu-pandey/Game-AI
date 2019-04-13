@@ -151,6 +151,9 @@
     <ClCompile Include="src\DecisionMaking\Patrol.cpp">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClCompile>
+    <ClCompile Include="src\DecisionMaking\PatrolAction.cpp">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -391,6 +394,9 @@
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\Patrol.h">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\PatrolAction.h">
+      <Filter>src\DecisionMaking\ActionNodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

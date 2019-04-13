@@ -14,6 +14,7 @@ namespace AIForGames
 				~Patrol();
 				void AddPatrolPoint(Node* i_point);
 				uint8_t GetCount();
+				void SetAction(Action * i_pAction);
 				virtual void OnEnter(Tick* i_tick) override;
 				virtual void OnExit(Tick* i_tick) override;
 				virtual void OnOpen(Tick* i_tick) override;

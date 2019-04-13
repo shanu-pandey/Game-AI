@@ -14,7 +14,7 @@ namespace AIForGames
 			m_pTileMap = AIForGames::WorldData::WorldManager::Get().GetWorldMap();
 			m_pOwnerObject = i_object;
 			
-			m_pMovementAlgo = new AIForGames::Movement::Arrive(i_object, i_object, 200, 100, 20, 5, 1);
+			m_pMovementAlgo = new AIForGames::Movement::Arrive(i_object, i_object, 20, 10, 2, 5, 1);
 			t1 = m_pTileMap->GetTile(m_pOwnerObject->GetPosition());			
 			t2 = t1;
 			output.linear = ofVec2f(0, 0);
@@ -27,7 +27,7 @@ namespace AIForGames
 			
 			if (output.linear == ofVec2f(0, 0))
 			{
-				int randSign = rand() % (3) - 1;
+				int randSign = rand() % (3) -1;
 				int randX = m_pOwnerObject->GetPosition().x + randSign * 16;
 				int randY = m_pOwnerObject->GetPosition().y + randSign * 16;
 

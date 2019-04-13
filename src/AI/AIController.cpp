@@ -7,6 +7,8 @@
 #include "../DecisionMaking/DistanceFromPlayer.h"
 #include "../DecisionMaking/BehaviorTree.h"
 #include "../DecisionMaking/WanderTask.h"
+#include "../DecisionMaking/Patrol.h"
+#include "../DecisionMaking/PatrolAction.h"
 
 namespace AIForGames
 {
@@ -71,10 +73,17 @@ namespace AIForGames
 	void AIController::CreateBehaviorTree()
 	{
 		AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
-		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());
-		AIForGames::DecisionMaking::Chase* pChaseAction = new AIForGames::DecisionMaking::Chase(m_pOwner->GetKinematic(), m_pWorldManager.GetPlayerCharacter()->GetKinematic());
-		AIForGames::DecisionMaking::BehaviorTrees::WanderTask* pWanderTask = new AIForGames::DecisionMaking::BehaviorTrees::WanderTask(1,pWanderAction);
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pWanderTask);
+		AIForGames::DecisionMaking::BehaviorTrees::Patrol* pPatrol = new AIForGames::DecisionMaking::BehaviorTrees::Patrol(1,4);
+		
+
+		AIForGames::DecisionMaking::PatrolAction* pPatrolAction = new AIForGames::DecisionMaking::PatrolAction(m_pOwner->GetKinematic());
+		pPatrolAction->AddPatrolPoint(ofVec2f(100, 400));
+		pPatrolAction->AddPatrolPoint(ofVec2f(200, 300));
+		pPatrolAction->AddPatrolPoint(ofVec2f(300, 400));
+		pPatrolAction->AddPatrolPoint(ofVec2f(400, 600));
+		pPatrol->SetAction(pPatrolAction);
+
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pPatrol);
 	}
 
 	void AIController::DecisionTreeLearning()
