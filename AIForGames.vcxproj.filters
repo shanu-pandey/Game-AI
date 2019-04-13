@@ -145,6 +145,9 @@
     <ClCompile Include="src\DecisionMaking\Action.cpp">
       <Filter>src\DecisionMaking\ActionNodes</Filter>
     </ClCompile>
+    <ClCompile Include="src\DecisionMaking\WanderTask.cpp">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -206,6 +209,9 @@
     </Filter>
     <Filter Include="src\DecisionMaking\BehaviorTree">
       <UniqueIdentifier>{13118f61-eecb-40b1-9603-7ff9418969fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DecisionMaking\BehaviorTree\Tasks">
+      <UniqueIdentifier>{f388bcc9-453c-4533-be2f-01b41aa3fedb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h">
       <Filter>src\DecisionMaking\DecisionNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\WanderTask.h">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

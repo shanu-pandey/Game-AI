@@ -28,8 +28,8 @@
 #pragma endregion
 
 #pragma region Assignment 3
-#define DECISIONTREE
-//#define BEHAVIORTREE
+//#define DECISIONTREE
+#define BEHAVIORTREE
 //#define DECISIONLEARNING
 #pragma endregion
 
@@ -425,7 +425,27 @@ void ofApp::setup()
 	m_pTarget->GetRenderer()->SetColor(0, 255, 0);
 	m_pNPC->GetRenderer()->SetColor(255, 0, 0);
 
-#endif // WANDER_STEERING_01
+#endif // DECISIONTREE
+
+#ifdef BEHAVIORTREE
+
+	AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
+	InitailizeGameWorld();
+	m_pGraph = m_pTileMap->GetGraph();
+	m_pWorldManager.SetWorldMap(m_pTileMap);
+
+	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(radius, radius), orientation);
+	m_pTarget = new AIForGames::GameObject(-100, -100);
+	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 10, 1);
+	m_pWorldManager.RegisterPlayerCharacter(m_pBoidObject);
+
+	m_pNPC = new AIForGames::GameObject(radius, ofVec3f(200, 200), orientation);	
+	m_pNPC->GetAIController()->CreateBehaviorTree();
+
+	m_pTarget->GetRenderer()->SetColor(0, 255, 0);
+	m_pNPC->GetRenderer()->SetColor(255, 0, 0);
+
+#endif // BEHAVIORTREE
 
 }
 
@@ -560,6 +580,15 @@ void ofApp::update() {
 	//m_pTarget->Update();
 	m_pNPC->Update();
 #endif // DECISIONTREE
+
+
+#ifdef BEHAVIORTREE
+	//For Dynamic Align
+	//m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
+	//m_pTarget->Update();
+	m_pNPC->Update();
+	//m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
+#endif // BEHAVIORTREE
 }
 
 //--------------------------------------------------------------
@@ -602,19 +631,26 @@ void ofApp::draw() {
 	m_pBoidObject->DrawObject();
 #endif // WANDER_STEERING_02
 
+#ifdef FLOCKING
+	for (int i = 0; i < 10; i++)
+	{
+		m_pObjects[i]->DrawObject();
+}
+#endif // FLOCKING
+
 #ifdef DECISIONTREE	
 	m_pBoidObject->DrawObject();
 	m_pNPC->DrawObject();
 	m_pTarget->DrawObject();
 #endif // DECISIONTREE
 
-
-#ifdef FLOCKING
-	for (int i = 0; i < 10; i++)
-	{
-		m_pObjects[i]->DrawObject();
-	}
-#endif // FLOCKING
+#ifdef BEHAVIORTREE	
+	DrawGameWorld();
+	DrawGameWorld();
+	m_pBoidObject->DrawObject();
+	m_pNPC->DrawObject();
+	m_pTarget->DrawObject();
+#endif // BEHAVIORTREE
 }
 
 //--------------------------------------------------------------

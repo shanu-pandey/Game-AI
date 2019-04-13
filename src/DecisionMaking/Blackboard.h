@@ -2,6 +2,7 @@
 #include "Action.h"
 #include "ITask.h"
 #include <map>
+#include <string>
 
 namespace AIForGames
 {
@@ -24,8 +25,8 @@ namespace AIForGames
 				uint8_t m_taskID;
 				uint8_t m_treeID;
 				char* m_key;
-				std::map<char*, ITask*> m_TaskMap;
-				std::map<char*, Action*> m_ActionMap;
+				std::map<std::string, ITask*> m_TaskMap;
+				std::map<std::string, Action*> m_ActionMap;
 			};
 		}
 

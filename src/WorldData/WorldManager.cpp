@@ -37,6 +37,11 @@ namespace AIForGames
 			m_pWorldMap = i_pWorldMap;
 		}
 
+		AIForGames::PathFinding::TileMap* WorldManager::GetWorldMap()
+		{
+			return m_pWorldMap;
+		}
+
 		ofVec2f WorldManager::GetPlayerLocation()
 		{
 			return m_pPlayerCharacter->GetKinematic()->GetPosition();

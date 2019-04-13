@@ -17,6 +17,7 @@ namespace AIForGames
 			class ITask
 			{
 			public:
+				ITask(uint8_t i_id) { m_id = i_id; }
 				virtual void OnEnter(Tick* i_tick) = 0;
 				virtual void OnExit(Tick* i_tick) = 0;
 				virtual void OnOpen(Tick* i_tick) = 0;
@@ -27,9 +28,9 @@ namespace AIForGames
 				std::vector<ITask*> GetChildren() { return m_childList; }
 				uint8_t ID() { return m_id; }
 				virtual Action* GetAction() = 0;
-				virtual void Run() = 0;
+				virtual void Run(Tick* i_tick) = 0;
 
-			private:
+			protected:
 				uint8_t m_id;
 				std::vector<ITask*> m_childList;
 				uint8_t m_length;

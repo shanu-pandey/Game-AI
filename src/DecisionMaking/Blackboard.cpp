@@ -26,10 +26,10 @@ namespace AIForGames
 				else
 					m_ActionMap.insert(std::make_pair(i_key, i_value));
 
-				m_key = i_key;
+				/*m_key = i_key;
 				m_activeAction = i_value;
 				m_treeID = i_treeId;
-				m_taskID = i_taskID;
+				m_taskID = i_taskID;*/
 			}
 
 			void Blackboard::SetTask(char* i_key, ITask* i_value, uint8_t i_treeId, uint8_t i_taskID)

@@ -19,6 +19,7 @@ namespace AIForGames
 			void RegisterPlayerCharacter(AIForGames::GameObject* i_player);
 			void RegisterNPC(AIForGames::GameObject* i_NPC);
 			void SetWorldMap(AIForGames::PathFinding::TileMap* i_pWorldMap);
+			AIForGames::PathFinding::TileMap* GetWorldMap();
 			ofVec2f GetPlayerLocation();
 			AIForGames::GameObject* GetPlayerCharacter();
 

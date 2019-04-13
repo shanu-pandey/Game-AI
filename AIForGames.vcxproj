@@ -192,6 +192,7 @@
     <ClCompile Include="src\DecisionMaking\DistanceFromPlayer.cpp" />
     <ClCompile Include="src\DecisionMaking\Tick.cpp" />
     <ClCompile Include="src\DecisionMaking\WanderAction.cpp" />
+    <ClCompile Include="src\DecisionMaking\WanderTask.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\Graph\EuclidianHeuristics.cpp" />
     <ClCompile Include="src\Graph\Graph.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="src\DecisionMaking\ITask.h" />
     <ClInclude Include="src\DecisionMaking\Tick.h" />
     <ClInclude Include="src\DecisionMaking\WanderAction.h" />
+    <ClInclude Include="src\DecisionMaking\WanderTask.h" />
     <ClInclude Include="src\GameObject\GameObject.h" />
     <ClInclude Include="src\GameStructs.h" />
     <ClInclude Include="src\Graph\EuclidianHeuristics.h" />

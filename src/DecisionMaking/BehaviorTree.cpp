@@ -1,6 +1,6 @@
 #pragma once
 #include "BehaviorTree.h"
-
+#include "Tick.h"
 
 namespace AIForGames
 {
@@ -13,6 +13,12 @@ namespace AIForGames
 				m_pBlackBoard = new Blackboard();
 			}
 
+			BehaviorTree::BehaviorTree(ITask * i_pRoot)
+			{
+				m_pBlackBoard = new Blackboard();
+				m_pRoot = i_pRoot;
+			}
+
 			BehaviorTree::~BehaviorTree()
 			{
 
@@ -20,7 +26,9 @@ namespace AIForGames
 
 			Action* BehaviorTree::GetAction()
 			{
-				return m_pBlackBoard->GetAction("ActiveAction", m_id, m_pRoot->ID());				
+				Update(); 
+				Action* action = m_pBlackBoard->GetAction("ActiveAction", m_id, m_pRoot->ID());
+				return action;
 			}
 
 			ITask* BehaviorTree::GetRoot() const
@@ -35,7 +43,8 @@ namespace AIForGames
 
 			void BehaviorTree::Update()
 			{
-				m_pRoot->Run();
+				Tick* pTick = new Tick(this, m_pBlackBoard);
+				m_pRoot->Run(pTick);
 			}
 		}
 	}

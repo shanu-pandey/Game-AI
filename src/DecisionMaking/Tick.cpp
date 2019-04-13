@@ -8,9 +8,10 @@ namespace AIForGames
 	{
 		namespace BehaviorTrees
 		{
-			Tick::Tick()
+			Tick::Tick(IDecisionMakingTechnique* i_pTree, Blackboard* i_pBlackboard)
 			{
-
+				m_pTree = i_pTree;
+				m_pBlackboard = i_pBlackboard;
 			}
 			Tick::~Tick()
 			{

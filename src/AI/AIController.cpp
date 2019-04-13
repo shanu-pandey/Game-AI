@@ -5,7 +5,8 @@
 #include "../DecisionMaking/Chase.h"
 #include "../DecisionMaking/ActionNode.h"
 #include "../DecisionMaking/DistanceFromPlayer.h"
-
+#include "../DecisionMaking/BehaviorTree.h"
+#include "../DecisionMaking/WanderTask.h"
 
 namespace AIForGames
 {
@@ -59,7 +60,6 @@ namespace AIForGames
 		AIForGames::DecisionMaking::Chase* pChaseAction = new AIForGames::DecisionMaking::Chase(m_pOwner->GetKinematic(), m_pWorldManager.GetPlayerCharacter()->GetKinematic());
 		AIForGames::DecisionMaking::ActionNode* wanderNode = new AIForGames::DecisionMaking::ActionNode(pWanderAction);
 		AIForGames::DecisionMaking::ActionNode* chaseNode = new AIForGames::DecisionMaking::ActionNode(pChaseAction);
-
 		AIForGames::DecisionMaking::DistanceFromPlayer* pDistanceNode = new AIForGames::DecisionMaking::DistanceFromPlayer(m_pOwner, 100.0f);
 		pDistanceNode->AddFalseNode(wanderNode);
 		pDistanceNode->AddTrurNode(chaseNode);
@@ -70,7 +70,11 @@ namespace AIForGames
 
 	void AIController::CreateBehaviorTree()
 	{
-
+		AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
+		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());
+		AIForGames::DecisionMaking::Chase* pChaseAction = new AIForGames::DecisionMaking::Chase(m_pOwner->GetKinematic(), m_pWorldManager.GetPlayerCharacter()->GetKinematic());
+		AIForGames::DecisionMaking::BehaviorTrees::WanderTask* pWanderTask = new AIForGames::DecisionMaking::BehaviorTrees::WanderTask(1,pWanderAction);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pWanderTask);
 	}
 
 	void AIController::DecisionTreeLearning()

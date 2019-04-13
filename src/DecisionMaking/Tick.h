@@ -14,10 +14,12 @@ namespace AIForGames
 			class Tick
 			{
 			public:
-				Tick();
+				Tick() { m_pBlackboard = nullptr; }
+				Tick(IDecisionMakingTechnique* i_pTree, Blackboard* i_pBlackboard);
 				~Tick();
 				void CloseTask(ITask* i_task);
 				void OpenTask(ITask* i_task);
+				Blackboard* GetBlackBoard() { return m_pBlackboard; }
 
 			private:
 				IDecisionMakingTechnique* m_pTree;
