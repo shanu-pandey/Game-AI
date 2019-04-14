@@ -40,6 +40,8 @@ namespace AIForGames
 		void Update(DynamicSteeringOutput i_steering);
 		void Update();
 		void Stop();
+		float GetHealth();
+		void SetHealth(float i_health);
 	private:
 		int counter = 0;
 		std::list<ofVec2f> breadCrumbs;
@@ -48,5 +50,6 @@ namespace AIForGames
 		Renderer::IRenderer* m_pBoid;
 		Physics::Kinematic* m_pKinematic;
 		AIController* m_pAIController;
+		float m_health;
 	};
 }

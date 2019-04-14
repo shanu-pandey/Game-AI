@@ -594,6 +594,10 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
 	
+	float value = 0.2;
+	ofSetColor(ofColor::white);
+	ofDrawBitmapString("value: " + ofToString(value), 10, 10);
+
 #ifdef DIJKSTRA	
 	DrawDijkstraGraph();
 #endif

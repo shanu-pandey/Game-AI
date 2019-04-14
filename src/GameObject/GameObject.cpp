@@ -9,30 +9,35 @@ namespace AIForGames
 	{
 		m_pBoid = new Renderer::TargetRenderer();
 		m_pKinematic = new Physics::Kinematic();
+		m_health = 100;
 	}
 
 	GameObject::GameObject(float i_x, float i_y)
 	{
 		m_pBoid = new Renderer::TargetRenderer();
 		m_pKinematic = new Physics::Kinematic(i_x, i_y);
+		m_health = 100;
 	}
 
 	GameObject::GameObject(ofVec2f i_position)
 	{
 		m_pBoid = new Renderer::TargetRenderer();
 		m_pKinematic = new Physics::Kinematic(i_position);
+		m_health = 100;
 	}
 
 	GameObject::GameObject(float i_x, float i_y, float i_orientation)
 	{
 		m_pBoid = new Renderer::BoidRenderer();
 		m_pKinematic = new Physics::Kinematic(i_x, i_y, i_orientation);
+		m_health = 100;
 	}
 
 	GameObject::GameObject(ofVec2f i_position, float i_orientation)
 	{
 		m_pBoid = new Renderer::BoidRenderer();
 		m_pKinematic = new Physics::Kinematic(i_position, i_orientation);
+		m_health = 100;
 	}
 
 	GameObject::GameObject(float i_radius, ofVec2f i_position, float i_orientation)
@@ -41,12 +46,14 @@ namespace AIForGames
 		m_pBoid = new Renderer::BoidRenderer();
 		m_pKinematic = new Physics::Kinematic(i_position, i_orientation);
 		m_pAIController = new AIController(this);
+		m_health = 100;
 	}
 
 	GameObject::GameObject(ofVec2f i_position, ofVec2f i_velocity, float i_orientation, float i_rotation)
 	{
 		m_pBoid = new Renderer::BoidRenderer();
 		m_pKinematic = new Physics::Kinematic(i_position, i_velocity, i_orientation, i_rotation);
+		m_health = 100;
 	}
 
 	GameObject::~GameObject()
@@ -54,6 +61,16 @@ namespace AIForGames
 
 	}
 	
+	void GameObject::SetHealth(float i_health)
+	{
+		m_health = i_health;
+	}
+
+	float GameObject::GetHealth()
+	{
+		return m_health;
+	}
+
 	Renderer::IRenderer* GameObject::GetRenderer()
 	{
 		return m_pBoid;

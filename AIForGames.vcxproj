@@ -198,6 +198,7 @@
     <ClCompile Include="src\DecisionMaking\Selector.cpp" />
     <ClCompile Include="src\DecisionMaking\Sequencer.cpp" />
     <ClCompile Include="src\DecisionMaking\Tick.cpp" />
+    <ClCompile Include="src\DecisionMaking\UntilFail.cpp" />
     <ClCompile Include="src\DecisionMaking\WanderAction.cpp" />
     <ClCompile Include="src\DecisionMaking\WanderTask.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="src\DecisionMaking\Selector.h" />
     <ClInclude Include="src\DecisionMaking\Sequencer.h" />
     <ClInclude Include="src\DecisionMaking\Tick.h" />
+    <ClInclude Include="src\DecisionMaking\UntilFail.h" />
     <ClInclude Include="src\DecisionMaking\WanderAction.h" />
     <ClInclude Include="src\DecisionMaking\WanderTask.h" />
     <ClInclude Include="src\GameObject\GameObject.h" />

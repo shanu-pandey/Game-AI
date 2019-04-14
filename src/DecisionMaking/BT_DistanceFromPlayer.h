@@ -21,7 +21,7 @@ namespace AIForGames
 				virtual BTStatus Run(Tick* i_tick) override;
 				virtual Action* GetAction() override;
 				void SetMyController(AIController* i_controller);
-				
+				void SetDistanceToCheck(float i_dis) { m_distance = i_dis; }
 
 			private:
 				AIForGames::AIController* m_pMyController;

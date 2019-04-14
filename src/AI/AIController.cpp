@@ -102,9 +102,16 @@ namespace AIForGames
 		AIForGames::DecisionMaking::BehaviorTrees::ChaseTask* pChaseTask = new AIForGames::DecisionMaking::BehaviorTrees::ChaseTask(1, pChaseAction);
 #pragma endregion
 
-#pragma region Distance From Player
+#pragma region Chase Distance From Player
 		AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer* pDistanceCheck = new AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer(1);
+		pDistanceCheck->SetDistanceToCheck(100.0f);
 		pDistanceCheck->SetMyController(this);
+#pragma endregion
+
+#pragma region Eat Distance From Player
+		AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer* pEatDistanceCheck = new AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer(1);
+		pEatDistanceCheck->SetDistanceToCheck(10.0f);
+		pEatDistanceCheck->SetMyController(this);
 #pragma endregion
 
 #pragma region Invertor
