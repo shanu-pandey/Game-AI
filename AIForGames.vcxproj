@@ -186,6 +186,7 @@
     <ClCompile Include="src\DecisionMaking\ActionNode.cpp" />
     <ClCompile Include="src\DecisionMaking\BehaviorTree.cpp" />
     <ClCompile Include="src\DecisionMaking\Blackboard.cpp" />
+    <ClCompile Include="src\DecisionMaking\BT_DistanceFromPlayer.cpp" />
     <ClCompile Include="src\DecisionMaking\Chase.cpp" />
     <ClCompile Include="src\DecisionMaking\DecisionNode.cpp" />
     <ClCompile Include="src\DecisionMaking\DecisionTree.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="src\DecisionMaking\ActionNode.h" />
     <ClInclude Include="src\DecisionMaking\BehaviorTree.h" />
     <ClInclude Include="src\DecisionMaking\Blackboard.h" />
+    <ClInclude Include="src\DecisionMaking\BT_DistanceFromPlayer.h" />
     <ClInclude Include="src\DecisionMaking\Chase.h" />
     <ClInclude Include="src\DecisionMaking\DecisionNode.h" />
     <ClInclude Include="src\DecisionMaking\DecisionTree.h" />

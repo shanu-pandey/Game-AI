@@ -11,6 +11,8 @@
 #include "../DecisionMaking/PatrolAction.h"
 #include "../DecisionMaking/Selector.h"
 #include "../DecisionMaking/Sequencer.h"
+#include "../DecisionMaking/BT_DistanceFromPlayer.h"
+
 
 namespace AIForGames
 {
@@ -52,7 +54,9 @@ namespace AIForGames
 
 	void AIController::Update(float i_dt)
 	{
-		m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
+		if (m_pDecisionTechnique->GetAction())
+			m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
+
 		m_pActionManager->Update(i_dt);
 	}	
 
@@ -92,6 +96,11 @@ namespace AIForGames
 		AIForGames::DecisionMaking::BehaviorTrees::WanderTask* pWanderTask = new AIForGames::DecisionMaking::BehaviorTrees::WanderTask(1, pWanderAction);
 #pragma endregion
 
+#pragma region Distance From Player
+		AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer* pDistanceCheck = new AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer(1);
+		pDistanceCheck->SetMyController(this);
+#pragma endregion
+
 #pragma region Selector
 		AIForGames::DecisionMaking::BehaviorTrees::Selector* pSelector = new AIForGames::DecisionMaking::BehaviorTrees::Selector(1);
 		pSelector->AddChild(pPatrol);
@@ -100,7 +109,7 @@ namespace AIForGames
 
 #pragma region Sequencer
 		AIForGames::DecisionMaking::BehaviorTrees::Sequencer* pSequencer = new AIForGames::DecisionMaking::BehaviorTrees::Sequencer(1);
-		pSequencer->AddChild(pWanderTask);
+		pSequencer->AddChild(pDistanceCheck);
 		pSequencer->AddChild(pPatrol);		
 #pragma endregion
 

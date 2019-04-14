@@ -56,7 +56,7 @@ namespace AIForGames
 			BTStatus Patrol::OnExecute(Tick* i_tick)
 			{
 				//game logic
-				AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
+				/*AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
 				float sqDistance = pow((m_pWorldManager.GetPlayerLocation().x - m_pMyController->GetOwner()->GetKinematic()->GetPosition().x), 2) +
 					pow((m_pWorldManager.GetPlayerLocation().y - m_pMyController->GetOwner()->GetKinematic()->GetPosition().y), 2);
 				if (sqDistance > pow(m_distance, 2))
@@ -65,7 +65,10 @@ namespace AIForGames
 					return SUCCESS;
 				}
 				
-				return FAILURE;
+				return FAILURE;*/
+
+				i_tick->GetBlackBoard()->SetAction("ActiveAction", m_pAction, 1, m_id);
+				return SUCCESS;
 			}
 
 			Action* Patrol::GetAction()
