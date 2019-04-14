@@ -172,6 +172,12 @@
     <ClCompile Include="src\DecisionMaking\UntilFail.cpp">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClCompile>
+    <ClCompile Include="src\DecisionMaking\PlayerHealthCheck.cpp">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionMaking\EatPlayer.cpp">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -432,6 +438,12 @@
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\UntilFail.h">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\PlayerHealthCheck.h">
+      <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\EatPlayer.h">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClInclude>
   </ItemGroup>

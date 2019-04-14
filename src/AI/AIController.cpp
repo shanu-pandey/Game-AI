@@ -14,6 +14,7 @@
 #include "../DecisionMaking/Sequencer.h"
 #include "../DecisionMaking/BT_DistanceFromPlayer.h"
 #include "../DecisionMaking/Invertor.h"
+#include "../DecisionMaking/PlayerHealthCheck.h"
 
 namespace AIForGames
 {
@@ -112,6 +113,11 @@ namespace AIForGames
 		AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer* pEatDistanceCheck = new AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer(1);
 		pEatDistanceCheck->SetDistanceToCheck(10.0f);
 		pEatDistanceCheck->SetMyController(this);
+#pragma endregion
+
+#pragma region Player Health Check
+		AIForGames::DecisionMaking::BehaviorTrees::PlayerHealthCheck* pPlayerHealthCheck = new AIForGames::DecisionMaking::BehaviorTrees::PlayerHealthCheck(1);		
+		pPlayerHealthCheck->SetMyController(this);
 #pragma endregion
 
 #pragma region Invertor

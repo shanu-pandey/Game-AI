@@ -192,9 +192,11 @@
     <ClCompile Include="src\DecisionMaking\DecisionNode.cpp" />
     <ClCompile Include="src\DecisionMaking\DecisionTree.cpp" />
     <ClCompile Include="src\DecisionMaking\DistanceFromPlayer.cpp" />
+    <ClCompile Include="src\DecisionMaking\EatPlayer.cpp" />
     <ClCompile Include="src\DecisionMaking\Invertor.cpp" />
     <ClCompile Include="src\DecisionMaking\Patrol.cpp" />
     <ClCompile Include="src\DecisionMaking\PatrolAction.cpp" />
+    <ClCompile Include="src\DecisionMaking\PlayerHealthCheck.cpp" />
     <ClCompile Include="src\DecisionMaking\Selector.cpp" />
     <ClCompile Include="src\DecisionMaking\Sequencer.cpp" />
     <ClCompile Include="src\DecisionMaking\Tick.cpp" />
@@ -251,12 +253,14 @@
     <ClInclude Include="src\DecisionMaking\DecisionNode.h" />
     <ClInclude Include="src\DecisionMaking\DecisionTree.h" />
     <ClInclude Include="src\DecisionMaking\DistanceFromPlayer.h" />
+    <ClInclude Include="src\DecisionMaking\EatPlayer.h" />
     <ClInclude Include="src\DecisionMaking\IDecisionMakingTechnique.h" />
     <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h" />
     <ClInclude Include="src\DecisionMaking\Invertor.h" />
     <ClInclude Include="src\DecisionMaking\ITask.h" />
     <ClInclude Include="src\DecisionMaking\Patrol.h" />
     <ClInclude Include="src\DecisionMaking\PatrolAction.h" />
+    <ClInclude Include="src\DecisionMaking\PlayerHealthCheck.h" />
     <ClInclude Include="src\DecisionMaking\Selector.h" />
     <ClInclude Include="src\DecisionMaking\Sequencer.h" />
     <ClInclude Include="src\DecisionMaking\Tick.h" />
