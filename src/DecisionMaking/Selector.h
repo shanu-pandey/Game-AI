@@ -7,13 +7,11 @@ namespace AIForGames
 	{
 		namespace BehaviorTrees
 		{
-			class Patrol : public ITask
+			class Selector : public ITask
 			{
 			public:
-				Patrol(uint8_t i_id, uint8_t i_Points);
-				~Patrol();
-				void AddPatrolPoint(Node* i_point);
-				uint8_t GetCount();
+				Selector(uint8_t i_id);
+				~Selector();
 				void SetAction(Action * i_pAction);
 				virtual BTStatus OnEnter(Tick* i_tick) override;
 				virtual BTStatus OnExit(Tick* i_tick) override;
@@ -23,9 +21,7 @@ namespace AIForGames
 				virtual Action* GetAction() override;
 				virtual BTStatus Run(Tick* i_tick) override;
 
-			private:
-				std::vector<Node*> m_pPatrolPoints;
-				uint8_t m_patrolPointsCount;
+			private:				
 				Action* m_pAction;
 			};
 		}

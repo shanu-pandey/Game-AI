@@ -165,7 +165,7 @@ struct NodeRecord
 	}
 };
 
-enum Status
+enum BTStatus
 {
 	SUCCESS,
 	FAILURE,

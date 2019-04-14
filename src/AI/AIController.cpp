@@ -76,11 +76,11 @@ namespace AIForGames
 		AIForGames::DecisionMaking::BehaviorTrees::Patrol* pPatrol = new AIForGames::DecisionMaking::BehaviorTrees::Patrol(1,4);
 		
 
-		AIForGames::DecisionMaking::PatrolAction* pPatrolAction = new AIForGames::DecisionMaking::PatrolAction(m_pOwner->GetKinematic());
-		pPatrolAction->AddPatrolPoint(ofVec2f(100, 400));
-		pPatrolAction->AddPatrolPoint(ofVec2f(200, 300));
-		pPatrolAction->AddPatrolPoint(ofVec2f(300, 400));
-		pPatrolAction->AddPatrolPoint(ofVec2f(400, 600));
+		AIForGames::DecisionMaking::PatrolAction* pPatrolAction = new AIForGames::DecisionMaking::PatrolAction(m_pOwner->GetKinematic());				
+		pPatrolAction->AddPatrolPoint(ofVec2f(550, 30));
+		pPatrolAction->AddPatrolPoint(ofVec2f(550, 300));
+		pPatrolAction->AddPatrolPoint(ofVec2f(980, 300));
+		pPatrolAction->AddPatrolPoint(ofVec2f(980, 30));
 		pPatrol->SetAction(pPatrolAction);
 
 		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pPatrol);

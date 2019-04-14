@@ -25,7 +25,7 @@ namespace AIForGames
 			Physics::Kinematic* m_pOwnerObject;
 			Physics::Kinematic* m_pTargetObject;
 			std::vector<ofVec2f> m_pPatrolPoints;
-			uint8_t pointIndex;
+			int pointIndex;
 		};
 	}
 }

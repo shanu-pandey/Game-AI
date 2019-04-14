@@ -10,7 +10,7 @@ namespace AIForGames
 		PatrolAction::PatrolAction(Physics::Kinematic* i_object)
 		{
 			m_pOwnerObject = i_object;
-			m_pTargetObject = new AIForGames::Physics::Kinematic();
+			m_pTargetObject = new AIForGames::Physics::Kinematic(800, 10);
 			m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pOwnerObject, m_pTargetObject, 200, 20, 1);
 			pointIndex = -1;
 		}
@@ -31,7 +31,7 @@ namespace AIForGames
 				m_pTargetObject->SetPosition(m_pPatrolPoints[pointIndex]);
 
 			}
-			//m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+			m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
 		}
 	}
 }

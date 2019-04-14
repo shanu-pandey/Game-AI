@@ -439,7 +439,7 @@ void ofApp::setup()
 	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 10, 1);
 	m_pWorldManager.RegisterPlayerCharacter(m_pBoidObject);
 
-	m_pNPC = new AIForGames::GameObject(radius, ofVec3f(200, 200), orientation);	
+	m_pNPC = new AIForGames::GameObject(radius, ofVec3f(980, 30), orientation);	
 	m_pNPC->GetAIController()->CreateBehaviorTree();
 
 	m_pTarget->GetRenderer()->SetColor(0, 255, 0);

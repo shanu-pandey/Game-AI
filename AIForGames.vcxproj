@@ -192,6 +192,7 @@
     <ClCompile Include="src\DecisionMaking\DistanceFromPlayer.cpp" />
     <ClCompile Include="src\DecisionMaking\Patrol.cpp" />
     <ClCompile Include="src\DecisionMaking\PatrolAction.cpp" />
+    <ClCompile Include="src\DecisionMaking\Selector.cpp" />
     <ClCompile Include="src\DecisionMaking\Tick.cpp" />
     <ClCompile Include="src\DecisionMaking\WanderAction.cpp" />
     <ClCompile Include="src\DecisionMaking\WanderTask.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="src\DecisionMaking\ITask.h" />
     <ClInclude Include="src\DecisionMaking\Patrol.h" />
     <ClInclude Include="src\DecisionMaking\PatrolAction.h" />
+    <ClInclude Include="src\DecisionMaking\Selector.h" />
     <ClInclude Include="src\DecisionMaking\Tick.h" />
     <ClInclude Include="src\DecisionMaking\WanderAction.h" />
     <ClInclude Include="src\DecisionMaking\WanderTask.h" />

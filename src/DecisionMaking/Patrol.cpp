@@ -22,7 +22,6 @@ namespace AIForGames
 				m_patrolPointsCount++;
 			}	
 
-
 			uint8_t Patrol::GetCount()
 			{
 				return m_patrolPointsCount;
@@ -34,29 +33,31 @@ namespace AIForGames
 			}
 
 
-			void Patrol::OnEnter(Tick* i_tick)
+			BTStatus Patrol::OnEnter(Tick* i_tick)
 			{
-				
+				return SUCCESS;
 			}
 
-			void Patrol::OnExit(Tick* i_tick)
+			BTStatus Patrol::OnExit(Tick* i_tick)
 			{
-
+				return SUCCESS;
 			}
 
-			void Patrol::OnOpen(Tick* i_tick)
+			BTStatus Patrol::OnOpen(Tick* i_tick)
 			{
-
+				return SUCCESS;
 			}
 
-			void Patrol::OnClose(Tick* i_tick)
+			BTStatus Patrol::OnClose(Tick* i_tick)
 			{
-
+				return SUCCESS;
 			}
 
-			void Patrol::OnExecute(Tick* i_tick)
+			BTStatus Patrol::OnExecute(Tick* i_tick)
 			{
+				i_tick->GetBlackBoard()->SetTask("RunnigTask", this, m_id, m_id);
 				i_tick->GetBlackBoard()->SetAction("ActiveAction", m_pAction, 1, m_id);
+				return SUCCESS;
 			}
 
 			Action* Patrol::GetAction()
@@ -64,10 +65,10 @@ namespace AIForGames
 				return m_pAction;
 			}
 
-			void Patrol::Run(Tick* i_tick)
+			BTStatus Patrol::Run(Tick* i_tick)
 			{
 				OnEnter(i_tick);
-				OnExecute(i_tick);
+				return OnExecute(i_tick);				
 			}
 		}
 	}

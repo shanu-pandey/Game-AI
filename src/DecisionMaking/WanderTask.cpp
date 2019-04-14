@@ -13,29 +13,30 @@ namespace AIForGames
 
 			}
 
-			void WanderTask::OnEnter(Tick* i_tick)
+			BTStatus WanderTask::OnEnter(Tick* i_tick)
 			{
 				i_tick->GetBlackBoard()->SetAction("ActiveAction", m_pAction, 1, m_id);
+				return SUCCESS;
 			}
 
-			void WanderTask::OnExit(Tick* i_tick)
+			BTStatus WanderTask::OnExit(Tick* i_tick)
 			{
-
+				return SUCCESS;
 			}
 
-			void WanderTask::OnOpen(Tick* i_tick)
+			BTStatus WanderTask::OnOpen(Tick* i_tick)
 			{
-
+				return SUCCESS;
 			}
 
-			void WanderTask::OnClose(Tick* i_tick)
+			BTStatus WanderTask::OnClose(Tick* i_tick)
 			{
-
+				return SUCCESS;
 			}
 
-			void WanderTask::OnExecute(Tick* i_tick)
+			BTStatus WanderTask::OnExecute(Tick* i_tick)
 			{
-				
+				return SUCCESS;
 			}
 
 			Action* WanderTask::GetAction()
@@ -43,10 +44,11 @@ namespace AIForGames
 				return m_pAction;
 			}
 
-			void WanderTask::Run(Tick* i_tick)
+			BTStatus WanderTask::Run(Tick* i_tick)
 			{
 				OnEnter(i_tick);
-				OnExecute(i_tick);
+				return OnExecute(i_tick);
+
 			}
 		}
 	}
