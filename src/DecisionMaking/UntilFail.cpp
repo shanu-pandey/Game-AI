@@ -48,7 +48,7 @@ namespace AIForGames
 						return FAILURE;
 					}
 					i_tick->GetBlackBoard()->SetChild("RunningChild", i, m_id);
-					return childStatus;
+					//return childStatus;
 				}
 				return SUCCESS;
 			}

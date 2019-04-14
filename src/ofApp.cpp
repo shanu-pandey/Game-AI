@@ -594,9 +594,8 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
 	
-	float value = 0.2;
-	ofSetColor(ofColor::white);
-	ofDrawBitmapString("value: " + ofToString(value), 10, 10);
+	ofSetColor(ofColor::black);
+	ofDrawBitmapString("value: " + ofToString(m_pBoidObject->GetHealth()), 50, 50);
 
 #ifdef DIJKSTRA	
 	DrawDijkstraGraph();

@@ -43,13 +43,19 @@ namespace AIForGames
 				AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
 				float health = m_pWorldManager.GetPlayerCharacter()->GetHealth();
 				health -= m_damage;
-				m_pWorldManager.GetPlayerCharacter()->SetHealth(health);
+				
 				
 				//works as sanity check
 				if (health < 0)
+				{
 					return FAILURE;
-
-				return SUCCESS;			
+				}		
+				else
+				{
+					m_pWorldManager.GetPlayerCharacter()->SetHealth(health);
+					return SUCCESS;
+				}
+				
 			}
 
 			void EatPlayer::SetMyController(AIController* i_controller)
@@ -61,7 +67,6 @@ namespace AIForGames
 			{
 				m_damage = i_damage;
 			}
-
 
 			BTStatus EatPlayer::Run(Tick* i_tick)
 			{

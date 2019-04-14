@@ -12,9 +12,11 @@
 #include "../DecisionMaking/PatrolAction.h"
 #include "../DecisionMaking/Selector.h"
 #include "../DecisionMaking/Sequencer.h"
+#include "../DecisionMaking/UntilFail.h"
 #include "../DecisionMaking/BT_DistanceFromPlayer.h"
 #include "../DecisionMaking/Invertor.h"
 #include "../DecisionMaking/PlayerHealthCheck.h"
+#include "../DecisionMaking/EatPlayer.h"
 
 namespace AIForGames
 {
@@ -120,9 +122,22 @@ namespace AIForGames
 		pPlayerHealthCheck->SetMyController(this);
 #pragma endregion
 
+#pragma region Eat Player
+		AIForGames::DecisionMaking::BehaviorTrees::EatPlayer* pEatPlayer = new AIForGames::DecisionMaking::BehaviorTrees::EatPlayer(1);
+		pEatPlayer->SetMyController(this);
+		pEatPlayer->SetDamage(0.1f);
+#pragma endregion
+
 #pragma region Invertor
 		AIForGames::DecisionMaking::BehaviorTrees::Invertor* pInvertor = new AIForGames::DecisionMaking::BehaviorTrees::Invertor(1);
 		pInvertor->AddChild(pDistanceCheck);
+#pragma endregion
+
+#pragma region Until Fail
+		AIForGames::DecisionMaking::BehaviorTrees::UntilFail* pUntilFail = new AIForGames::DecisionMaking::BehaviorTrees::UntilFail(1);
+		pUntilFail->AddChild(pEatDistanceCheck);		
+		pUntilFail->AddChild(pPlayerHealthCheck);
+		pUntilFail->AddChild(pEatPlayer);
 #pragma endregion
 
 #pragma region Selector
@@ -137,7 +152,7 @@ namespace AIForGames
 		pSequencer->AddChild(pPatrol);		
 #pragma endregion
 		
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pSelector);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pUntilFail);
 	}
 
 	void AIController::DecisionTreeLearning()
