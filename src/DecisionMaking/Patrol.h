@@ -3,6 +3,8 @@
 
 namespace AIForGames
 {
+	class AIController;
+
 	namespace DecisionMaking
 	{
 		namespace BehaviorTrees
@@ -15,6 +17,7 @@ namespace AIForGames
 				void AddPatrolPoint(Node* i_point);
 				uint8_t GetCount();
 				void SetAction(Action * i_pAction);
+				void SetMyController(AIForGames::AIController* i_controller);
 				virtual BTStatus OnEnter(Tick* i_tick) override;
 				virtual BTStatus OnExit(Tick* i_tick) override;
 				virtual BTStatus OnOpen(Tick* i_tick) override;
@@ -24,9 +27,11 @@ namespace AIForGames
 				virtual BTStatus Run(Tick* i_tick) override;
 
 			private:
+				AIForGames::AIController* m_pMyController;
 				std::vector<Node*> m_pPatrolPoints;
 				uint8_t m_patrolPointsCount;
 				Action* m_pAction;
+				float m_distance = 100.0f;
 			};
 		}
 	}

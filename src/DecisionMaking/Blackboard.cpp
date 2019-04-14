@@ -32,6 +32,15 @@ namespace AIForGames
 				m_taskID = i_taskID;*/
 			}
 
+			Action* Blackboard::GetAction(char* i_key, uint8_t treeID, uint8_t i_taskID)
+			{
+				auto it = m_ActionMap.find(i_key);
+				if (it != m_ActionMap.end())
+					return it->second;
+				else
+					return nullptr;
+			}
+
 			void Blackboard::SetTask(char* i_key, ITask* i_value, uint8_t i_treeId, uint8_t i_taskID)
 			{
 				auto it = m_TaskMap.find(i_key);
@@ -46,15 +55,6 @@ namespace AIForGames
 				m_taskID = i_taskID;*/
 			}
 
-			Action* Blackboard::GetAction(char* i_key, uint8_t treeID, uint8_t i_taskID)
-			{
-				auto it = m_ActionMap.find(i_key);
-				if (it != m_ActionMap.end())
-					return it->second;
-				else
-					return nullptr;
-			}
-
 			ITask* Blackboard::GetTask(char* i_key, uint8_t treeID)
 			{
 				auto it = m_TaskMap.find(i_key);
@@ -63,6 +63,16 @@ namespace AIForGames
 				else
 					return nullptr;
 			}
+
+			void Blackboard::SetChild(char* i_key, uint8_t i_value, uint8_t i_treeId)
+			{
+				m_runningChild = i_value;
+			}
+
+			uint8_t Blackboard::GetChild(char* i_key, uint8_t i_treeId)
+			{
+				return m_runningChild;
+			}			
 		}
 	}
 }

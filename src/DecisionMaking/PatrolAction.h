@@ -6,6 +6,8 @@
 
 namespace AIForGames
 {
+	class AIController;
+
 	namespace DecisionMaking
 	{
 		//forward declaration
@@ -17,10 +19,11 @@ namespace AIForGames
 			PatrolAction() : Action() {};
 			PatrolAction(float i_expiryTime, float i_priority) : Action(i_expiryTime, i_priority) {}
 			PatrolAction(Physics::Kinematic* i_object);
-			void AddPatrolPoint(ofVec2f i_point);
+			void AddPatrolPoint(ofVec2f i_point);			
 			virtual void Update() override;
 
 		private:
+			
 			AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo;
 			Physics::Kinematic* m_pOwnerObject;
 			Physics::Kinematic* m_pTargetObject;

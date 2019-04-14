@@ -9,6 +9,7 @@
 #include "../DecisionMaking/WanderTask.h"
 #include "../DecisionMaking/Patrol.h"
 #include "../DecisionMaking/PatrolAction.h"
+#include "../DecisionMaking/Selector.h"
 
 namespace AIForGames
 {
@@ -72,18 +73,33 @@ namespace AIForGames
 
 	void AIController::CreateBehaviorTree()
 	{
-		AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();
-		AIForGames::DecisionMaking::BehaviorTrees::Patrol* pPatrol = new AIForGames::DecisionMaking::BehaviorTrees::Patrol(1,4);
-		
+		AIForGames::WorldData::WorldManager& m_pWorldManager = AIForGames::WorldData::WorldManager::Get();		
 
+#pragma region Patrol
+		AIForGames::DecisionMaking::BehaviorTrees::Patrol* pPatrol = new AIForGames::DecisionMaking::BehaviorTrees::Patrol(1, 4);
+		pPatrol->SetMyController(this);
 		AIForGames::DecisionMaking::PatrolAction* pPatrolAction = new AIForGames::DecisionMaking::PatrolAction(m_pOwner->GetKinematic());				
 		pPatrolAction->AddPatrolPoint(ofVec2f(550, 30));
 		pPatrolAction->AddPatrolPoint(ofVec2f(550, 300));
 		pPatrolAction->AddPatrolPoint(ofVec2f(980, 300));
 		pPatrolAction->AddPatrolPoint(ofVec2f(980, 30));
 		pPatrol->SetAction(pPatrolAction);
+#pragma endregion 
 
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pPatrol);
+#pragma region Wander
+		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());		
+		AIForGames::DecisionMaking::BehaviorTrees::WanderTask* pWanderTask = new AIForGames::DecisionMaking::BehaviorTrees::WanderTask(1, pWanderAction);
+#pragma endregion
+
+#pragma region Selector
+		AIForGames::DecisionMaking::BehaviorTrees::Selector* pSelector = new AIForGames::DecisionMaking::BehaviorTrees::Selector(1);
+		pSelector->AddChild(pPatrol);
+		pSelector->AddChild(pWanderTask);	
+#pragma endregion
+
+
+
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pSelector);
 	}
 
 	void AIController::DecisionTreeLearning()

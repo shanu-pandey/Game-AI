@@ -583,11 +583,11 @@ void ofApp::update() {
 
 
 #ifdef BEHAVIORTREE
-	//For Dynamic Align
-	//m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
+	//For Dynamic Align	
 	//m_pTarget->Update();
 	m_pNPC->Update();
-	//m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
+	m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
+	m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
 #endif // BEHAVIORTREE
 }
 
@@ -720,6 +720,13 @@ void ofApp::mousePressed(int x, int y, int button) {
 		
 	
 #endif
+
+#ifdef BEHAVIORTREE
+	if (button == 0)
+		m_pTarget->GetKinematic()->SetPosition(ofVec2f(x, y));
+	else
+		m_pTarget->GetKinematic()->SetPosition(ofVec2f(-300, -300));
+#endif // DECISIONTREE
 }
 
 //--------------------------------------------------------------
