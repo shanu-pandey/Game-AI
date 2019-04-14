@@ -44,7 +44,7 @@ namespace AIForGames
 			void BehaviorTree::Update()
 			{
 				Tick* pTick = new Tick(this, m_pBlackBoard);
-				m_pRoot->Run(pTick);
+				m_pRoot->Run(pTick);				
 			}
 		}
 	}

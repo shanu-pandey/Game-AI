@@ -7,12 +7,13 @@
 #include "../DecisionMaking/DistanceFromPlayer.h"
 #include "../DecisionMaking/BehaviorTree.h"
 #include "../DecisionMaking/WanderTask.h"
+#include "../DecisionMaking/ChaseTask.h"
 #include "../DecisionMaking/Patrol.h"
 #include "../DecisionMaking/PatrolAction.h"
 #include "../DecisionMaking/Selector.h"
 #include "../DecisionMaking/Sequencer.h"
 #include "../DecisionMaking/BT_DistanceFromPlayer.h"
-
+#include "../DecisionMaking/Invertor.h"
 
 namespace AIForGames
 {
@@ -95,26 +96,34 @@ namespace AIForGames
 		AIForGames::DecisionMaking::WanderAction* pWanderAction = new AIForGames::DecisionMaking::WanderAction(m_pOwner->GetKinematic());		
 		AIForGames::DecisionMaking::BehaviorTrees::WanderTask* pWanderTask = new AIForGames::DecisionMaking::BehaviorTrees::WanderTask(1, pWanderAction);
 #pragma endregion
+		
+#pragma region Chase
+		AIForGames::DecisionMaking::Chase* pChaseAction = new AIForGames::DecisionMaking::Chase(m_pOwner->GetKinematic(), m_pWorldManager.GetPlayerCharacter()->GetKinematic());
+		AIForGames::DecisionMaking::BehaviorTrees::ChaseTask* pChaseTask = new AIForGames::DecisionMaking::BehaviorTrees::ChaseTask(1, pChaseAction);
+#pragma endregion
 
 #pragma region Distance From Player
 		AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer* pDistanceCheck = new AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer(1);
 		pDistanceCheck->SetMyController(this);
 #pragma endregion
 
+#pragma region Invertor
+		AIForGames::DecisionMaking::BehaviorTrees::Invertor* pInvertor = new AIForGames::DecisionMaking::BehaviorTrees::Invertor(1);
+		pInvertor->AddChild(pDistanceCheck);
+#pragma endregion
+
 #pragma region Selector
 		AIForGames::DecisionMaking::BehaviorTrees::Selector* pSelector = new AIForGames::DecisionMaking::BehaviorTrees::Selector(1);
-		pSelector->AddChild(pDistanceCheck);
-		pSelector->AddChild(pWanderTask);	
+		pSelector->AddChild(pInvertor);
+		pSelector->AddChild(pChaseTask);	
 #pragma endregion
 
 #pragma region Sequencer
 		AIForGames::DecisionMaking::BehaviorTrees::Sequencer* pSequencer = new AIForGames::DecisionMaking::BehaviorTrees::Sequencer(1);
-		pSequencer->AddChild(pDistanceCheck);
+		pSequencer->AddChild(pInvertor);
 		pSequencer->AddChild(pPatrol);		
 #pragma endregion
-
-
-
+		
 		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pSelector);
 	}
 

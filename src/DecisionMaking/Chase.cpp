@@ -16,7 +16,18 @@ namespace AIForGames
 		void Chase::Update()
 		{
 			//game code goes here
-			m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+
+			
+			float sqDistance = pow((m_pTargetObject->GetPosition().x - m_pOwnerObject->GetPosition().x), 2) +
+				pow((m_pTargetObject->GetPosition().y - m_pOwnerObject->GetPosition().y), 2);
+			if (sqDistance < pow(250, 2))
+			{
+				m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+
+			}
+
+
+			
 		}
 
 		bool Chase::IsComplete()

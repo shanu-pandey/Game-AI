@@ -15,7 +15,8 @@ namespace AIForGames
 			}
 			Tick::~Tick()
 			{
-
+				if (this)
+					delete(this);
 			}
 			void Tick::CloseTask(ITask* i_task)
 			{
