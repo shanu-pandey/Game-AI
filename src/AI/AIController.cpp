@@ -106,9 +106,9 @@ namespace AIForGames
 #pragma endregion
 
 #pragma region Chase Distance From Player
-		AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer* pDistanceCheck = new AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer(1);
-		pDistanceCheck->SetDistanceToCheck(100.0f);
-		pDistanceCheck->SetMyController(this);
+		AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer* pChaseDistanceCheck = new AIForGames::DecisionMaking::BehaviorTrees::BT_DistanceFromPlayer(1);
+		pChaseDistanceCheck->SetDistanceToCheck(100.0f);
+		pChaseDistanceCheck->SetMyController(this);
 #pragma endregion
 
 #pragma region Eat Distance From Player
@@ -130,29 +130,35 @@ namespace AIForGames
 
 #pragma region Invertor
 		AIForGames::DecisionMaking::BehaviorTrees::Invertor* pInvertor = new AIForGames::DecisionMaking::BehaviorTrees::Invertor(1);
-		pInvertor->AddChild(pDistanceCheck);
+		pInvertor->AddChild(pChaseDistanceCheck);
 #pragma endregion
 
-#pragma region Until Fail
+#pragma region Eat Until Fail
 		AIForGames::DecisionMaking::BehaviorTrees::UntilFail* pUntilFail = new AIForGames::DecisionMaking::BehaviorTrees::UntilFail(1);
-		pUntilFail->AddChild(pEatDistanceCheck);		
 		pUntilFail->AddChild(pPlayerHealthCheck);
+		pUntilFail->AddChild(pEatDistanceCheck);				
 		pUntilFail->AddChild(pEatPlayer);
 #pragma endregion
 
-#pragma region Selector
-		AIForGames::DecisionMaking::BehaviorTrees::Selector* pSelector = new AIForGames::DecisionMaking::BehaviorTrees::Selector(1);
-		pSelector->AddChild(pInvertor);
-		pSelector->AddChild(pChaseTask);	
+#pragma region Eat Selector
+		AIForGames::DecisionMaking::BehaviorTrees::Selector* pEatSelector = new AIForGames::DecisionMaking::BehaviorTrees::Selector(1);
+		pEatSelector->AddChild(pUntilFail);
+		pEatSelector->AddChild(pChaseTask);	
 #pragma endregion
 
-#pragma region Sequencer
-		AIForGames::DecisionMaking::BehaviorTrees::Sequencer* pSequencer = new AIForGames::DecisionMaking::BehaviorTrees::Sequencer(1);
-		pSequencer->AddChild(pInvertor);
-		pSequencer->AddChild(pPatrol);		
+#pragma region Chase Sequencer
+		AIForGames::DecisionMaking::BehaviorTrees::Sequencer* pChaseSequencer = new AIForGames::DecisionMaking::BehaviorTrees::Sequencer(1);
+		pChaseSequencer->AddChild(pChaseDistanceCheck);
+		pChaseSequencer->AddChild(pEatSelector);
+#pragma endregion
+
+#pragma region Root Selector
+		AIForGames::DecisionMaking::BehaviorTrees::Selector* pRootSelector = new AIForGames::DecisionMaking::BehaviorTrees::Selector(1);
+		pRootSelector->AddChild(pChaseSequencer);
+		pRootSelector->AddChild(pPatrol);
 #pragma endregion
 		
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pUntilFail);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pRootSelector);
 	}
 
 	void AIController::DecisionTreeLearning()
