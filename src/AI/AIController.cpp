@@ -103,7 +103,7 @@ namespace AIForGames
 
 #pragma region Selector
 		AIForGames::DecisionMaking::BehaviorTrees::Selector* pSelector = new AIForGames::DecisionMaking::BehaviorTrees::Selector(1);
-		pSelector->AddChild(pPatrol);
+		pSelector->AddChild(pDistanceCheck);
 		pSelector->AddChild(pWanderTask);	
 #pragma endregion
 
@@ -115,7 +115,7 @@ namespace AIForGames
 
 
 
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pSequencer);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pSelector);
 	}
 
 	void AIController::DecisionTreeLearning()
