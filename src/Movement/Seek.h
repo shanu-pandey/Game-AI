@@ -18,6 +18,11 @@ namespace AIForGames
 
 		private:
 			MovementInputs * m_pInputs;
+			Physics::Kinematic* m_pSourceBody;
+			Physics::Kinematic* m_pDestinationBody;
+			std::list<DirectedWeightedEdge> o_path;
+			Node n1;
+			Node n2;
 		};
 	}
 }

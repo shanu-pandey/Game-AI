@@ -22,7 +22,9 @@ namespace AIForGames
 				pow((m_pTargetObject->GetPosition().y - m_pOwnerObject->GetPosition().y), 2);
 			if (sqDistance < pow(250, 2))
 			{
-				m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+				//m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+				std::list<DirectedWeightedEdge> path;
+				m_pOwnerObject->Update(m_pMovementAlgo->GeneratePath(path));
 
 			}
 

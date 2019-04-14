@@ -466,7 +466,6 @@ void ofApp::update() {
 		   m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
 #endif
 
-
 #ifdef BASICMOTION	
 	{
 		m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
@@ -595,7 +594,7 @@ void ofApp::update() {
 void ofApp::draw() {
 	
 	ofSetColor(ofColor::black);
-	ofDrawBitmapString("value: " + ofToString(m_pBoidObject->GetHealth()), 50, 50);
+	ofDrawBitmapString("value: " + ofToString(m_pBoidObject->GetHealth()), 50, 50);	
 
 #ifdef DIJKSTRA	
 	DrawDijkstraGraph();

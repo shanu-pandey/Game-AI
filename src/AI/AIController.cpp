@@ -158,7 +158,7 @@ namespace AIForGames
 		pRootSelector->AddChild(pPatrol);
 #pragma endregion
 		
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pRootSelector);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pChaseTask);
 	}
 
 	void AIController::DecisionTreeLearning()
