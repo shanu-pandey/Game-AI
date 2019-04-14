@@ -10,6 +10,7 @@
 #include "../DecisionMaking/Patrol.h"
 #include "../DecisionMaking/PatrolAction.h"
 #include "../DecisionMaking/Selector.h"
+#include "../DecisionMaking/Sequencer.h"
 
 namespace AIForGames
 {
@@ -97,9 +98,15 @@ namespace AIForGames
 		pSelector->AddChild(pWanderTask);	
 #pragma endregion
 
+#pragma region Sequencer
+		AIForGames::DecisionMaking::BehaviorTrees::Sequencer* pSequencer = new AIForGames::DecisionMaking::BehaviorTrees::Sequencer(1);
+		pSequencer->AddChild(pWanderTask);
+		pSequencer->AddChild(pPatrol);		
+#pragma endregion
 
 
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pSelector);
+
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pSequencer);
 	}
 
 	void AIController::DecisionTreeLearning()

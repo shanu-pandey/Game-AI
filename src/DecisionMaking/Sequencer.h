@@ -7,11 +7,11 @@ namespace AIForGames
 	{
 		namespace BehaviorTrees
 		{
-			class Selector : public ITask
+			class Sequencer : public ITask
 			{
 			public:
-				Selector(uint8_t i_id);
-				~Selector();
+				Sequencer(uint8_t i_id);
+				~Sequencer();
 				virtual BTStatus OnEnter(Tick* i_tick) override;
 				virtual BTStatus OnExit(Tick* i_tick) override;
 				virtual BTStatus OnOpen(Tick* i_tick) override;
@@ -19,9 +19,10 @@ namespace AIForGames
 				virtual BTStatus OnExecute(Tick* i_tick) override;
 				virtual Action* GetAction() override;
 				virtual BTStatus Run(Tick* i_tick) override;
-				void AddChild(ITask* i_task);
-				uint8_t Length();
-				std::vector<ITask*> GetChildren();
+
+				void AddChild(ITask* i_task) { m_childList.emplace_back(i_task); m_length++; }
+				uint8_t Length() { return m_length; }
+				std::vector<ITask*> GetChildren() { return m_childList; }
 
 			private:
 				std::vector<ITask*> m_childList;
