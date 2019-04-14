@@ -26,7 +26,7 @@ namespace AIForGames
 
 			BTStatus Selector::OnOpen(Tick* i_tick)
 			{
-				i_tick->GetBlackBoard()->SetChild("RunnigChild", 0, m_id);
+				i_tick->GetBlackBoard()->SetChild("RunningChild", 0, m_id);
 				return SUCCESS;
 			}
 

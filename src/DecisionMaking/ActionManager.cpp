@@ -28,6 +28,7 @@ namespace AIForGames
 
 		void ActionManager::AddToActive(Action* i_action)
 		{
+			i_action->Restart();
 			m_active.push_back(i_action);
 			//std::push_heap(begin(m_active), end(m_active), ComparerFunctor());
 		}

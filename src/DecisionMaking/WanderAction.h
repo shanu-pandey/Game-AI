@@ -23,6 +23,8 @@ namespace AIForGames
 			WanderAction(Physics::Kinematic* i_object);
 			~WanderAction() {};
 			virtual void Update() override;
+			virtual bool IsComplete() override;
+			virtual void Restart() override;
 			
 		private:
 			AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo;
@@ -31,6 +33,7 @@ namespace AIForGames
 			AIForGames::PathFinding::Tile* t1;
 			AIForGames::PathFinding::Tile* t2;
 			DynamicSteeringOutput output;
+			bool bComplete = false;
 		};
 	}
 }

@@ -21,6 +21,8 @@ namespace AIForGames
 			PatrolAction(Physics::Kinematic* i_object);
 			void AddPatrolPoint(ofVec2f i_point);			
 			virtual void Update() override;
+			virtual bool IsComplete() override;
+			virtual void Restart() override;
 
 		private:
 			
@@ -29,6 +31,7 @@ namespace AIForGames
 			Physics::Kinematic* m_pTargetObject;
 			std::vector<ofVec2f> m_pPatrolPoints;
 			int pointIndex;
+			bool bComplete;
 		};
 	}
 }

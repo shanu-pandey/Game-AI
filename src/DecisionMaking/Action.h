@@ -13,7 +13,8 @@ namespace AIForGames
 			bool CanInterrupt() { return m_bInterrupt; }
 			bool CanInterruptAction(Action* i_action);
 			bool CanDoBoth(Action* i_action);
-			bool IsComplete();
+			virtual bool IsComplete() = 0;
+			virtual void Restart() = 0;
 			virtual void Update() = 0;
 			bool IsHigherPriority(const Action& i_action) const;
 			float GetQueuedTime() { return m_queuedTime; }

@@ -44,7 +44,12 @@ namespace AIForGames
 				float sqDistance = pow((m_pWorldManager.GetPlayerLocation().x - m_pMyController->GetOwner()->GetKinematic()->GetPosition().x), 2) +
 					pow((m_pWorldManager.GetPlayerLocation().y - m_pMyController->GetOwner()->GetKinematic()->GetPosition().y), 2);
 				if (sqDistance > pow(m_distance, 2))
+				{
+					i_tick->GetBlackBoard()->SetAction("ActiveAction", nullptr, 1, m_id);
 					return FAILURE;
+
+				}
+					
 				
 				return SUCCESS;
 			}

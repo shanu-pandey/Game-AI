@@ -10,12 +10,23 @@ namespace AIForGames
 			m_pOwnerObject = i_object;
 			m_pTargetObject = i_target;
 			m_pMovementAlgo = new AIForGames::Movement::Seek(m_pOwnerObject, m_pTargetObject, 200);
+			bComplete = false;
 		}
 
 		void Chase::Update()
 		{
 			//game code goes here
 			m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+		}
+
+		bool Chase::IsComplete()
+		{
+			return bComplete;
+		}
+
+		void Chase::Restart()
+		{
+			bComplete = false;
 		}
 	}
 }

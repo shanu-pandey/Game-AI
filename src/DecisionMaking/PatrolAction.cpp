@@ -13,6 +13,7 @@ namespace AIForGames
 			m_pTargetObject = new AIForGames::Physics::Kinematic(800, 10);
 			m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pOwnerObject, m_pTargetObject, 200, 20, 1);
 			pointIndex = -1;
+			bComplete = false;
 		}
 
 		void PatrolAction::AddPatrolPoint(ofVec2f i_point)
@@ -27,11 +28,26 @@ namespace AIForGames
 			{
 				pointIndex++;
 				if (pointIndex == 4)
+				{
 					pointIndex = 0;
+					bComplete = true;
+				}
+					
 				m_pTargetObject->SetPosition(m_pPatrolPoints[pointIndex]);
+				
 
 			}
 			m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+		}
+
+		bool PatrolAction::IsComplete()
+		{
+			return bComplete;
+		}
+
+		void PatrolAction::Restart()
+		{
+			bComplete = false;
 		}
 	}
 }

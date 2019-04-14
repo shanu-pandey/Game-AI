@@ -35,10 +35,10 @@ namespace AIForGames
 			return false;
 		}
 
-		bool Action::IsComplete()
+		/*bool Action::IsComplete()
 		{
 			return false;
-		}
+		}*/
 
 		bool Action::IsHigherPriority(const Action& i_action) const
 		{

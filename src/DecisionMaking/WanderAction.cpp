@@ -20,6 +20,7 @@ namespace AIForGames
 			t1 = m_pTileMap->GetTile(m_pOwnerObject->GetPosition());			
 			t2 = t1;
 			output.linear = ofVec2f(0, 0);
+			bComplete = false;
 		}
 
 		void WanderAction::Update()
@@ -44,6 +45,16 @@ namespace AIForGames
 			//	output = m_pMovementAlgo->GeneratePath(o_path);
 			//	m_pOwnerObject->Update(m_pMovementAlgo->GeneratePath(o_path));
 			//}
+		}
+
+		bool WanderAction::IsComplete()
+		{
+			return bComplete;
+		}
+
+		void WanderAction::Restart()
+		{
+			bComplete = false;
 		}
 	}
 }
