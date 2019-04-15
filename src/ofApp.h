@@ -36,6 +36,7 @@ private:
 	AIForGames::GameObject* m_pBoidObject;
 	AIForGames::GameObject* m_pTarget;
 	AIForGames::GameObject* m_pNPC;
+	AIForGames::GameObject* m_pGold;
 	std::vector<AIForGames::GameObject*> m_pObjects;
 	AIForGames::Movement::IMovementAlgorithm* m_pMovementAlgo;
 	std::vector<AIForGames::Movement::IMovementAlgorithm*> m_pBlendedMovement;
@@ -49,4 +50,6 @@ private:
 	AIForGames::PathFinding::TileMap* m_pTileMap;
 	int m_noOfWalls;
 	int m_numberOfBoids;
+	int m_win = 0;
+	int m_loss = 0;
 };

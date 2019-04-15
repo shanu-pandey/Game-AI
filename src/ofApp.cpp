@@ -42,6 +42,7 @@ void ofApp::Start()
 	m_pBoidObject->SetHealth(100.0f);
 	m_pBoidObject->GetKinematic()->SetPosition(ofVec2f(5, 5));
 	m_pNPC->GetKinematic()->SetPosition(ofVec2f(980, 30));
+	m_pGold->GetKinematic()->SetPosition(ofVec2f(800, 250));
 	m_pBoidObject->Stop();
 }
 
@@ -445,6 +446,7 @@ void ofApp::setup()
 
 	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(radius, radius), orientation);
 	m_pTarget = new AIForGames::GameObject(-100, -100);
+	m_pGold = new AIForGames::GameObject(800, 250);
 	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 400, 100, 20, 5, 1);
 	//m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 10, 1);
 	m_pWorldManager.RegisterPlayerCharacter(m_pBoidObject);
@@ -452,6 +454,9 @@ void ofApp::setup()
 	m_pNPC = new AIForGames::GameObject(radius, ofVec3f(980, 30), orientation);	
 	m_pNPC->GetAIController()->CreateBehaviorTree();
 
+	
+	m_pGold->SetRadius(10);
+	m_pGold->GetRenderer()->SetColor(125, 255, 123);
 	m_pTarget->GetRenderer()->SetColor(0, 255, 0);
 	m_pNPC->GetRenderer()->SetColor(255, 0, 0);
 
@@ -599,10 +604,18 @@ void ofApp::update() {
 	//m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
 
 	if (m_pBoidObject->GetHealth() <= 0)
+	{		
+		Start();
+		m_loss++;
+	}
+	if ((m_pBoidObject->GetKinematic()->GetPosition() - m_pGold->GetKinematic()->GetPosition()).length() <= 10.0f)
 	{
-		
+		m_pGold->GetKinematic()->SetPosition(ofVec2f(-100, -100));
+		m_win++;
 		Start();
 	}
+
+
 #endif // BEHAVIORTREE
 }
 
@@ -610,7 +623,9 @@ void ofApp::update() {
 void ofApp::draw() {
 	
 	ofSetColor(ofColor::black);
-	ofDrawBitmapString("value: " + ofToString(m_pBoidObject->GetHealth()), 50, 50);	
+	ofDrawBitmapString("Current Health: " + ofToString(m_pBoidObject->GetHealth()), 50, 50);	
+	ofDrawBitmapString("Win: " + ofToString(m_win), 50, 60);
+	ofDrawBitmapString("Loss: " + ofToString(m_loss), 50, 70);
 
 #ifdef DIJKSTRA	
 	DrawDijkstraGraph();
@@ -667,6 +682,7 @@ void ofApp::draw() {
 	m_pBoidObject->DrawObject();
 	m_pBoidObject->DrawBreadCrumbs();
 	m_pNPC->DrawObject();
+	m_pGold->DrawObject();
 	//m_pTarget->DrawObject();
 #endif // BEHAVIORTREE
 }
