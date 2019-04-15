@@ -28,9 +28,9 @@
 #pragma endregion
 
 #pragma region Assignment 3
-//#define DECISIONTREE
+#define DECISIONTREE
 //#define BEHAVIORTREE
-#define DECISIONLEARNING
+//#define DECISIONLEARNING
 #pragma endregion
 
 //--------------------------------------------------------------
