@@ -58,8 +58,9 @@ namespace AIForGames
 
 	void AIController::Update(float i_dt)
 	{
-		if (m_pDecisionTechnique->GetAction())
-			m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
+		if (m_pDecisionTechnique)
+			if (m_pDecisionTechnique->GetAction())
+				m_pActionManager->AddToPending(m_pDecisionTechnique->GetAction());
 
 		m_pActionManager->Update(i_dt);
 	}	
@@ -163,6 +164,6 @@ namespace AIForGames
 
 	void AIController::DecisionTreeLearning()
 	{
-
+		m_pDecisionTechnique = nullptr;
 	}
 }

@@ -178,6 +178,9 @@
     <ClCompile Include="src\DecisionMaking\EatPlayer.cpp">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
     </ClCompile>
+    <ClCompile Include="src\DecisionMaking\Entropy.cpp">
+      <Filter>src\DecisionMaking\DecisionTreeLearning</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -242,6 +245,9 @@
     </Filter>
     <Filter Include="src\DecisionMaking\BehaviorTree\Tasks">
       <UniqueIdentifier>{f388bcc9-453c-4533-be2f-01b41aa3fedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DecisionMaking\DecisionTreeLearning">
+      <UniqueIdentifier>{0cff1f05-12ac-4080-8dcf-51687e516546}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +451,12 @@
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\EatPlayer.h">
       <Filter>src\DecisionMaking\BehaviorTree\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\Entropy.h">
+      <Filter>src\DecisionMaking\DecisionTreeLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMaking\Example.h">
+      <Filter>src\DecisionMaking\DecisionTreeLearning</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -193,6 +193,7 @@
     <ClCompile Include="src\DecisionMaking\DecisionTree.cpp" />
     <ClCompile Include="src\DecisionMaking\DistanceFromPlayer.cpp" />
     <ClCompile Include="src\DecisionMaking\EatPlayer.cpp" />
+    <ClCompile Include="src\DecisionMaking\Entropy.cpp" />
     <ClCompile Include="src\DecisionMaking\Invertor.cpp" />
     <ClCompile Include="src\DecisionMaking\Patrol.cpp" />
     <ClCompile Include="src\DecisionMaking\PatrolAction.cpp" />
@@ -254,6 +255,8 @@
     <ClInclude Include="src\DecisionMaking\DecisionTree.h" />
     <ClInclude Include="src\DecisionMaking\DistanceFromPlayer.h" />
     <ClInclude Include="src\DecisionMaking\EatPlayer.h" />
+    <ClInclude Include="src\DecisionMaking\Entropy.h" />
+    <ClInclude Include="src\DecisionMaking\Example.h" />
     <ClInclude Include="src\DecisionMaking\IDecisionMakingTechnique.h" />
     <ClInclude Include="src\DecisionMaking\IDecisionTreeNode.h" />
     <ClInclude Include="src\DecisionMaking\Invertor.h" />
