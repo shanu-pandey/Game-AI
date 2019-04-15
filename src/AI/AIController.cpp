@@ -88,9 +88,9 @@ namespace AIForGames
 		AIForGames::DecisionMaking::BehaviorTrees::Patrol* pPatrol = new AIForGames::DecisionMaking::BehaviorTrees::Patrol(1, 4);
 		pPatrol->SetMyController(this);
 		AIForGames::DecisionMaking::PatrolAction* pPatrolAction = new AIForGames::DecisionMaking::PatrolAction(m_pOwner->GetKinematic());				
-		pPatrolAction->AddPatrolPoint(ofVec2f(550, 30));
-		pPatrolAction->AddPatrolPoint(ofVec2f(550, 300));
-		pPatrolAction->AddPatrolPoint(ofVec2f(980, 300));
+		pPatrolAction->AddPatrolPoint(ofVec2f(600, 30));
+		pPatrolAction->AddPatrolPoint(ofVec2f(600, 420));
+		pPatrolAction->AddPatrolPoint(ofVec2f(980, 420));
 		pPatrolAction->AddPatrolPoint(ofVec2f(980, 30));
 		pPatrol->SetAction(pPatrolAction);
 #pragma endregion 
@@ -125,7 +125,7 @@ namespace AIForGames
 #pragma region Eat Player
 		AIForGames::DecisionMaking::BehaviorTrees::EatPlayer* pEatPlayer = new AIForGames::DecisionMaking::BehaviorTrees::EatPlayer(1);
 		pEatPlayer->SetMyController(this);
-		pEatPlayer->SetDamage(0.1f);
+		pEatPlayer->SetDamage(1.0f);
 #pragma endregion
 
 #pragma region Invertor
@@ -158,7 +158,7 @@ namespace AIForGames
 		pRootSelector->AddChild(pPatrol);
 #pragma endregion
 		
-		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pChaseTask);
+		m_pDecisionTechnique = new AIForGames::DecisionMaking::BehaviorTrees::BehaviorTree(pRootSelector);
 	}
 
 	void AIController::DecisionTreeLearning()

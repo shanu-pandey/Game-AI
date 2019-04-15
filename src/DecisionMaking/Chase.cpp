@@ -1,5 +1,6 @@
 #pragma once
 #include "Chase.h"
+#include "../Movement/Arrive.h"
 
 namespace AIForGames
 {
@@ -10,6 +11,7 @@ namespace AIForGames
 			m_pOwnerObject = i_object;
 			m_pTargetObject = i_target;
 			m_pMovementAlgo = new AIForGames::Movement::Seek(m_pOwnerObject, m_pTargetObject, 200);
+			//m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pOwnerObject, m_pTargetObject, 400, 100, 20, 5, 1);
 			bComplete = false;
 		}
 
@@ -22,9 +24,9 @@ namespace AIForGames
 				pow((m_pTargetObject->GetPosition().y - m_pOwnerObject->GetPosition().y), 2);
 			if (sqDistance < pow(250, 2))
 			{
-				//m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
+				m_pOwnerObject->Update(m_pMovementAlgo->GetKinematicSteering());
 				std::list<DirectedWeightedEdge> path;
-				m_pOwnerObject->Update(m_pMovementAlgo->GeneratePath(path));
+				//m_pOwnerObject->Update(m_pMovementAlgo->GeneratePath(path));
 
 			}
 

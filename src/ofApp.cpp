@@ -35,6 +35,15 @@
 
 //--------------------------------------------------------------
 
+void ofApp::Start()
+{
+	m_pTarget->GetKinematic()->SetPosition(ofVec2f(-300, -300));
+	m_pTarget->GetKinematic()->SetOrientation(0);
+	m_pBoidObject->SetHealth(100.0f);
+	m_pBoidObject->GetKinematic()->SetPosition(ofVec2f(5, 5));
+	m_pNPC->GetKinematic()->SetPosition(ofVec2f(980, 30));
+	m_pBoidObject->Stop();
+}
 
 void DrawDijkstraGraph()
 {
@@ -115,7 +124,7 @@ void ofApp::DrawGameWorld()
 
 void ofApp::InitailizeGameWorld()
 {
-	m_noOfWalls = 9;
+	m_noOfWalls = 8;
 	//Initailize top left of walls
 	{
 		ofVec2f w1 = ofVec2f(0, 250);
@@ -133,7 +142,7 @@ void ofApp::InitailizeGameWorld()
 		ofVec2f w7 = ofVec2f(550,600);
 		m_WallTopLocation.emplace_back(w7);
 		ofVec2f w8 = ofVec2f(750, 240);
-		m_WallTopLocation.emplace_back(w8);
+		//m_WallTopLocation.emplace_back(w8);
 		ofVec2f w9 = ofVec2f(820, 520);
 		m_WallTopLocation.emplace_back(w9);	
 	}
@@ -154,7 +163,7 @@ void ofApp::InitailizeGameWorld()
 		float w7 = 80;
 		m_WallWidth.emplace_back(w7);
 		float w8 = 320;
-		m_WallWidth.emplace_back(w8);
+		//m_WallWidth.emplace_back(w8);
 		float w9 = 40;
 		m_WallWidth.emplace_back(w9);
 	}
@@ -175,7 +184,7 @@ void ofApp::InitailizeGameWorld()
 		float h7 = 190;
 		m_WallHeight.emplace_back(h7);
 		float h8 = 60;
-		m_WallHeight.emplace_back(h8);
+		//m_WallHeight.emplace_back(h8);
 		float h9 = 160;
 		m_WallHeight.emplace_back(h9);
 	}
@@ -436,7 +445,8 @@ void ofApp::setup()
 
 	m_pBoidObject = new AIForGames::GameObject(radius, ofVec3f(radius, radius), orientation);
 	m_pTarget = new AIForGames::GameObject(-100, -100);
-	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 10, 1);
+	m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 400, 100, 20, 5, 1);
+	//m_pMovementAlgo = new AIForGames::Movement::Arrive(m_pBoidObject->GetKinematic(), m_pTarget->GetKinematic(), 800, 10, 1);
 	m_pWorldManager.RegisterPlayerCharacter(m_pBoidObject);
 
 	m_pNPC = new AIForGames::GameObject(radius, ofVec3f(980, 30), orientation);	
@@ -586,7 +596,13 @@ void ofApp::update() {
 	//m_pTarget->Update();
 	m_pNPC->Update();
 	m_pBoidObject->Update(m_pMovementAlgo->GeneratePath(o_path));
-	m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
+	//m_pBoidObject->Update(m_pMovementAlgo->GetKinematicSteering());
+
+	if (m_pBoidObject->GetHealth() <= 0)
+	{
+		
+		Start();
+	}
 #endif // BEHAVIORTREE
 }
 
@@ -648,10 +664,10 @@ void ofApp::draw() {
 
 #ifdef BEHAVIORTREE	
 	DrawGameWorld();
-	DrawGameWorld();
 	m_pBoidObject->DrawObject();
+	m_pBoidObject->DrawBreadCrumbs();
 	m_pNPC->DrawObject();
-	m_pTarget->DrawObject();
+	//m_pTarget->DrawObject();
 #endif // BEHAVIORTREE
 }
 
@@ -725,9 +741,29 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 #ifdef BEHAVIORTREE
 	if (button == 0)
+	{
+		m_pBoidObject->Stop();
+		o_path.clear();
+		AIForGames::PathFinding::Tile* t1 = m_pTileMap->GetTile(m_pBoidObject->GetKinematic()->GetPosition());
+		Node n1 = Node(t1->GetIndex(), t1->GetPosition());
+
+		AIForGames::PathFinding::Tile* t2 = m_pTileMap->GetTile(ofVec2f(x, y));
+		Node n2 = Node(t2->GetIndex(), t2->GetPosition());
+
+		m_pTarget->GetKinematic()->SetPosition(ofVec2f(x, y));
+		o_path = AIForGames::PathFinding::AStar::FindPath(n1, n2, m_pGraph);
+	}
+
+	else
+	{
+		o_path.clear();
+		m_pBoidObject->Stop();
+	}
+
+	/*if (button == 0)
 		m_pTarget->GetKinematic()->SetPosition(ofVec2f(x, y));
 	else
-		m_pTarget->GetKinematic()->SetPosition(ofVec2f(-300, -300));
+		m_pTarget->GetKinematic()->SetPosition(ofVec2f(-300, -300));*/
 #endif // DECISIONTREE
 }
 
