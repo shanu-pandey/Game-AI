@@ -239,6 +239,7 @@
     <ClCompile Include="src\PriorityQueue\PriorityQueue.cpp" />
     <ClCompile Include="src\Renderer\BoidRenderer.cpp" />
     <ClCompile Include="src\Renderer\TargetRenderer.cpp" />
+    <ClCompile Include="src\SpatialPartioning\MapManager.cpp" />
     <ClCompile Include="src\WorldData\WorldManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +311,7 @@
     <ClInclude Include="src\Renderer\BoidRenderer.h" />
     <ClInclude Include="src\Renderer\IRenderer.h" />
     <ClInclude Include="src\Renderer\TargetRenderer.h" />
+    <ClInclude Include="src\SpatialPartioning\MapManager.h" />
     <ClInclude Include="src\WorldData\WorldManager.h" />
   </ItemGroup>
   <ItemGroup>

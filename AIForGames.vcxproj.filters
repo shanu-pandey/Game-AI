@@ -181,6 +181,9 @@
     <ClCompile Include="src\DecisionMaking\Entropy.cpp">
       <Filter>src\DecisionMaking\DecisionTreeLearning</Filter>
     </ClCompile>
+    <ClCompile Include="src\SpatialPartioning\MapManager.cpp">
+      <Filter>src\SpatialPartioning</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -248,6 +251,9 @@
     </Filter>
     <Filter Include="src\DecisionMaking\DecisionTreeLearning">
       <UniqueIdentifier>{0cff1f05-12ac-4080-8dcf-51687e516546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\SpatialPartioning">
+      <UniqueIdentifier>{a97695f0-6187-4da4-965c-d872e4a4b2e1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="src\DecisionMaking\Example.h">
       <Filter>src\DecisionMaking\DecisionTreeLearning</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpatialPartioning\MapManager.h">
+      <Filter>src\SpatialPartioning</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

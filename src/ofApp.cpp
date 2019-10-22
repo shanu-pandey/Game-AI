@@ -13,7 +13,7 @@
 #pragma region Assignment 1
 
 //#define BASICMOTION
-//#define SEEK_STEERING_01
+#define SEEK_STEERING_01
 //#define SEEK_STEERING_02
 //#define WANDER_STEERING_01
 //#define WANDER_STEERING_02
@@ -28,7 +28,7 @@
 #pragma endregion
 
 #pragma region Assignment 3
-#define DECISIONTREE
+//#define DECISIONTREE
 //#define BEHAVIORTREE
 //#define DECISIONLEARNING
 #pragma endregion
@@ -667,10 +667,10 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
 	
-	ofSetColor(ofColor::black);
-	ofDrawBitmapString("Current Health: " + ofToString(m_pBoidObject->GetHealth()), 50, 50);	
+	ofSetColor(ofColor::grey);
+	/*ofDrawBitmapString("Current Health: " + ofToString(m_pBoidObject->GetHealth()), 50, 50);	
 	ofDrawBitmapString("Win: " + ofToString(m_win), 50, 60);
-	ofDrawBitmapString("Loss: " + ofToString(m_loss), 50, 70);
+	ofDrawBitmapString("Loss: " + ofToString(m_loss), 50, 70);*/
 
 #ifdef DIJKSTRA	
 	DrawDijkstraGraph();
